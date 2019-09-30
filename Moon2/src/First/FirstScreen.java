@@ -772,10 +772,12 @@ public class FirstScreen extends JFrame {
 						for(int i = 0; i < nRow; i++) {
 							sale[i] = m.getValueAt(i, 0)+","+m.getValueAt(i, 1);
 							System.out.println(sale[i]);
+							
 							String sp1 = m.getValueAt(i, 2).toString().split(",")[0];
 							String sp2 = m.getValueAt(i, 2).toString().split(",")[1];
 							String sp3 = sp1+sp2;
 							int money = Integer.parseInt(sp3);
+							//판매 테이블에 입력
 							dao.insert_sale(ID, m.getValueAt(i, 0).toString(), money, Integer.parseInt(m.getValueAt(i, 1).toString()));
 						}
 						dao.Update(sale,ID);

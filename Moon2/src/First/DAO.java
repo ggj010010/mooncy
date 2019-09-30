@@ -172,8 +172,7 @@ public class DAO { /* * DAO(Data Access Object - 데이터 접근 객체) 데이터베이스�
 	public void  insert_sale(String ID, String name, int money, int count) {
 		Date d = new Date();
 		SimpleDateFormat format = new SimpleDateFormat("yyyyMMdd");
-		String sql = "insert into sale values((select nvl(TO_NUMBER(MAX(s_id)+1),0) from sale), '"+ID+"', '"+name+"', '"+money+"', '"+count+"', '"+format.format(d)+"')";
-		System.out.println(sql);
+		String sql = "insert into sale values((select nvl(TO_NUMBER(MAX(s_id)+1),1) from sale), '"+ID+"', '"+name+"', '"+money+"', '"+count+"', '"+format.format(d)+"')";
 		try {
 			con = DriverManager.getConnection(URL, USER, PW);
 			stmt = con.createStatement();
