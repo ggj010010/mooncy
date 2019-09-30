@@ -6,6 +6,9 @@
 <head>
 <meta charset="EUC-KR">
 <title>재고</title>
+<SCRIPT type="text/javascript">
+    setTimeout("location.reload()",6000)
+</SCRIPT>
 </head>
 <body>
 
