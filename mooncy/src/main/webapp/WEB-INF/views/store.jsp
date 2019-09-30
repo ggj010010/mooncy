@@ -8,12 +8,12 @@
 <title>Àç°í</title>
 </head>
 <body>
-<c:forEach var="sl" items="${storeList }">
+
 <table border = 1>
-	<caption>${sl.m_name }</caption>
+	
 		<tr>
 
-			
+			<th>¸ÅÀå</th>
 			<th>µş±â</th>
 			<th>¿À·»Áö</th>
 			<th>¹Ù³ª³ª</th>
@@ -30,11 +30,11 @@
 			<th>ÄÅ</th>
 		</tr>
 
-		
+		<c:forEach var="sl" items="${storeList }">
 
 			<tr>
 
-				
+				<td>${sl.m_name }</td>
 				<td>${sl.ddalgi }</td>
 				<td>${sl.orange }</td>
 				<td>${sl.banana }</td>
@@ -52,11 +52,11 @@
 				<td>${sl.dduggung }</td>
 				<td>${sl.cup }</td>
 			</tr>
-
+		</c:forEach>
 		
 
 	</table>
-	<br><hr>
-	</c:forEach>
+
+	
 </body>
 </html>
