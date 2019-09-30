@@ -5,7 +5,9 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class DAO { /* * DAO(Data Access Object - 데이터 접근 객체) 데이터베이스에 관련된 작업을 전문적으로 담당하는 객체이다. * */
 	private Connection con;
@@ -160,6 +162,24 @@ public class DAO { /* * DAO(Data Access Object - 데이터 접근 객체) 데이터베이스�
 			rs = stmt.executeQuery(sql);		
 		}
 	}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(con, stmt, rs);
+		}
+		
+	}
+	public void  insert_sale(String ID, String name, int money, int count) {
+		Date d = new Date();
+		SimpleDateFormat format = new SimpleDateFormat("yyyyMMdd");
+		String sql = "insert into sale values((select nvl(TO_NUMBER(MAX(s_id)+1),0) from sale), '"+ID+"', '"+name+"', '"+money+"', '"+count+"', '"+format.format(d)+"')";
+		System.out.println(sql);
+		try {
+			con = DriverManager.getConnection(URL, USER, PW);
+			stmt = con.createStatement();
+			rs = stmt.executeQuery(sql);
+			System.out.println(sql);
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
