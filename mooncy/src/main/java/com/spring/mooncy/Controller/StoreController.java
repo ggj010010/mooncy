@@ -18,11 +18,11 @@ public class StoreController {
 	StoreService storeService;
 	private static final Logger logger = LoggerFactory.getLogger(StoreController.class);
 	
-	@RequestMapping(value = "/store", method = RequestMethod.GET)
+	@RequestMapping(value = "/store/store", method = RequestMethod.GET)
 	public String exhome(Locale locale, Model model) {
 		logger.info("!!");
 		model.addAttribute("storeList", storeService.searchList());
 		
-		return "store";
+		return "store/store";
 	}
 }
