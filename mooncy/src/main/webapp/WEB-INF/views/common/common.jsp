@@ -49,6 +49,13 @@ td {
    vertical-align: middle;
    height: 50px;
 }
+.btn { display:block; width:200px; height:20px; line-height:20px; border:1px #ffffff solid;;
+ margin:5px auto; background-color:#ffffff; text-align:center; cursor: pointer; color:#333; 
+ transition:all 0.9s, color 0.3; } .btn:hover{color:#fff;}
+
+
+ .hover:hover{ box-shadow: 0 80px 0 0 rgba(0,0,0,0.25) inset, 0 -80px 0 0 rgba(0,0,0,0.25) inset; } 
+
 </style>
 <script src="/resources/js/jquery-1.10.2.js"></script>
 <script type="text/javascript">

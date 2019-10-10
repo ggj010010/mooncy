@@ -22,15 +22,15 @@
 </SCRIPT>
 </head>
 <body>
-
 	<table border=1>
 
 		<tr>
 
-		<th><input type="button"  value="皋牢" onClick="location.href='/menu/main'"></th>
-			<th><input type="button"  value="惯林包府" onClick="location.href='/menu/order'"></th>
-			<th><input type="button"  value="魄概包府" onClick="location.href='/menu/sale'"></th>
-			<th><input type="button"  value="犁绊包府" onClick="location.href='/store/store'"></th>
+
+<th><button class="btn hover" onClick="location.href='/menu/main'"> 皋牢</button></th>
+ <th><button class="btn hover"onClick="location.href='/menu/order'"> 惯林包府</button></th>
+  <th><button class="btn hover"onClick="location.href='/menu/sale'"> 魄概包府</button></th>
+   <th><button class="btn hover"onClick="location.href='/store/store'"> 犁绊包府 </button></th>
 
 
 		</tr>

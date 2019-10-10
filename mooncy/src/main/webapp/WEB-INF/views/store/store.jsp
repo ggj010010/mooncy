@@ -26,13 +26,16 @@
 	<table border=1>
 	<tr>
 
-		<th><input type="button"  value="메인" onClick="location.href='/menu/main'"></th>
-			<th><input type="button"  value="발주관리" onClick="location.href='/menu/order'"></th>
-			<th><input type="button"  value="판매관리" onClick="location.href='/menu/sale'"></th>
-			<th><input type="button"  value="재고관리" onClick="location.href='/store/store'"></th>
+<th><button class="btn hover" onClick="location.href='/menu/main'"> 메인</button></th>
+ <th><button class="btn hover"onClick="location.href='/menu/order'"> 발주관리</button></th>
+  <th><button class="btn hover"onClick="location.href='/menu/sale'"> 판매관리</button></th>
+   <th><button class="btn hover"onClick="location.href='/store/store'"> 재고관리 </button></th>
 
 
 		</tr>
+		</table>
+			<table border=1>
+	<tr>
 		<tr>
 
 			<th>매장</th>
