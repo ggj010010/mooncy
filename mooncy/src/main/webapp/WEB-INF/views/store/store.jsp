@@ -24,7 +24,15 @@
 <body>
 
 	<table border=1>
+	<tr>
 
+		<th><input type="button"  value="메인" onClick="location.href='/menu/main'"></th>
+			<th><input type="button"  value="발주관리" onClick="location.href='/menu/order'"></th>
+			<th><input type="button"  value="판매관리" onClick="location.href='/menu/sale'"></th>
+			<th><input type="button"  value="재고관리" onClick="location.href='/store/store'"></th>
+
+
+		</tr>
 		<tr>
 
 			<th>매장</th>
