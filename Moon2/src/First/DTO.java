@@ -19,10 +19,18 @@ bbalde=0,
 dduggung=0,
 cup=0;
 
+String p_name;
 
 
 
 
+public String getP_name() {
+	return p_name;
+}
+
+public void setP_name(String p_name) {
+	this.p_name = p_name;
+}
 
 public int getDdalgi() {
    return ddalgi;

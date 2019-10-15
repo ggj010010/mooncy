@@ -44,7 +44,7 @@ public class FirstScreen extends JFrame {
 
 	int [] count =  {0,0,0,0,0,0,0,0,0,0,0,0};
 	int [] cnt =  {0,0,0,0,0,0,0,0,0,0,0,0,0,0};
-
+	int menu_flag[] = {0,0,0,0,0,0,0,0,0,0,0,0,0,0};
 	int [] price = {3000,2300,2300,3000,3700,4500,3000,2700,2500,3900,2700,3700};
 	int [] sumPrice = {3000,2300,2300,3000,3700,4500,3000,2700,2500,3900,2700,3700};
 	int allPrice=0;
@@ -772,7 +772,7 @@ public class FirstScreen extends JFrame {
 						for(int i = 0; i < nRow; i++) {
 							sale[i] = m.getValueAt(i, 0)+","+m.getValueAt(i, 1);
 							System.out.println(sale[i]);
-							
+
 							String sp1 = m.getValueAt(i, 2).toString().split(",")[0];
 							String sp2 = m.getValueAt(i, 2).toString().split(",")[1];
 							String sp3 = sp1+sp2;
@@ -800,6 +800,59 @@ public class FirstScreen extends JFrame {
 				//				JScrollPane sc = new JScrollPane(table);
 				//				getContentPane().add(sc);
 				b = dao.select2(ID);
+
+				/*
+				 * cnt[0] = beans.ddalgi; cnt[1] = beans.orange; cnt[2] = beans.banana; cnt[3] =
+				 * beans.kiwi; cnt[4] = beans.pine; cnt[5] = beans.hanla; cnt[6] = beans.suback;
+				 * cnt[7] = beans.tomato; cnt[8] = beans.apple; cnt[9] = beans.mango; cnt[10] =
+				 * beans.ice; cnt[11] = beans.bbalde; cnt[12] = beans.dduggung; cnt[13] =
+				 * beans.cup;
+				 */
+				String menu[] = new String[15];
+				menu[0] = "딸기"; menu[1] = "오렌지"; menu[2] = "바나나"; menu[3] = "키위"; menu[4] = "파인에플";
+				menu[5] = "한라봉"; menu[6] = "수박"; menu[7] = "토바토"; menu[8] = "사과"; menu[9] = "망고";
+				menu[10] = "얼음, 뚜껑, 빨대, 컵";
+
+				
+				for(int i = 0; i < cnt.length-4; i++) {
+					
+					if(cnt[i] < 11 ) {
+						int check = dao.order_select(ID, menu[i]);
+							if(check == 1) {
+								
+							}
+							else {
+								boolean a = true;
+								while(a) {
+									String m = JOptionPane.showInputDialog(null, menu[i]+"의 제고가 10개 이하입니다.제고를 요청하시겠습니까?(개수)", 
+											"제고요청", JOptionPane.QUESTION_MESSAGE);
+
+									System.out.println(m);
+									if(m == null) {
+										a = false;
+									}
+									else if(m.equals("")) {
+										JOptionPane.showMessageDialog(null, "개수를 입력해주세요", "경고 메시지", JOptionPane.WARNING_MESSAGE);
+										a = true;
+									}
+									else {
+
+										dao.insert_order(ID, menu[i], Integer.parseInt(m));
+										menu_flag[i] = 1;
+										System.out.println(menu_flag[i]);
+										a = false;
+									}
+								}
+							}
+							
+						
+					}
+					else {
+						menu_flag[i] = 0;
+					}
+				}
+
+
 			}
 		});
 		btnNewButton_11.setBounds(138, 342, 69, 74);
