@@ -34,27 +34,33 @@
 <div class="board-container" >
 <div id = "side_rigth">
 <h2>판매 관리</h2>
-<table border=1 width = 50%  align = "center">
+<table  class="type09" style = "width : 650;">
+
 		<tr>
-			<th>글번호</th>
-			<th>글제목</th>
-			<th>글쓴이</th>
-			<th>처리여부</th>
+			<th scope="cols">번호</th>
+			<th scope="cols">제목</th>
+			<th scope="cols">작성자</th>
+			<th scope="cols">날짜</th>
+			<th scope="cols">처리여부</th>
 		</tr>
+
+
 		<tr>
 			<td>1</td>
-			<td>안녕하세요</td>
+			<td><a href="view">안녕하세요</td>
 			<td>종문디</td>
-			<td>X</td>
+			<td>2019-10-15</td>
+			<td>처리 중</td>
 		</tr>
 	</table>
 
 	    <div id = "side_rigth_box">
 			<button class="btn hover"onClick="location.href='/menu/write'"> 글쓰기 </button>
 		</div>
+	
+
 	</div>
 </div>
-
 </body>
 </body>
 </html>
