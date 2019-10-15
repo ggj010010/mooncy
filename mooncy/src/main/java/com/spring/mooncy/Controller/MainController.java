@@ -35,6 +35,11 @@ public class MainController {
 		logger.info("!!");		
 		return "menu/sale";
 	}
+	@RequestMapping(value = "/menu/write", method = RequestMethod.GET)
+	public String write(Locale locale, Model model) {
+		logger.info("!!");		
+		return "menu/write";
+	}
 	
 	
 }
