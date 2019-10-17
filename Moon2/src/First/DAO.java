@@ -213,8 +213,8 @@ public class DAO { /* * DAO(Data Access Object - 데이터 접근 객체) 데이터베이스�
 	}
 	public void  insert_order(String ID, String name, int count) {
 		Date d = new Date();
-		SimpleDateFormat format = new SimpleDateFormat("yyyyMMdd");
-		String sql = "insert into p_order values((select nvl(TO_NUMBER(MAX(o_no)+1),1) from p_order), '"+ID+"', '0', '"+name+"', '"+count+"', '"+format.format(d)+"')";
+		SimpleDateFormat format = new SimpleDateFormat("yyyyMMddHHmmss");
+		String sql = "insert into p_order values((select nvl(TO_NUMBER(MAX(o_no)+1),1) from p_order), '"+ID+"', '0', '"+name+"', '"+count+"', sysdate)";
 		System.out.println(sql);
 		try {
 			con = DriverManager.getConnection(URL, USER, PW);
