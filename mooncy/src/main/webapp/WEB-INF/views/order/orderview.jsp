@@ -14,7 +14,7 @@
 
 
 	<div id = "side"><button class="button" onClick="location.href='/menu/main'"> 皋牢</button></div>
-	<div id = "side"><button class="button"onClick="location.href='/menu/order'"> 惯林包府</button></div>
+	<div id = "side"><button class="button"onClick="location.href='/order/orderview'"> 惯林包府</button></div>
 	<div id = "side"><button class="button"onClick="location.href='/menu/sale'"> 魄概包府</button></div>
  	<div id = "side"><button class="button"onClick="location.href='/store/store'"> 犁绊包府 </button></div>
 
@@ -31,7 +31,7 @@
 <div class="board-container" >
 <div id = "side_rigth">
 <h2>惯林 包府</h2>
-<table border=1 width = 50%  align = "center">
+<table >
 		<tr>
 
 			<th>ID</th>
@@ -68,12 +68,12 @@
 		</c:forEach>
 		</tr>
 	</table>
-
+ 	    <div style="text-align:center"> 
+	    <div id = "side_center">
 	   <div class="text-center">
 		
 		<c:if test="${totalCnt/5 > 1 }">
 
-			<ul class="pagination">
 
 				
 
@@ -98,11 +98,12 @@
 				</c:forEach>
 
 
-			</ul>
+
 
 		</c:if>
-
+		</div>
 	</div>
+	    </div>
 	</div>
 	
 </div>

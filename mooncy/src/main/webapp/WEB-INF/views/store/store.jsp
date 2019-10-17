@@ -19,7 +19,7 @@
 			메인</button>
 	</div>
 	<div id="side">
-		<button class="button" onClick="location.href='/menu/order'">
+		<button class="button" onClick="location.href='/order/orderview'">
 			발주관리</button>
 	</div>
 	<div id="side">
