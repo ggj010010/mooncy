@@ -39,15 +39,19 @@ margin:5px;
 	margin:0 auto;
 width:60%;
 height:100%;
-float middle;
+float center;
 }
 
+#side_center{
+	width:100%;
+margin:0 auto;
 
+}
 #side_rigth_box{
 width:30%;
 height:100%;
 float: right;
-margin:1%;
+margin-top: 5px;
 }
 img {
    height: 30px;

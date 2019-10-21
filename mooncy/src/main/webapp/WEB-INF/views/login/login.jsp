@@ -166,7 +166,7 @@
 
 						case 1:
 
-							window.location.href = "/store/store";
+							window.location.href = "/menu/main";
 
 	
 

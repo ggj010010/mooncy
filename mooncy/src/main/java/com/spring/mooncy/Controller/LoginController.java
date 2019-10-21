@@ -34,7 +34,7 @@ public class LoginController {
 
 	
 
-	@RequestMapping(value = "/login/login")
+	@RequestMapping(value = "/")
 
 	public String login(Model model) throws Exception {
 
