@@ -27,8 +27,20 @@
 	<c:choose>
 
         		<c:when test="${sessionScope.m.m_id != null}">
+				<c:choose>
 
-      		    <li><a>${sessionScope.m.m_id}´Ô</a></li>
+        			<c:when test="${sessionScope.m.m_id == '0'}">
+
+      		    	<li><a>°ü¸®ÀÚ´Ô</a></li>
+
+        			</c:when>
+        			<c:otherwise> 
+
+                		<li><a>${sessionScope.m.m_id}´Ô</a></li>
+
+        			</c:otherwise>
+ 				</c:choose>
+  				
 
         		<li><a href="/logout">·Î±×¾Æ¿ô</a></li>
 
