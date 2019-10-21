@@ -88,7 +88,7 @@ public class LoginController {
 
         //m으로 선언된 세션을 삭제시킨다.
 
-        session.removeAttribute("c");
+        session.removeAttribute("m");
 
         // /페이지로 리다이렉트 시킨다.
 

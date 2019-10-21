@@ -104,9 +104,9 @@ public class LoginDAOImpl implements LoginDAO{
 
 			String customer_id = sqlSession.selectOne("CustomerID", customerDTO);
 
-			Hsession.setAttribute("c_id", customer_id);
+			Hsession.setAttribute("m_id", customer_id);
 
-			Hsession.setAttribute("c", c_info);
+			Hsession.setAttribute("m", c_info);
 
 			return 1;
 

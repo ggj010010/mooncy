@@ -7,6 +7,7 @@
 <link rel="stylesheet" type="text/css" href="/resources/js/default.css">
 <meta charset="EUC-KR">
 <title>재고</title>
+	
 <SCRIPT type="text/javascript">
 	
 </SCRIPT>
@@ -23,9 +24,21 @@
 </div>
 </head>
 <body>
+	<c:choose>
+
+        		<c:when test="${sessionScope.m.m_id != null}">
+
+      		    <li><a>${sessionScope.m.m_id}님</a></li>
+
+        		<li><a href="/logout">로그아웃</a></li>
+
+        		</c:when>
+        	
+ 	</c:choose>
 <br>
 <div class="board-container" >
 <div id = "side_rigth">
+
 <h2>발주 관리</h2>
 <table >
 		<tr>
