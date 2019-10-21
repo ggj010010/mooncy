@@ -33,12 +33,12 @@ public class OrderServiceImpl implements OrderService{
 
 	@Override
 
-	public List<OrderDTO> selectOrderView(PagingDTO pagingDTO) {
+	public List<OrderDTO> selectOrderView(PagingDTO pagingDTO, String id) {
 
 		// TODO Auto-generated method stub
-
+		pagingDTO.setM_id(id);
 		return OrderDAO.selectOrderView(pagingDTO);
-
+		
 	}
 
 //	@Override

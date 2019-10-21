@@ -1,5 +1,7 @@
 package com.spring.mooncy.Controller;
 
+import javax.servlet.http.HttpSession;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +27,7 @@ public class OrderController {
 	
 	@RequestMapping(value = "/order/orderview")
 
-	public String selectOrder(Model model,PagingDTO pagingDTO) throws Exception {
+	public String selectOrder(Model model,PagingDTO pagingDTO, HttpSession session) throws Exception {
 
 		logger.info("order :: page :: " + pagingDTO.getPageNo());
 
@@ -38,13 +40,14 @@ public class OrderController {
  			pagingDTO.setPageNo(pageNo);
 
  		}
-
+ 		
+ 		String id = (String)session.getAttribute("m_id");
 		
 
-		model.addAttribute("orderList", OrderService.selectOrderView(pagingDTO));
-
-		model.addAttribute("totalCnt", OrderService.selectOrderView(pagingDTO).get(0).getPagingDTO().getTotalCnt());
-
+		model.addAttribute("orderList", OrderService.selectOrderView(pagingDTO, id));
+		if(OrderService.selectOrderView(pagingDTO, id).size() != 0) {
+			model.addAttribute("totalCnt", OrderService.selectOrderView(pagingDTO, id).get(0).getPagingDTO().getTotalCnt());
+		}
 		model.addAttribute("pageNo", pagingDTO.getPageNo());
 
 		

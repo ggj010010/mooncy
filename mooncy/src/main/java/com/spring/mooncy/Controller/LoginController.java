@@ -77,7 +77,8 @@ public class LoginController {
 	public int login(CustomerDTO customerDTO, HttpSession Hsession) {
 
 		return loginService.Login(customerDTO, Hsession); 
-
+		
+		
 	}
 
 	@RequestMapping(value = "/logout", method = RequestMethod.GET)
@@ -87,12 +88,12 @@ public class LoginController {
     public String logout(HttpSession session) {
 
         //m으로 선언된 세션을 삭제시킨다.
-
+		
         session.removeAttribute("m");
 
         // /페이지로 리다이렉트 시킨다.
 
-        return "redirect:/login/login";
+        return "redirect:/";
 
     }
 

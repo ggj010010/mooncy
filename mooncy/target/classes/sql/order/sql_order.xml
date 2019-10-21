@@ -82,7 +82,7 @@
 
 		)
 
-		where numrow between (#{pageNo, jdbcType=NUMERIC}-1)*5 + 1 AND #{pageNo, jdbcType=NUMERIC}*5
+		where m_id = #{m_id ,jdbcType=VARCHAR} and numrow between (#{pageNo, jdbcType=NUMERIC}-1)*5 + 1 AND #{pageNo, jdbcType=NUMERIC}*5
 
 		
 	</select>

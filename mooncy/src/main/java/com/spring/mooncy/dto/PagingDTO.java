@@ -5,7 +5,7 @@ public class PagingDTO {
 	
 
 	int totalCnt;
-
+	String m_id;
 	int pageNo;
 
 	
@@ -34,5 +34,14 @@ public class PagingDTO {
 
 	}
 
+	public String getM_id() {
+		return m_id;
+	}
+
+	public void setM_id(String m_id) {
+		this.m_id = m_id;
+	}
+
+	
 
 }
