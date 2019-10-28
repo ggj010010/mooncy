@@ -25,8 +25,6 @@ public class ManagerController {
 
 	public String Manager(Model model) throws Exception {
 
-
-
 		return "/Manager/ManagerMain";
 
 	}

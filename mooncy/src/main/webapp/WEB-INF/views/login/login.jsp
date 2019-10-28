@@ -155,7 +155,6 @@
 					data : json,
 
 					success : function(data) {
-
 						switch (Number(data)) {
 
 						case 0:
@@ -167,11 +166,11 @@
 						case 1:
 
 							window.location.href = "/menu/main";
-
+							break;
 						case 2:
 
 							window.location.href = "/Manager/ManagerMain";
-
+							break;
 						default:
 
 							break;

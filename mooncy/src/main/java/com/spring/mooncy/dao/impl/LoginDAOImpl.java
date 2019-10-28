@@ -107,12 +107,14 @@ public class LoginDAOImpl implements LoginDAO{
 			Hsession.setAttribute("m_id", customer_id);
 
 			Hsession.setAttribute("m", c_info);
+			
+			System.out.println(customer_id);
 
-			if(!customer_id.equals("0")) {
-				return 1;
-			}
-			else {
+			if(customer_id.equals("0")) {
 				return 2;
+			}
+			else{
+				return 1;
 			}
 		}
 
