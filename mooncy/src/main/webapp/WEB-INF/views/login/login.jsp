@@ -168,7 +168,9 @@
 
 							window.location.href = "/menu/main";
 
-	
+						case 2:
+
+							window.location.href = "/Manager/ManagerMain";
 
 						default:
 

@@ -17,11 +17,11 @@ public class StoreDAOImpl implements StoreDAO{
 	@Autowired
 	private SqlSession sqlSession;
 	@Override
-	public List<StoreDTO> searchList() {
+	public List<StoreDTO> searchList(StoreDTO storeDTO) {
 
 		// TODO Auto-generated method stub
 
-		return sqlSession.selectList("store.selectList");
+		return sqlSession.selectList("store.selectList", storeDTO);
 
 	}
 }

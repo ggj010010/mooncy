@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.spring.mooncy.dao.StoreDAO;
+import com.spring.mooncy.dto.CustomerDTO;
 import com.spring.mooncy.dto.StoreDTO;
 import com.spring.mooncy.service.StoreService;
 
@@ -20,8 +21,9 @@ public class StoreServiceImpl implements StoreService{
 	
 
 	@Override
-	public List<StoreDTO> searchList() {
-		return storeDAO.searchList();
-
+	public List<StoreDTO> searchList(StoreDTO storeDTO, String id) {
+		
+		storeDTO.setM_id(id);
+		return storeDAO.searchList(storeDTO);
 	}
 }

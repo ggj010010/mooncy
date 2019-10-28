@@ -7,6 +7,7 @@
 
 	<resultMap type="com.spring.mooncy.dto.StoreDTO" id="StoreDTO">
 
+		<result property="m_id" column="m_id"/>
     	<result property="m_name" column="m_name"/>
     	<result property="ddalgi" column="ddalgi"/>
     	<result property="orange" column="orange"/>
@@ -28,15 +29,16 @@
     </resultMap>
 
     
+    
 
-	<select id="selectList" resultMap="StoreDTO">
+	<select id="selectList" parameterType="com.spring.mooncy.dto.StoreDTO" resultMap="StoreDTO" >
 	select m_name, ddalgi, orange,
 		banana, kiwi, pine,
 		hanla, suback, tomato,
 		apple, mango, ice,
 		bbalde, dduggung, cup 
 	from PRODUCT,M_USER 
-	where PRODUCT.M_ID = M_USER.M_ID
+	where PRODUCT.M_ID = ${m_id} and M_USER.M_ID = ${m_id}
 	</select>
 
 </mapper>

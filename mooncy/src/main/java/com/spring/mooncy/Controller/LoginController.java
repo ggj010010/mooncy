@@ -74,10 +74,11 @@ public class LoginController {
 
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 
-	public int login(CustomerDTO customerDTO, HttpSession Hsession) {
-
-		return loginService.Login(customerDTO, Hsession); 
+	public int login(CustomerDTO customerDTO, HttpSession session) {
+		String id = (String)session.getAttribute("m_id");
 		
+		return loginService.Login(customerDTO, session); 
+	
 		
 	}
 

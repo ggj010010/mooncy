@@ -9,5 +9,4 @@ public interface LoginService {
 	public int insertCustomer(CustomerDTO customerDTO);
 	public int Id_Check(CustomerDTO customerDTO);
 	public int Login(CustomerDTO customerDTO, HttpSession Hsession);
-
 }
