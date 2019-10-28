@@ -831,8 +831,8 @@ public class FirstScreen extends JFrame {
 									if(m == null) {
 										a = false;
 									}
-									else if(m.equals("")) {
-										JOptionPane.showMessageDialog(null, "개수를 입력해주세요", "경고 메시지", JOptionPane.WARNING_MESSAGE);
+									else if(m.equals("") || m.equals("0")) {
+										JOptionPane.showMessageDialog(null, "개수를 다시 입력해주세요", "경고 메시지", JOptionPane.WARNING_MESSAGE);
 										a = true;
 									}
 									else {
