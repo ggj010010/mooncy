@@ -20,6 +20,8 @@
 
     	<result property="m_id" column="m_id"/>
 
+		<result property="m_name" column="m_name"/>
+		
     	<result property="o_check" column="o_check"/>
 
     	<result property="p_name" column="p_name"/>
@@ -36,21 +38,33 @@
 
     
 
-	<select id="selectOrder" resultMap="OrderDTO">
+	<select id="selectOrder" parameterType="com.spring.mooncy.dto.PagingDTO" resultMap="OrderDTO">
 
 	/*order.selectOrder*/
 
-		SELECT *
+		SELECT  
+		
+		distinct  m_user.m_name
+		
+                ,p_order.m_id
 
-		FROM p_order
+				,o_check
+
+				,p_name
+
+				,p_count
+				
+				,p_date
+
+		FROM p_order, m_user 
 		
-		where o_check = 0
+		where o_check = 0 and m_user.m_id = p_order.m_id
 		
-		order by p_date asc
+		order by p_date desc
 
 	</select>
 	
-	<select id="selectOrder" resultMap="OrderDTO">
+	<!-- <select id="selectOrder" resultMap="OrderDTO">
 
 	/*order.selectOrder*/
 
@@ -62,7 +76,7 @@
 		
 		order by p_date asc
 
-	</select>
+	</select> -->
 
 	<select id="selectOrderView" parameterType="com.spring.mooncy.dto.PagingDTO" resultMap="OrderDTO">
 

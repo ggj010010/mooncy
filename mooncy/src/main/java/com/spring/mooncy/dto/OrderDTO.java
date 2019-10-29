@@ -4,6 +4,7 @@ package com.spring.mooncy.dto;
 public class OrderDTO {
 	int o_no;
 	String m_id;
+	String m_name;
 	int o_check;
 	String p_name;
 	String p_count;
@@ -26,6 +27,16 @@ public class OrderDTO {
 	public void setM_id(String m_id) {
 		this.m_id = m_id;
 	}
+	
+
+	public String getM_name() {
+		return m_name;
+	}
+
+	public void setM_name(String m_name) {
+		this.m_name = m_name;
+	}
+
 
 	public int getO_check() {
 		return o_check;

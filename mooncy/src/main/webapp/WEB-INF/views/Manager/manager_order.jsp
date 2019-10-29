@@ -8,36 +8,47 @@
 <meta charset="EUC-KR">
 <title>재고</title>
 <SCRIPT type="text/javascript">
-	
+	$(document).ready(function() {
+		$('#radio').click(function() {
+			// getter
+			/* var radioVal = $('input[name="chk_info"]:checked').val(); */
+			var mailTp = $(':radio[id="chk_info"]:checked').val();
+
+			alert(mailTp);
+		});
+
+	});
 </SCRIPT>
 </head>
 <body>
-<div class="wrap">
 
 
-	<div id="side">
-		<button class="button" onClick="location.href='/Manager/ManagerMain'">
-			메인</button>
-	</div>
-	<div id="side">
-		<button class="button" onClick="location.href='/order/orderview'">
-			발주목록</button>
-	</div>
-	<div id="side">
-		<button class="button"
-			onClick="location.href='/Manager/manager_order'">발주관리</button>
-	</div>
-	<div id="side">
-		<button class="button" onClick="location.href='/menu/sale'">
-			판매관리</button>
-	</div>
-	<div id="side">
-		<button class="button" onClick="location.href='/store/store'">
-			재고관리</button>
-	</div>
+	<div class="wrap">
 
 
-</div>
+		<div id="side">
+			<button class="button" onClick="location.href='/Manager/ManagerMain'">
+				메인</button>
+		</div>
+		<div id="side">
+			<button class="button" onClick="location.href='/order/orderview'">
+				발주목록</button>
+		</div>
+		<div id="side">
+			<button class="button"
+				onClick="location.href='/Manager/manager_order'">발주관리</button>
+		</div>
+		<div id="side">
+			<button class="button" onClick="location.href='/menu/sale'">
+				판매관리</button>
+		</div>
+		<div id="side">
+			<button class="button" onClick="location.href='/store/store'">
+				재고관리</button>
+		</div>
+
+
+	</div>
 
 
 	<c:choose>
@@ -79,8 +90,8 @@
 
 						<table>
 							<tr>
-
-								<th>ID</th>
+								<th>&nbsp</th>
+								<th>지점명</th>
 								<th>제품명</th>
 								<th>개수</th>
 							</tr>
@@ -88,8 +99,8 @@
 								<c:forEach var="ol" items="${orderList}">
 
 									<tr>
-
-										<td>${ol.m_id }</td>
+										<td><input type="radio" name="chk_info" value="${ol.p_name }"></td>
+										<td>${ol.m_name }</td>
 										<td>${ol.p_name }</td>
 
 										<td>${ol.p_count }</td>
