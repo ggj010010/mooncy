@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="store">
+
+	<resultMap type="com.spring.mooncy.dto.StoreDTO" id="StoreDTO">
+
+		<result property="m_id" column="m_id"/>
+    	<result property="m_name" column="m_name"/>
+    	<result property="ddalgi" column="ddalgi"/>
+    	<result property="orange" column="orange"/>
+    	<result property="banana" column="banana"/>
+    	<result property="kiwi" column="kiwi"/>
+    	
+    	<result property="pine" column="pine"/>
+    	<result property="hanla" column="hanla"/>
+    	<result property="suback" column="suback"/>
+    	<result property="tomato" column="tomato"/>
+    	<result property="apple" column="apple"/>
+    	
+    	<result property="mango" column="mango"/>
+    	<result property="ice" column="ice"/>
+    	<result property="bbalde" column="bbalde"/>
+    	<result property="dduggung" column="dduggung"/>
+		<result property="cup" column="cup"/>
+		
+    </resultMap>
+
+    
+    
+
+	<select id="selectList" parameterType="com.spring.mooncy.dto.StoreDTO" resultMap="StoreDTO" >
+	select m_name, ddalgi, orange,
+		banana, kiwi, pine,
+		hanla, suback, tomato,
+		apple, mango, ice,
+		bbalde, dduggung, cup 
+	from PRODUCT,M_USER 
+	where PRODUCT.M_ID = ${m_id} and M_USER.M_ID = ${m_id}
+	</select>
+
+</mapper>

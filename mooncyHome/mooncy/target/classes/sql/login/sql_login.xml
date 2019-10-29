@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="login">
+
+	<resultMap type="com.spring.mooncy.dto.CustomerDTO"
+
+		id="CustomerDTO">
+
+		<result property="m_id" column="m_id" />
+		<result property="m_pw" column="m_pw" />
+		<result property="m_name" column="m_name" />
+
+
+	</resultMap>
+
+    
+	<select id="Id_Check" resultType="int" parameterType="com.spring.mooncy.dto.CustomerDTO">
+
+		select count(*) from m_user
+		where m_id = #{m_id}
+
+	</select>
+
+
+
+	<insert id="insertm_user"
+
+		parameterType="com.spring.mooncy.dto.CustomerDTO"> 
+		INSERT into m_user(m_id, m_pw, m_name)
+		VALUES (#{m_id,jdbcType=VARCHAR}, #{m_pw,jdbcType=VARCHAR} , #{m_name,jdbcType=VARCHAR})
+
+	</insert>
+
+
+	<select id="Login" resultType="int">
+
+		select count(*) from m_user
+		where m_id = #{m_id} and m_pw = #{m_pw}
+
+	</select>
+
+
+	<select id="Login_Info" resultMap="CustomerDTO">
+
+		select * from m_user
+		where m_id = #{m_id} and m_pw = #{m_pw}
+
+	</select>
+
+	<select id="CustomerID" resultType="String">
+
+		select m_id from m_user
+		where m_id = #{m_id} and m_pw = #{m_pw}
+
+	</select>
+</mapper>
