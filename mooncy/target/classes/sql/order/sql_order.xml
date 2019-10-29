@@ -38,17 +38,35 @@
 
 	<select id="selectOrder" resultMap="OrderDTO">
 
-	/*room.selectRoom*/
+	/*order.selectOrder*/
 
 		SELECT *
 
 		FROM p_order
+		
+		where o_check = 0
+		
+		order by p_date asc
+
+	</select>
+	
+	<select id="selectOrder" resultMap="OrderDTO">
+
+	/*order.selectOrder*/
+
+		SELECT 
+
+		FROM p_order
+		
+		where ddalgi > #{cnt }
+		
+		order by p_date asc
 
 	</select>
 
 	<select id="selectOrderView" parameterType="com.spring.mooncy.dto.PagingDTO" resultMap="OrderDTO">
 
-	/*room.selectRoomView*/
+	/*order.selectOrderView*/
 
 		SELECT *
 

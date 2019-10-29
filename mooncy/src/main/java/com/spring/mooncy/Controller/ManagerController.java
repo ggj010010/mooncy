@@ -7,13 +7,16 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.spring.mooncy.service.LoginService;
+import com.spring.mooncy.service.OrderService;
 
 @Controller
 public class ManagerController {
 //	@Autowired
 //
 //	LoginService loginService;
+
+	@Autowired
+	OrderService orderService;
 
 	
 
@@ -22,10 +25,18 @@ public class ManagerController {
 	
 
 	@RequestMapping(value = "/Manager/ManagerMain")
-
 	public String Manager(Model model) throws Exception {
 
 		return "/Manager/ManagerMain";
+
+	}
+	
+	@RequestMapping(value = "/Manager/manager_order")
+	public String manager_order(Model model) throws Exception {
+		
+		model.addAttribute("orderList", orderService.selectOrder());
+
+		return "/Manager/manager_order";
 
 	}
 }
