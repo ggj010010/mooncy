@@ -8,16 +8,40 @@
 <meta charset="EUC-KR">
 <title>재고</title>
 <SCRIPT type="text/javascript">
-	$(document).ready(function() {
+	  $(document).ready(function() {
 		$('#radio').click(function() {
 			// getter
-			/* var radioVal = $('input[name="chk_info"]:checked').val(); */
+			 var radioVal = $('input[name="chk_info"]:checked').val(); 
 			var mailTp = $(':radio[id="chk_info"]:checked').val();
 
-			alert(mailTp);
+			alert("asd");
 		});
 
-	});
+	});  
+	
+	/*  $(".ajaxClick").click(function(e){
+
+         var useYn = $(this).val();
+         alert(useYn)
+          $.ajax({
+             type: "POST",   
+             url: "mobileUseYnCheckAction.do?menuCd=" + ${pMap.menuCd},
+             data: {
+                 useYn: useYn
+             },
+             success: function(data){
+                 if (useYn == "successY") {
+						alert("사용에 동의하셨습니다.");
+                 }
+                 else {
+						alert("사용에 미동의하셨습니다.");
+                 }
+             },
+             error: function (xhr, status, error){
+                 alert("error : " + error);
+             }
+         }); 
+     }); */
 </SCRIPT>
 </head>
 <body>
@@ -99,12 +123,12 @@
 								<c:forEach var="ol" items="${orderList}">
 
 									<tr>
-										<td><input type="radio" name="chk_info" value="${ol.p_name }"></td>
+										
+										<td><input type="radio" name="chk_info" id="radio" value="${ol.p_name }"/></td>
 										<td>${ol.m_name }</td>
 										<td>${ol.p_name }</td>
-
 										<td>${ol.p_count }</td>
-
+										</form>
 									</tr>
 
 								</c:forEach>
