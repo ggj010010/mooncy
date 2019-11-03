@@ -1,57 +1,57 @@
-<%@ page language="java" q_descType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=EUC-KR"
+    pageEncoding="EUC-KR"%>
+<%@include file="/WEB-INF/views/common/common.jsp"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" q_desc="text/html; charset=UTF-8">
-<q_title>ê²Œì‹œê¸€ ì‘ì„±</q_title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<q_title>°Ô½Ã±Û ÀÛ¼º</q_title>c
+<script type="text/javascript" src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
 <script>
     $(document).ready(function(){
         $("#btnSave").click(function(){
-            //var q_title = document.form1.q_title.value; ==> nameì†ì„±ìœ¼ë¡œ ì²˜ë¦¬í•  ê²½ìš°
-            //var q_desc = document.form1.q_desc.value;
-            //var m_id = document.form1.m_id.value;
             var q_title = $("#q_title").val();
             var q_desc = $("#q_desc").val();
             var m_id = $("#m_id").val();
             if(q_title == ""){
-                alert("ì œëª©ì„ ì…ë ¥í•˜ì„¸ìš”");
+                alert("Á¦¸ñÀ» ÀÔ·ÂÇÏ¼¼¿ä");
                 document.form1.q_title.focus();
                 return;
             }
             if(q_desc == ""){
-                alert("ë‚´ìš©ì„ ì…ë ¥í•˜ì„¸ìš”");
+                alert("³»¿ëÀ» ÀÔ·ÂÇÏ¼¼¿ä");
                 document.form1.q_desc.focus();
                 return;
             }
             if(m_id == ""){
-                alert("ì´ë¦„ì„ ì…ë ¥í•˜ì„¸ìš”");
+                alert("ÀÌ¸§À» ÀÔ·ÂÇÏ¼¼¿ä");
                 document.form1.m_id.focus();
                 return;
             }
-            // í¼ì— ì…ë ¥í•œ ë°ì´í„°ë¥¼ ì„œë²„ë¡œ ì „ì†¡
+            // Æû¿¡ ÀÔ·ÂÇÑ µ¥ÀÌÅÍ¸¦ ¼­¹ö·Î Àü¼Û
             document.form1.submit();
         });
     });
 </script>
 </head>
 <body>
-<h2>ê²Œì‹œê¸€ ì‘ì„±</h2>
+<h2>°Ô½Ã±Û ÀÛ¼º</h2>
 <form name="form1" method="post" action="/menu/insert.do">
     <div>
-        ì œëª©
-        <input name="q_title" id="q_title" size="80" placeholder="ì œëª©ì„ ì…ë ¥í•´ì£¼ì„¸ìš”">
+        Á¦¸ñ
+        <input name="q_title" id="q_title" size="80" placeholder="Á¦¸ñÀ» ÀÔ·ÂÇØÁÖ¼¼¿ä">
     </div>
     <div>
-        ë‚´ìš©
-        <textarea name="q_desc" id="q_desc" rows="4" cols="80" placeholder="ë‚´ìš©ì„ ì…ë ¥í•´ì£¼ì„¸ìš”"></textarea>
+        ³»¿ë
+        <textarea name="q_desc" id="q_desc" rows="4" cols="80" placeholder="³»¿ëÀ» ÀÔ·ÂÇØÁÖ¼¼¿ä"></textarea>
     </div>
     <div>
-        ì´ë¦„
-        <input name="m_id" id="m_id" placeholder="ì´ë¦„ì„ ì…ë ¥í•´ì£¼ì„¸ìš”">
+        ÀÌ¸§
+        <input name="m_id" id="m_id" value="1">
     </div>
     <div style="width:650px; text-align: center;">
-        <button type="button" id="btnSave">í™•ì¸</button>
-        <button type="reset">ì·¨ì†Œ</button>
+        <button type="button" id="btnSave">È®ÀÎ</button>
+        <button type="reset">Ãë¼Ò</button>
     </div>
 </form>
 </body>

@@ -1,46 +1,46 @@
-
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=EUC-KR"
+    pageEncoding="EUC-KR"%>
+<%@include file="/WEB-INF/views/common/common.jsp"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<q_title>ê²Œì‹œê¸€ ëª©ë¡</q_title>
+<q_title>°Ô½Ã±Û ¸ñ·Ï</q_title>
 <script type="text/javascript" src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
 <script>
     $(document).ready(function(){
         $("#btnWrite").click(function(){
-            // í˜ì´ì§€ ì£¼ì†Œ ë³€ê²½(ì´ë™)
+            // ÆäÀÌÁö ÁÖ¼Ò º¯°æ(ÀÌµ¿)
             location.href = "/menu/write.do";
         });
     });
 </script>
-        <script>
-        alert("${list}");
-        </script>
+
         
 <link rel="stylesheet" type="text/css" href="/resources/js/default.css">
  
 </head>
 <body>
 
-<h2>ê²Œì‹œê¸€ ëª©ë¡</h2>
-<button type="button" id="btnWrite">ê¸€ì“°ê¸°</button>
+<h2>°Ô½Ã±Û ¸ñ·Ï</h2>
+<button type="button" id="btnWrite">±Û¾²±â</button>
 <table border="1" width="600px">
     <tr>
-        <th>ë²ˆí˜¸</th>
-        <th>ì œëª©</th>
-        <th>ì´ë¦„</th>
-        <th>ì‘ì„±ì¼</th>
-        <th>ì¡°íšŒìˆ˜</th>
+        <th>¹øÈ£</th>
+        <th>Á¦¸ñ</th>
+        <th>ÀÌ¸§</th>
+        <th>ÀÛ¼ºÀÏ</th>
+        <th>Á¶È¸¼ö</th>
     </tr>
     <c:forEach var="qv" items="${list}">
+
     <tr>
     
         <td>${qv.q_no}</td>
-        <td><a href="${path}/menu/view.do?q_no=${qv.q_no}">${qv.q_title}</a></td>
+        <td><a href="${path}/menu/detail.do?q_no=${qv.q_no}">${qv.q_title}</a></td>
         <td>${qv.m_id}</td>
         <td>
-            <!-- ì›í•˜ëŠ” ë‚ ì§œí˜•ì‹ìœ¼ë¡œ ì¶œë ¥í•˜ê¸° ìœ„í•´ fmtíƒœê·¸ ì‚¬ìš© -->
+            <!-- ¿øÇÏ´Â ³¯Â¥Çü½ÄÀ¸·Î Ãâ·ÂÇÏ±â À§ÇØ fmtÅÂ±× »ç¿ë -->
             <fmt:formatDate value="${qv.q_date}" pattern="yyyy-MM-dd HH:mm:ss"/>
         </td>
         <td>${qv.q_check}</td>

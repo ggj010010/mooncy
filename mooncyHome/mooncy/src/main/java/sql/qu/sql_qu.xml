@@ -41,15 +41,9 @@
     <!-- 02. 게시글 작성 -->
     <insert id="insert">
         INSERT INTO qu (
-          q_no, 
-          q_title, 
-          q_desc, 
-          m_id
+          q_no, m_id, q_title, q_check, q_desc, q_date
         ) VALUES (
-          (SELECT NVL(MAX(q_no)+1, 1)FROM qu),
-          #{q_title},
-          #{q_desc},
-          #{m_id}
+          (SELECT NVL(MAX(q_no)+1, 1)FROM qu), #{m_id},  #{q_title}, 0,#{q_desc}, sysdate
         )
     </insert>
     <!--03. 게시글 상세보기 조회 -->

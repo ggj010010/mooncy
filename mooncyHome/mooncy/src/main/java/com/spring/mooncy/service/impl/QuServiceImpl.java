@@ -37,6 +37,8 @@ public class QuServiceImpl implements QuService {
         vo.setQ_desc(q_desc);
         vo.setM_id(m_id);
         quDao.create(vo);
+
+
     }
     // 02. 게시글 상세보기
     @Override

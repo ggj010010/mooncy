@@ -41,23 +41,23 @@ public class QuController {
     }
     
     // 02_02. 게시글 작성처리
-    @RequestMapping(value="insert.do", method=RequestMethod.POST)
+    @RequestMapping(value="/menu/insert.do", method=RequestMethod.POST)
     public String insert(@ModelAttribute QuVO vo) throws Exception{
         quService.create(vo);
-        return "redirect:list.do";
+        return "redirect:/menu/quview";
     }
     
     // 03. 게시글 상세내용 조회, 게시글 조회수 증가 처리
     // @RequestParam : get/post방식으로 전달된 변수 1개
     // HttpSession 세션객체
-    @RequestMapping(value="view.do", method=RequestMethod.GET)
-    public ModelAndView view(@RequestParam int q_no, HttpSession session) throws Exception{
+    @RequestMapping(value="/menu/detail.do", method=RequestMethod.GET)
+    public ModelAndView detail(@RequestParam int q_no, HttpSession session) throws Exception{
         // 조회수 증가 처리
    //     quService.increaseViewcnt(q_no, session);
         // 모델(데이터)+뷰(화면)를 함께 전달하는 객체
         ModelAndView mav = new ModelAndView();
         // 뷰의 이름
-        mav.setViewName("menu/view");
+        mav.setViewName("/menu/qudetail");
         // 뷰에 전달할 데이터
         mav.addObject("dto", quService.read(q_no));
         return mav;
@@ -65,17 +65,17 @@ public class QuController {
     
     // 04. 게시글 수정
     // 폼에서 입력한 내용들은 @ModelAttribute QuVO vo로 전달됨
-    @RequestMapping(value="update.do", method=RequestMethod.POST)
+    @RequestMapping(value="/menu/update.do", method=RequestMethod.POST)
     public String update(@ModelAttribute QuVO vo) throws Exception{
         quService.update(vo);
-        return "redirect:list.do";
+        return "redirect:/menu/quview";
     }
     
     // 05. 게시글 삭제
-    @RequestMapping("delete.do")
+    @RequestMapping("/menu/delete.do")
     public String delete(@RequestParam int q_no) throws Exception{
         quService.delete(q_no);
-        return "redirect:list.do";
+        return "redirect:/menu/quview";
     }
     
 }
