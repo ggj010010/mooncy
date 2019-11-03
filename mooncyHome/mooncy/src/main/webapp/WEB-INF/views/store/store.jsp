@@ -23,7 +23,7 @@
 			惯林包府</button>
 	</div>
 	<div id="side">
-		<button class="button" onClick="location.href='/menu/sale'">
+		<button class="button" onClick="location.href='/menu/quview'">
 			魄概包府</button>
 	</div>
 	<div id="side">

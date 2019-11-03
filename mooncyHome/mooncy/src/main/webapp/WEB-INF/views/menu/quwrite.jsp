@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<q_title>게시글 작성</q_title>c
+<title>게시글 작성</title>
 <script type="text/javascript" src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
 <script>
     $(document).ready(function(){
@@ -33,8 +33,48 @@
         });
     });
 </script>
+<link rel="stylesheet" type="text/css" href="/resources/js/default.css">
+ <div class="wrap">
+
+
+	<div id = "side"><button class="button" onClick="location.href='/menu/main'"> 메인</button></div>
+	<div id = "side"><button class="button"onClick="location.href='/order/orderview'"> 발주관리</button></div>
+	<div id = "side"><button class="button"onClick="location.href='/menu/quview'"> 판매관리</button></div>
+ 	<div id = "side"><button class="button"onClick="location.href='/store/store'"> 재고관리 </button></div>
+
+
+</div>
 </head>
 <body>
+	<c:choose>
+
+        		<c:when test="${sessionScope.m.m_id != null}">
+				<c:choose>
+
+        			<c:when test="${sessionScope.m.m_id == '0'}">
+
+      		    	<li><a>관리자님</a></li>
+
+        			</c:when>
+        			<c:otherwise> 
+
+                		<li><a>${sessionScope.m.m_id}님</a></li>
+
+        			</c:otherwise>
+ 				</c:choose>
+  				
+
+        		<li><a href="/logout">로그아웃</a></li>
+
+        		</c:when>
+        	
+ 	</c:choose>
+</head>
+<body>
+
+<br><br><br>
+<div class="board-container" >
+<div id = "side_rigth">
 <h2>게시글 작성</h2>
 <form name="form1" method="post" action="/menu/insert.do">
     <div>
@@ -51,8 +91,8 @@
     </div>
     <div style="width:650px; text-align: center;">
         <button type="button" id="btnSave">확인</button>
-        <button type="reset">취소</button>
-    </div>
+        <button type="reset">취소</button></div>
+    </div></div>
 </form>
 </body>
 </html>

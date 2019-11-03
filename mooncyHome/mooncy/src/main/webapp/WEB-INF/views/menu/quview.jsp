@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<q_title>게시글 목록</q_title>
+<title>게시글 목록</title>
 <script type="text/javascript" src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
 <script>
     $(document).ready(function(){
@@ -18,19 +18,52 @@
 
         
 <link rel="stylesheet" type="text/css" href="/resources/js/default.css">
- 
+ <div class="wrap">
+
+
+	<div id = "side"><button class="button" onClick="location.href='/menu/main'"> 메인</button></div>
+	<div id = "side"><button class="button"onClick="location.href='/order/orderview'"> 발주관리</button></div>
+	<div id = "side"><button class="button"onClick="location.href='/menu/quview'"> 판매관리</button></div>
+ 	<div id = "side"><button class="button"onClick="location.href='/store/store'"> 재고관리 </button></div>
+
+
+</div>
 </head>
 <body>
+<br><br><br>
+	<c:choose>
 
-<h2>게시글 목록</h2>
-<button type="button" id="btnWrite">글쓰기</button>
-<table border="1" width="600px">
+        		<c:when test="${sessionScope.m.m_id != null}">
+				<c:choose>
+
+        			<c:when test="${sessionScope.m.m_id == '0'}">
+
+      		    	<li><a>관리자님</a></li>
+
+        			</c:when>
+        			<c:otherwise> 
+
+                		<li><a>${sessionScope.m.m_id}님</a></li>
+
+        			</c:otherwise>
+ 				</c:choose>
+  				
+
+        		<li><a href="/logout">로그아웃</a></li>
+
+        		</c:when>
+        	
+ 	</c:choose>
+<div class="board-container" >
+<div id = "side_rigth">
+<h2>판매 관리</h2>
+<table  class="type09" style = "width : 650;">
     <tr>
         <th>번호</th>
         <th>제목</th>
         <th>이름</th>
         <th>작성일</th>
-        <th>조회수</th>
+        <th>처리여부</th>
     </tr>
     <c:forEach var="qv" items="${list}">
 
@@ -47,5 +80,8 @@
     </tr>    
     </c:forEach>
 </table>
+<button type="button" id="btnWrite">글쓰기</button>
+</div>
+</div>
 </body>
 </html>

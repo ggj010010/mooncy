@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
-<q_title>게시글 작성</q_title>
+<title>게시글 작성</title>
 <script type="text/javascript" src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
 <script>
     $(document).ready(function(){
@@ -44,10 +44,49 @@
         });
     });
 </script>
+
 <link rel="stylesheet" type="text/css" href="/resources/js/default.css">
+ <div class="wrap">
+
+
+	<div id = "side"><button class="button" onClick="location.href='/menu/main'"> 메인</button></div>
+	<div id = "side"><button class="button"onClick="location.href='/order/orderview'"> 발주관리</button></div>
+	<div id = "side"><button class="button"onClick="location.href='/menu/quview'"> 판매관리</button></div>
+ 	<div id = "side"><button class="button"onClick="location.href='/store/store'"> 재고관리 </button></div>
+
+
+</div>
 </head>
 <body>
 
+<br><br><br>
+	<c:choose>
+
+        		<c:when test="${sessionScope.m.m_id != null}">
+				<c:choose>
+
+        			<c:when test="${sessionScope.m.m_id == '0'}">
+
+      		    	<li><a>관리자님</a></li>
+
+        			</c:when>
+        			<c:otherwise> 
+
+                		<li><a>${sessionScope.m.m_id}님</a></li>
+
+        			</c:otherwise>
+ 				</c:choose>
+  				
+
+        		<li><a href="/logout">로그아웃</a></li>
+
+        		</c:when>
+        	
+ 	</c:choose>
+</head>
+<body>
+<div class="board-container" >
+<div id = "side_rigth">
 <h2>게시글 보기</h2>
 <form name="form1" method="post">
     <div>        <!-- 원하는 날짜형식으로 출력하기 위해 fmt태그 사용 -->
@@ -74,7 +113,8 @@
         <input type="hidden" name="q_no" value="${dto.q_no}">
         <button type="button" id="btnUpdete">수정</button>
         <button type="button" id="btnDelete">삭제</button>
-    </div>
+        </div>
+    </div></div>
 </form>
 </body>
 </html>

@@ -15,7 +15,7 @@
 
 	<div id = "side"><button class="button" onClick="location.href='/menu/main'"> 皋牢</button></div>
 	<div id = "side"><button class="button"onClick="location.href='/order/orderview'"> 惯林包府</button></div>
-	<div id = "side"><button class="button"onClick="location.href='/menu/sale'"> 魄概包府</button></div>
+	<div id = "side"><button class="button"onClick="location.href='/menu/quview'"> 魄概包府</button></div>
  	<div id = "side"><button class="button"onClick="location.href='/store/store'"> 犁绊包府 </button></div>
 
 
@@ -53,7 +53,7 @@
 <div class="board-container" >
 <div id = "side_rigth">
 <h2>惯林 包府</h2>
-<table >
+<table  class="type09" style = "width : 650;">
 		<tr>
 
 			<th>ID</th>
