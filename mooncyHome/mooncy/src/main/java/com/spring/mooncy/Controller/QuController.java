@@ -35,9 +35,9 @@ public class QuController {
     // 02_01. 게시글 작성화면
     // @RequestMapping("board/write.do")
     // value="", method="전송방식"
-    @RequestMapping(value="write.do", method=RequestMethod.GET)
+    @RequestMapping(value="/menu/write.do", method=RequestMethod.GET)
     public String write(){
-        return "menu/quwrite"; // quwrite.jsp로 이동
+        return "/menu/quwrite"; // quwrite.jsp로 이동
     }
     
     // 02_02. 게시글 작성처리

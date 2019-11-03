@@ -2,17 +2,27 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="main">
     <!-- 01. 게시글 전체 목록 조회 -->
-    <!-- <resultMap type="com.spring.mooncy.dto.CustomerDTO"
+<!--      private int q_no;            // 게시글 번호
+    private String q_title;       // 게시글 제목
+    private String q_desc;     // 게시글 내용
+    private String m_id;      // 게시글 작성자
+    private Date q_date;       // 게시글 작성일자 util.Date
+    private int q_check;        // 게시글 조회수
+     -->
+    <resultMap type="com.spring.mooncy.dto.QuVO"
 
-		id="CustomerDTO">
+		id="QuVO">
 
+		<result property="q_no" column="q_no" />
+		<result property="q_title" column="q_title" />
+		<result property="q_desc" column="q_desc" />
 		<result property="m_id" column="m_id" />
-		<result property="m_pw" column="m_pw" />
-		<result property="m_name" column="m_name" />
+		<result property="q_desc" column="q_desc" />
+		<result property="q_date" column="q_date" />
+		<result property="q_check" column="q_check" />
 
-
-	</resultMap> -->
-    <select id="listAll" resultType="com.spring.mooncy.dto.QuVO">
+	</resultMap> 
+    <select id="listAll" parameterType="com.spring.mooncy.dto.QuVO" resultMap="QuVO">
         SELECT 
             q_no, 
             q_title, 
@@ -21,9 +31,10 @@
             q_date, 
             q_check 
         FROM 
-            QU
+            qu
         ORDER BY 
         	
+        	q_check,
             q_no desc, 
             q_date desc
     </select>

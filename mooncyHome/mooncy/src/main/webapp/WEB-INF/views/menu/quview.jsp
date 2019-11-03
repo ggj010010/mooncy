@@ -5,6 +5,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <q_title>게시글 목록</q_title>
+<script type="text/javascript" src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
 <script>
     $(document).ready(function(){
         $("#btnWrite").click(function(){
@@ -13,6 +14,12 @@
         });
     });
 </script>
+        <script>
+        alert("${list}");
+        </script>
+        
+<link rel="stylesheet" type="text/css" href="/resources/js/default.css">
+ 
 </head>
 <body>
 
@@ -26,8 +33,9 @@
         <th>작성일</th>
         <th>조회수</th>
     </tr>
-    <c:forEach var="qv" items="${quview}">
+    <c:forEach var="qv" items="${list}">
     <tr>
+    
         <td>${qv.q_no}</td>
         <td><a href="${path}/menu/view.do?q_no=${qv.q_no}">${qv.q_title}</a></td>
         <td>${qv.m_id}</td>
