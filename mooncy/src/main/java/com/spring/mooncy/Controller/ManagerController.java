@@ -1,6 +1,8 @@
 package com.spring.mooncy.Controller;
 
-import javax.servlet.http.HttpServletRequest;
+import java.util.List;
+
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -9,24 +11,30 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.spring.mooncy.service.OrderService;
+import com.spring.mooncy.dto.OrderDTO;
+import com.spring.mooncy.dto.StoreDTO;
+import com.spring.mooncy.service.ManagerService;
+import com.spring.mooncy.service.StoreService;
 
 @Controller
 public class ManagerController {
-//	@Autowired
-//
-//	LoginService loginService;
+	//	@Autowired
+	//
+	//	LoginService loginService;
+
 
 	@Autowired
-	OrderService orderService;
-
+	ManagerService managerService;
+	@Autowired
+	StoreService storeService;
+	
 	
 
 	private static final Logger logger = LoggerFactory.getLogger(ManagerController.class);
 
-	
+
 
 	@RequestMapping(value = "/Manager/ManagerMain")
 	public String Manager(Model model) throws Exception {
@@ -34,30 +42,48 @@ public class ManagerController {
 		return "/Manager/ManagerMain";
 
 	}
-	
+
 	@RequestMapping(value = "/Manager/manager_order")
 	public String manager_order(Model model) throws Exception {
 		
-		model.addAttribute("orderList", orderService.selectOrder());
+
+		model.addAttribute("orderList", managerService.selectOrder());
 
 		return "/Manager/manager_order";
 
 	}
+	@RequestMapping(value = "/Manager/manager_store")
+	public String manager_store(Model model) throws Exception {
+		
+
+		model.addAttribute("storeList", storeService.manager_searchList());
+
+		return "/Manager/manager_store";
+
+	}
+	@RequestMapping(value = "/manager/request", method = {RequestMethod.POST,RequestMethod.GET})
 	
-	 @RequestMapping(value = "/manage", method = RequestMethod.POST)
-	    public ModelAndView manage(HttpServletRequest httpServletRequest) {
-	        
-	        System.out.println("RequestMethod.POST");
-	        
-	        String id = httpServletRequest.getParameter("id");
-	        System.out.println("id : " + id);
-	        
-	        ModelAndView mav = new ModelAndView();
-	        mav.setViewName("student/student2");
-	        mav.addObject("studentId", id);
-	        
-	        return mav; 
-	    }
+	@ResponseBody
+	public List<StoreDTO> order_request(Model model,OrderDTO orderDTO, HttpSession Hsession) throws Exception {
+		logger.info("order_request");
 
-
+		 List<StoreDTO> StoreList = managerService.requestOrderList(orderDTO,Hsession);
+		  return StoreList;
+		
+	}
+	
+	@RequestMapping(value = "/manager/response", method = {RequestMethod.POST,RequestMethod.GET})
+	
+	@ResponseBody
+	public int order_response(Model model,OrderDTO orderDTO) throws Exception {
+		logger.info("order_responses");
+		int check = 0;
+		 int order_update = managerService.order_Update(orderDTO);
+		 int request_update = managerService.request_Update(orderDTO);
+		 int check_update = managerService.check_Update(orderDTO);
+		 check=order_update+request_update+check_update;
+		 return check;
+		
+	}
+	
 }

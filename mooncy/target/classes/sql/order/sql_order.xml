@@ -16,6 +16,8 @@
 
 	<resultMap type="com.spring.mooncy.dto.OrderDTO" id="OrderDTO">
 
+		<result property="request_id" column="request_id"/>
+
     	<result property="o_no" column="o_no"/>
 
     	<result property="m_id" column="m_id"/>
@@ -64,19 +66,6 @@
 
 	</select>
 	
-	<!-- <select id="selectOrder" resultMap="OrderDTO">
-
-	/*order.selectOrder*/
-
-		SELECT 
-
-		FROM p_order
-		
-		where ddalgi > #{cnt }
-		
-		order by p_date asc
-
-	</select> -->
 
 	<select id="selectOrderView" parameterType="com.spring.mooncy.dto.PagingDTO" resultMap="OrderDTO">
 

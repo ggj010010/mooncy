@@ -28,7 +28,15 @@
 		
     </resultMap>
 
-    
+    <select id="manager_selectList" parameterType="com.spring.mooncy.dto.StoreDTO" resultMap="StoreDTO" >
+	select m_name, ddalgi, orange,
+		banana, kiwi, pine,
+		hanla, suback, tomato,
+		apple, mango, ice,
+		bbalde, dduggung, cup 
+	from PRODUCT,M_USER 
+	where PRODUCT.M_ID = M_USER.M_ID
+	</select>
     
 
 	<select id="selectList" parameterType="com.spring.mooncy.dto.StoreDTO" resultMap="StoreDTO" >

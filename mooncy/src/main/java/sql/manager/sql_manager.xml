@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="manager">
+
+    <resultMap type="com.spring.mooncy.dto.PagingDTO" id="PagingDTO">
+
+    	<result property="pageNo" column="numrow"/>
+
+    	<result property="totalCnt" column="totalcnt"/>
+
+    </resultMap>
+
+	<resultMap type="com.spring.mooncy.dto.OrderDTO" id="OrderDTO">
+
+		<result property="request_id" column="request_id"/>
+		
+    	<result property="o_no" column="o_no"/>
+
+    	<result property="m_id" column="m_id"/>
+
+		<result property="m_name" column="m_name"/>
+		
+    	<result property="o_check" column="o_check"/>
+
+    	<result property="p_name" column="p_name"/>
+
+    	<result property="p_count" column="p_count"/>
+    	
+    	<result property="p_date" column="p_date"/>
+
+    	<collection property="pagingDTO" resultMap="PagingDTO" />
+
+    </resultMap>
+    
+    <resultMap type="com.spring.mooncy.dto.StoreDTO" id="StoreDTO">
+		<result property="o_no" column="o_no"/>
+		<result property="m_id" column="m_id"/>
+    	<result property="m_name" column="m_name"/>
+    	<result property="p_name" column="p_name"/>
+    	<result property="ddalgi" column="ddalgi"/>
+    	<result property="orange" column="orange"/>
+    	<result property="banana" column="banana"/>
+    	<result property="kiwi" column="kiwi"/>
+    	<result property="pine" column="pine"/>
+    	<result property="hanla" column="hanla"/>
+    	<result property="suback" column="suback"/>
+    	<result property="tomato" column="tomato"/>
+    	<result property="apple" column="apple"/>
+    	<result property="mango" column="mango"/>
+    	<result property="ice" column="ice"/>
+    	<result property="bbalde" column="bbalde"/>
+    	<result property="dduggung" column="dduggung"/>
+		<result property="cup" column="cup"/>
+		
+    </resultMap>
+    <select id="selectOrder" parameterType="com.spring.mooncy.dto.PagingDTO" resultMap="OrderDTO">
+
+	/*order.selectOrder*/
+
+		SELECT  
+		
+		distinct  m_user.m_name
+				
+				,o_no
+				
+                ,p_order.m_id
+
+				,o_check
+
+				,p_name
+
+				,p_count
+				
+				,p_date
+
+		FROM p_order, m_user 
+		
+		where o_check = 0 and m_user.m_id = p_order.m_id
+		
+		order by p_date desc
+
+	</select>
+	<select id="selectOrder" parameterType="com.spring.mooncy.dto.PagingDTO" resultMap="OrderDTO">
+
+	/*order.selectOrder*/
+
+		SELECT  
+		
+		distinct  m_user.m_name
+				
+				,o_no
+				
+                ,p_order.m_id
+
+				,o_check
+
+				,p_name
+
+				,p_count
+				
+				,p_date
+
+		FROM p_order, m_user 
+		
+		where o_check = 0 and m_user.m_id = p_order.m_id
+		
+		order by p_date desc
+
+	</select>
+    <select id="requestOrder" parameterType="com.spring.mooncy.dto.OrderDTO" resultMap="StoreDTO" >
+	select 
+			
+			
+			PRODUCT.m_id, 
+			
+			M_USER.m_name, 
+			
+			${p_name}
+	from 
+			PRODUCT,
+			
+			M_USER 
+	where 
+			${p_name}-${p_count} >= 10 and 
+			PRODUCT.m_id = M_USER.m_id
+    order by ${p_name} desc
+	</select>
+	
+	<update id="order_Update" parameterType="com.spring.mooncy.dto.OrderDTO">
+	/*manager.order_update*/
+		UPDATE
+			product
+		SET
+			${p_name} = ${p_name}-${p_count}
+			
+		WHERE
+			m_id = #{m_id}
+	
+	</update>
+	
+	<update id="request_Update" parameterType="com.spring.mooncy.dto.OrderDTO">
+	/*manager.request_update*/
+		UPDATE
+			product
+		SET
+			${p_name} = ${p_name}+${p_count}
+			
+		WHERE
+			m_id = #{request_id}
+	
+	</update>
+	<update id="check_Update" parameterType="com.spring.mooncy.dto.OrderDTO">
+	/*manager.check_Update*/
+		UPDATE
+			p_order
+		SET
+			o_check = 1
+			
+		WHERE
+			o_no = #{o_no}
+	
+	</update>
+</mapper>

@@ -810,7 +810,7 @@ public class FirstScreen extends JFrame {
 				 */
 				String menu[] = new String[15];
 				menu[0] = "딸기"; menu[1] = "오렌지"; menu[2] = "바나나"; menu[3] = "키위"; menu[4] = "파인애플";
-				menu[5] = "한라봉"; menu[6] = "수박"; menu[7] = "토바토"; menu[8] = "사과"; menu[9] = "망고";
+				menu[5] = "한라봉"; menu[6] = "수박"; menu[7] = "토마토"; menu[8] = "사과"; menu[9] = "망고";
 				menu[10] = "얼음, 뚜껑, 빨대, 컵";
 
 				

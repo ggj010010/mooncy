@@ -17,7 +17,8 @@ public class DAO { /* * DAO(Data Access Object - 데이터 접근 객체) 데이터베이스�
     String pw = "3464";
     String url = "jdbc:oracle:thin:@localhost:1521:xe";*/
 	private static final String DRIVER  = "oracle.jdbc.driver.OracleDriver";
-	private static final String URL = "jdbc:oracle:thin:@10.50.208.41:1521:xe";
+	//private static final String URL = "jdbc:oracle:thin:@10.50.208.41:1521:xe";
+	private static final String URL = "jdbc:oracle:thin:@localhost:1521:xe";
 	private static final String USER = "mooncy"; 
 	private static final String PW = "mooncy";
 

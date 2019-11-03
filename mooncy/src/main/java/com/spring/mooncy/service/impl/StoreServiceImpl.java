@@ -26,4 +26,10 @@ public class StoreServiceImpl implements StoreService{
 		storeDTO.setM_id(id);
 		return storeDAO.searchList(storeDTO);
 	}
+	@Override
+	public List<StoreDTO> manager_searchList() {
+		
+		
+		return storeDAO.manager_searchList();
+	}
 }

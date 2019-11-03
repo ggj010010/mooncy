@@ -24,4 +24,12 @@ public class StoreDAOImpl implements StoreDAO{
 		return sqlSession.selectList("store.selectList", storeDTO);
 
 	}
+	@Override
+	public List<StoreDTO> manager_searchList() {
+
+		// TODO Auto-generated method stub
+
+		return sqlSession.selectList("store.manager_selectList");
+
+	}
 }

@@ -4,6 +4,8 @@ public class StoreDTO {
 
 	String m_id;
 	String m_name;
+	
+	String p_name;
 	int ddalgi;
 	int orange;
 	int banana;
@@ -23,6 +25,12 @@ public class StoreDTO {
 	
 	
 	
+	public String getP_name() {
+		return p_name;
+	}
+	public void setP_name(String p_name) {
+		this.p_name = p_name;
+	}
 	public String getM_id() {
 		return m_id;
 	}
