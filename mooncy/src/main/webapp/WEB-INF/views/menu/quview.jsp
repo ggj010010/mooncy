@@ -28,9 +28,9 @@
 
 
 </div>
+
 </head>
 <body>
-<br><br><br>
 	<c:choose>
 
         		<c:when test="${sessionScope.m.m_id != null}">
@@ -54,6 +54,7 @@
         		</c:when>
         	
  	</c:choose>
+ 	<br><br><br>
 <div class="board-container" >
 <div id = "side_rigth">
 <h2>판매 관리</h2>

@@ -41,6 +41,13 @@ width:60%;
 height:100%;
 float center;
 }
+#side_right{
+	margin:0 auto;
+width:100%;
+height:100%;
+float center;
+}
+
 
 #side_center{
 	width:100%;
@@ -52,6 +59,9 @@ width:30%;
 height:100%;
 float: right;
 margin-top: 5px;
+}
+#side_left{
+float left;
 }
 img {
    height: 30px;
@@ -123,6 +133,7 @@ table {
 
 }
  th {
+ 	width: 350px;
     padding: 10px;
     font-weight : normal;
     vertical-align: top;
@@ -132,8 +143,9 @@ table {
 }
 
 .a td {
-	width : 25%;
+	width : 50%;
 }
+
 
 
  td {
