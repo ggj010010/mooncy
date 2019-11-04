@@ -4,15 +4,21 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link rel="stylesheet" type="text/css" href="/resources/js/default.css">
-<meta charset="EUC-KR">
-<title>재고</title>
-	
-<SCRIPT type="text/javascript">
-	
-</SCRIPT>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>게시글 목록</title>
+<script type="text/javascript" src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
+<script>
+    $(document).ready(function(){
+        $("#btnWrite").click(function(){
+            // 페이지 주소 변경(이동)
+            location.href = "/menu/write.do";
+        });
+    });
+</script>
 
-<div class="wrap">
+        
+<link rel="stylesheet" type="text/css" href="/resources/js/default.css">
+ <div class="wrap">
 
 
 	<div id = "side"><button class="button" onClick="location.href='/menu/main'"> 메인</button></div>
@@ -24,6 +30,7 @@
 </div>
 </head>
 <body>
+<br><br><br>
 	<c:choose>
 
         		<c:when test="${sessionScope.m.m_id != null}">
@@ -47,37 +54,34 @@
         		</c:when>
         	
  	</c:choose>
-<br>
 <div class="board-container" >
 <div id = "side_rigth">
+<h2>판매 관리</h2>
+<table  class="type09" style = "width : 650;">
+    <tr>
+        <th>번호</th>
+        <th>제목</th>
+        <th>이름</th>
+        <th>작성일</th>
+        <th>처리여부</th>
+    </tr>
+    <c:forEach var="qv" items="${list}">
 
-<h2>발주 관리</h2>
-<table >
-		<tr>
-			<th>글제목</th>
-			<th>글내용</th>
-			<th>글쓴이</th>
-		</tr>
-		<tr>
-			<td>안녕하세요</td>
-			<td>안녕하세요</td>
-			<td>종문디</td>
-		</tr>
-	</table>
-	<h2>판매 관리</h2>
-<table>
-		<tr>
-			<th>글번호</th>
-			<th>글제목</th>
-			<th>글쓴이</th>
-		</tr>
-		<tr>
-			<td>1</td>
-			<td>안녕하세요</td>
-			<td>종문디</td>
-		</tr>
-	</table>
-</div></div>
-
+    <tr>
+    
+        <td>${qv.q_no}</td>
+        <td><a href="${path}/menu/detail.do?q_no=${qv.q_no}">${qv.q_title}</a></td>
+        <td>${qv.m_id}</td>
+        <td>
+            <!-- 원하는 날짜형식으로 출력하기 위해 fmt태그 사용 -->
+            <fmt:formatDate value="${qv.q_date}" pattern="yyyy-MM-dd HH:mm:ss"/>
+        </td>
+        <td>${qv.q_check}</td>
+    </tr>    
+    </c:forEach>
+</table>
+<button type="button" id="btnWrite">글쓰기</button>
+</div>
+</div>
 </body>
 </html>

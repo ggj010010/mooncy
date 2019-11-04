@@ -82,33 +82,7 @@
 		order by p_date desc
 
 	</select>
-	<select id="selectOrder" parameterType="com.spring.mooncy.dto.PagingDTO" resultMap="OrderDTO">
-
-	/*order.selectOrder*/
-
-		SELECT  
-		
-		distinct  m_user.m_name
-				
-				,o_no
-				
-                ,p_order.m_id
-
-				,o_check
-
-				,p_name
-
-				,p_count
-				
-				,p_date
-
-		FROM p_order, m_user 
-		
-		where o_check = 0 and m_user.m_id = p_order.m_id
-		
-		order by p_date desc
-
-	</select>
+	
     <select id="requestOrder" parameterType="com.spring.mooncy.dto.OrderDTO" resultMap="StoreDTO" >
 	select 
 			
