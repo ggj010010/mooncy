@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import com.spring.mooncy.dao.ManagerDAO;
 import com.spring.mooncy.dto.OrderDTO;
+import com.spring.mooncy.dto.Order_ManagementDTO;
 import com.spring.mooncy.dto.StoreDTO;
 @Repository
 public class ManagerDAOImpl implements ManagerDAO{
@@ -37,6 +38,15 @@ public class ManagerDAOImpl implements ManagerDAO{
 	}
 	@Override
 
+	public List<Order_ManagementDTO> selectOrder_Management() {
+
+		// TODO Auto-generated method stub
+
+		return sqlSession.selectList("manager.selectOrder_Management");
+
+	}
+	@Override
+
 	public int order_Update(OrderDTO orderDTO) {
 
 		// TODO Auto-generated method stub
@@ -60,6 +70,13 @@ public class ManagerDAOImpl implements ManagerDAO{
 		// TODO Auto-generated method stub
 
 		return sqlSession.update("manager.check_Update", orderDTO);
+
+	}
+	public int order_Manager(OrderDTO orderDTO) {
+
+		// TODO Auto-generated method stub
+
+		return sqlSession.insert("manager.order_Manager", orderDTO);
 
 	}
 	

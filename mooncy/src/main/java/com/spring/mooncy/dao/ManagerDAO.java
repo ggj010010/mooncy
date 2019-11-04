@@ -3,6 +3,7 @@ package com.spring.mooncy.dao;
 import java.util.List;
 
 import com.spring.mooncy.dto.OrderDTO;
+import com.spring.mooncy.dto.Order_ManagementDTO;
 import com.spring.mooncy.dto.StoreDTO;
 
 public  interface ManagerDAO {
@@ -12,5 +13,7 @@ public  interface ManagerDAO {
 	public int order_Update(OrderDTO orderDTO);
 	public int request_Update(OrderDTO orderDTO);
 	public int check_Update(OrderDTO orderDTO);
+	public int order_Manager(OrderDTO orderDTO);
+	public List<Order_ManagementDTO> selectOrder_Management();
 	//public int order_request(OrderDTO orderDTO);
 }

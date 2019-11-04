@@ -800,6 +800,23 @@ public class FirstScreen extends JFrame {
 				//				JScrollPane sc = new JScrollPane(table);
 				//				getContentPane().add(sc);
 				b = dao.select2(ID);
+				for (DTO beans : b) {
+					cnt[0] = beans.ddalgi;
+					cnt[1] =  beans.orange;
+					cnt[2] =  beans.banana;
+					cnt[3] =  beans.kiwi;
+					cnt[4] =  beans.pine;
+					cnt[5] =  beans.hanla;
+					cnt[6] =  beans.suback;
+					cnt[7] =  beans.tomato;
+					cnt[8] =  beans.apple;
+					cnt[9] =  beans.mango;
+					cnt[10] =  beans.ice;
+					cnt[11] =  beans.bbalde;
+					cnt[12] =  beans.dduggung;
+					cnt[13] =  beans.cup;
+
+				}
 
 				/*
 				 * cnt[0] = beans.ddalgi; cnt[1] = beans.orange; cnt[2] = beans.banana; cnt[3] =

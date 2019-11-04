@@ -10,6 +10,7 @@ import org.springframework.web.context.request.SessionScope;
 
 import com.spring.mooncy.dao.ManagerDAO;
 import com.spring.mooncy.dto.OrderDTO;
+import com.spring.mooncy.dto.Order_ManagementDTO;
 import com.spring.mooncy.dto.StoreDTO;
 import com.spring.mooncy.service.ManagerService;
 
@@ -45,6 +46,13 @@ public class ManagerServiceImpl implements ManagerService{
 	}
 	@Override
 
+	public List<Order_ManagementDTO> selectOrder_Management() {
+
+		return ManagerDAO.selectOrder_Management();
+
+	}
+	@Override
+
 	public int order_Update(OrderDTO orderDTO) {
 		// TODO Auto-generated method stub
 		
@@ -68,6 +76,14 @@ public class ManagerServiceImpl implements ManagerService{
 		
 		ktoe(orderDTO);
 		return ManagerDAO.check_Update(orderDTO);
+
+	}
+	@Override
+
+	public int order_Manager(OrderDTO orderDTO) {
+		// TODO Auto-generated method stub
+		
+		return ManagerDAO.order_Manager(orderDTO);
 
 	}
 	public void ktoe(OrderDTO orderDTO) {
