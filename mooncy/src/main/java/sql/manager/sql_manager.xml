@@ -55,6 +55,16 @@
 		<result property="cup" column="cup"/>
 		
     </resultMap>
+
+    <resultMap type="com.spring.mooncy.dto.Order_ManagementDTO" id="Order_ManagementDTO">
+		<result property="om_no" column="om_no"/>
+		<result property="request_id" column="request_id"/>
+    	<result property="response_id" column="response_id"/>
+    	<result property="p_name" column="p_name"/>
+    	<result property="p_count" column="p_count"/>
+    	<result property="om_date" column="om_date"/>
+    	<result property="m_name" column="m_name"/>
+    </resultMap>
     <select id="selectOrder" parameterType="com.spring.mooncy.dto.PagingDTO" resultMap="OrderDTO">
 
 	/*order.selectOrder*/
@@ -82,7 +92,24 @@
 		order by p_date desc
 
 	</select>
-	
+	 <select id="selectOrder_Management" resultMap="Order_ManagementDTO">
+
+	/*manager.selectOrder_Management*/
+
+		SELECT   
+				
+				om_no
+    			,request_id
+    			,response_id
+    			,p_name
+    			,p_count
+    			,om_date
+		
+		FROM order_management
+		
+		order by om_date desc
+
+	</select>
     <select id="requestOrder" parameterType="com.spring.mooncy.dto.OrderDTO" resultMap="StoreDTO" >
 	select 
 			
@@ -136,4 +163,29 @@
 			o_no = #{o_no}
 	
 	</update>
+	<insert id="order_Manager" parameterType="com.spring.mooncy.dto.OrderDTO" >
+	/*manager.order_Manager*/
+		
+		INSERT INTO
+			order_management
+			(
+    			 om_no
+    			,request_id
+    			,response_id
+    			,p_name
+    			,p_count
+    			,om_date
+			)
+    	VALUES
+		(
+    		(SELECT NVL(MAX(om_no)+1, 1)FROM order_management)
+	  		,#{request_id}
+    		,#{m_id}
+    		,#{p_name}
+    		,#{p_count}
+    		, sysdate
+    	)
+    	
+	</insert>
+
 </mapper>

@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.spring.mooncy.dto.OrderDTO;
+import com.spring.mooncy.dto.Order_ManagementDTO;
 import com.spring.mooncy.dto.StoreDTO;
 import com.spring.mooncy.service.ManagerService;
 import com.spring.mooncy.service.StoreService;
@@ -48,7 +49,7 @@ public class ManagerController {
 		
 
 		model.addAttribute("orderList", managerService.selectOrder());
-
+		model.addAttribute("order_managementList", managerService.selectOrder_Management());
 		return "/Manager/manager_order";
 
 	}
@@ -78,10 +79,12 @@ public class ManagerController {
 	public int order_response(Model model,OrderDTO orderDTO) throws Exception {
 		logger.info("order_responses");
 		int check = 0;
-		 int order_update = managerService.order_Update(orderDTO);
-		 int request_update = managerService.request_Update(orderDTO);
-		 int check_update = managerService.check_Update(orderDTO);
-		 check=order_update+request_update+check_update;
+		int order_manager = managerService.order_Manager(orderDTO);
+		int order_update = managerService.order_Update(orderDTO);
+		int request_update = managerService.request_Update(orderDTO);
+		int check_update = managerService.check_Update(orderDTO);
+		 
+		 check=order_update+request_update+check_update+order_manager;
 		 return check;
 		
 	}

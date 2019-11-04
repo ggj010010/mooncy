@@ -46,7 +46,7 @@
 				//contentType:"application/json;charset=UTF-8",
 				timeout : 3000,
 				success : function(returndata) {
-					if(returndata == 3){
+					if(returndata == 4){
 						alert("정상적으로 보내졌습니다.");
 						window.location.href = "/Manager/manager_order";
 					}
@@ -307,6 +307,36 @@
 					</div>
 				</div>
 		</div>
+		<table>
+				<thead>
+					<tr>
+
+						<th>NO</th>
+						<th>받음</th>
+						<th>보냄</th>
+						<th>제품명</th>
+						<th>개수</th>
+						<th>날짜</th>
+					</tr>
+				</thead>
+
+				<tbody>
+					<c:forEach var="om" items="${order_managementList}">
+
+						<tr>
+							<td>${om.om_no }</td>
+							<td>${om.request_id }</td>
+							<td>${om.response_id }</td>
+							<td>${om.p_name }</td>
+							<td>${om.p_count }</td>
+							<td>${om.om_date }</td>
+
+						</tr>
+
+					</c:forEach>
+
+				</tbody>
+			</table>
 
 	</div>
 
