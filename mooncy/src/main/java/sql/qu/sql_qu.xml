@@ -30,13 +30,16 @@
             m_id,
             q_date, 
             q_check 
-        FROM 
+        FROM (
             qu
+        
         ORDER BY 
         	
         	q_check,
             q_no desc, 
-            q_date desc
+            q_date desc)
+            where m_id = #{m_id ,jdbcType=VARCHAR} and numrow between (#{pageNo, jdbcType=NUMERIC}-1)*5 + 1 AND #{pageNo, jdbcType=NUMERIC}*5
+            
     </select>
     <!-- 02. 게시글 작성 -->
     <insert id="insert">

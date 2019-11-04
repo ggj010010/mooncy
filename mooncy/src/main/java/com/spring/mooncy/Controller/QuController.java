@@ -3,12 +3,18 @@ package com.spring.mooncy.Controller;
 import java.util.List;
 import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+
+import com.spring.mooncy.dto.PagingDTO;
 import com.spring.mooncy.dto.QuVO;
 import com.spring.mooncy.service.QuService;
 
@@ -20,11 +26,34 @@ public class QuController {
     // IoC 의존관계 역전
     @Inject
     QuService quService;
-    
+
+	private static final Logger logger = LoggerFactory.getLogger(QuController.class);
     // 01. 게시글 목록
     @RequestMapping("/menu/quview")
-    public ModelAndView list() throws Exception{
-        List<QuVO> list = quService.listAll();
+    public ModelAndView list(Model model,QuVO quVO, HttpSession session) throws Exception{
+		logger.info("menu :: page :: " + quVO.getQ_no());
+
+ 		int q_No = 1;
+
+		
+
+ 		if(quVO.getQ_no() <= 0 ) {
+
+ 			quVO.setQ_no(q_No);
+
+ 		}
+	String id = (String)session.getAttribute("m_id");
+		
+
+		model.addAttribute("orderList", quService.listAllView(quVO, id));
+		if(quService.listAllView(quVO, id).size() != 0) {
+			model.addAttribute("totalCnt", quService.listAllView(quVO, id).get(0).getPagingDTO().getTotalCnt());
+		}
+		model.addAttribute("pageNo", pagingDTO.getPageNo());
+
+ 		
+		String id = (String)session.getAttribute("m_id");
+        List<QuVO> list = quService.listAll(quVO, id);
         // ModelAndView - 모델과 뷰
         ModelAndView mav = new ModelAndView();
         mav.setViewName("/menu/quview"); // 뷰를 list.jsp로 설정

@@ -1,7 +1,8 @@
 package com.spring.mooncy.dao;
 
 import java.util.List;
- 
+
+import com.spring.mooncy.dto.PagingDTO;
 import com.spring.mooncy.dto.QuVO;
  
 public interface QuDAO {
@@ -15,6 +16,9 @@ public interface QuDAO {
     public void delete(int q_no) throws Exception;
     // 05. 게시글 전체 목록
     public List<QuVO> listAll() throws Exception;
-    // 06. 게시글 조회 증가
-    public void increaseViewcnt(int q_no) throws Exception;
+    public List<QuVO> listAllView(PagingDTO pagingDTO) throws Exception;
+
+    
+
+
 }

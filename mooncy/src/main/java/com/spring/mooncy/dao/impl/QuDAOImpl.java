@@ -8,43 +8,62 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
 import com.spring.mooncy.dao.QuDAO;
+import com.spring.mooncy.dto.OrderDTO;
+import com.spring.mooncy.dto.PagingDTO;
 import com.spring.mooncy.dto.QuVO;
  
 @Repository    // 현재 클래스를 dao bean으로 등록
 public class QuDAOImpl implements QuDAO {
     @Inject
-    SqlSession SqlSession;
+	private SqlSession sqlSession;
     // 01. 게시글 작성
     @Override
     public void create(QuVO vo) throws Exception {
-        SqlSession.insert("main.insert", vo);
+    	sqlSession.insert("main.insert", vo);
     }
     // 02. 게시글 상세보기
     @Override
     public QuVO read(int q_no) throws Exception {
-        return SqlSession.selectOne("main.view", q_no);
+        return sqlSession.selectOne("main.view", q_no);
     }
     // 03. 게시글 수정
     @Override
     public void update(QuVO vo) throws Exception {
-        SqlSession.update("main.updateArticle", vo);
+    	sqlSession.update("main.updateArticle", vo);
  
     }
     // 04. 게시글 삭제
     @Override
     public void delete(int q_no) throws Exception {
-        SqlSession.delete("main.deleteArticle",q_no);
+    	sqlSession.delete("main.deleteArticle",q_no);
  
     }
     // 05. 게시글 전체 목록
-    @Override
-    public List<QuVO> listAll() throws Exception {
-        return SqlSession.selectList("main.listAll");
-    }
-    // 게시글 조회수 증가
-    @Override
-    public void increaseViewcnt(int q_no) throws Exception {
-        SqlSession.update("main.increaseViewcnt", q_no);
-    }
- 
+//    @Override
+//    public List<QuVO> listAll(QuVO quVO) throws Exception {
+//        return sqlSession.selectList("main.listAll");
+//    }
+
+
+	@Override
+	public List<QuVO> listAll() {
+
+		// TODO Auto-generated method stub
+
+		return sqlSession.selectList("main.listAll");
+
+	}
+
+	@Override
+
+	public List<QuVO> listAllView(PagingDTO pagingDTO) throws Exception{
+
+		// TODO Auto-generated method stub
+
+		return sqlSession.selectList("main.listAll",pagingDTO);
+
+	}
+
+
+
 }

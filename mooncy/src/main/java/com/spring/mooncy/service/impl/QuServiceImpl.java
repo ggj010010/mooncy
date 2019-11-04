@@ -8,6 +8,9 @@ import org.springframework.stereotype.Service;
  
 import com.spring.mooncy.dao.QuDAO;
 import com.spring.mooncy.dto.QuVO;
+import com.spring.mooncy.dto.QuVO;
+import com.spring.mooncy.dto.QuVO;
+import com.spring.mooncy.dto.StoreDTO;
 import com.spring.mooncy.service.QuService;
  
 @Service
@@ -57,10 +60,20 @@ public class QuServiceImpl implements QuService {
     }
     // 05. 게시글 전체 목록
     @Override
-    public List<QuVO> listAll() throws Exception {
-        return quDao.listAll();
+    public List<QuVO> listAllView(QuVO quVO, String id) throws Exception {
+		quVO.setM_id(id);
+        return quDao.listAll(quVO);
     }
-    
+	public List<QuVO> listAll() {
+
+		// TODO Auto-generated method stub
+
+		return QuVO.listAll();
+
+	}
+
+
+
     // 06. 게시글 조회수 증가
     /*
     @Override

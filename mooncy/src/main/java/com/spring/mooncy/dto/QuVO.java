@@ -9,7 +9,7 @@ public class QuVO {
     private String m_id;      // 게시글 작성자
     private Date q_date;       // 게시글 작성일자 util.Date
     private int q_check;        // 게시글 조회수
-    
+	PagingDTO pagingDTO;
     
     // Getter/Setter
     public int getQ_no() {
@@ -48,6 +48,17 @@ public class QuVO {
     public void setQ_check(int q_check) {
         this.q_check = q_check;
     }
+	public PagingDTO getPagingDTO() {
+
+		return pagingDTO;
+
+	}
+
+	public void setPagingDTO(PagingDTO pagingDTO) {
+
+		this.pagingDTO = pagingDTO;
+
+	}
     // toString()
     @Override
     public String toString() {

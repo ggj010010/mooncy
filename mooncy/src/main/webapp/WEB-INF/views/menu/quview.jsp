@@ -81,6 +81,43 @@
     </tr>    
     </c:forEach>
 </table>
+   <div style="text-align:center"> 
+	    <div id = "side_center">
+	   <div class="text-center">
+		
+		<c:if test="${totalCnt/5 > 1 }">
+
+
+				
+
+				<c:forEach var="i" begin="1" end="${(totalCnt-1)/5+1}">
+
+					<c:choose>
+
+						<c:when test="${pageNo==i }">
+
+							<a href="/menu/quview?pageNo=${i }">(${i}) <span class="sr-only"></span></a>
+
+						</c:when>
+
+						<c:otherwise>
+
+							<a href="/menu/quview?pageNo=${i }">${i }</a>
+
+						</c:otherwise>
+
+					</c:choose>
+
+				</c:forEach>
+
+
+
+
+		</c:if>
+		</div>
+	</div>
+	    </div>
+	</div>
 <button type="button" id="btnWrite">±Û¾²±â</button>
 </div>
 </div>
