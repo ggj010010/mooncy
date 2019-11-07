@@ -64,7 +64,7 @@
 	$j(document).ready(function(){
 		// tr 태그에 마우스를 올릴때
 		
-		$j('table tbody tr').mouseover(function() {
+		$j('#request tbody tr').mouseover(function() {
 			$j(this).children().css({
 				'backgroundColor' : '#DCDCDC',
 				'cursor' : 'pointer'
@@ -76,7 +76,7 @@
 			});
 		});
 		
-		$j("#request tr").click(function() {
+		$j("#request tbody tr").click(function() {
 			$j(this).children().css({
 				//'color' : 'red'
 
@@ -261,83 +261,123 @@
 	<div class="board-container">
 		<div id="side_rigth">
 			<h2>발주 관리</h2>
+			<table>
+				
+				<tr>
+					<td>
+
+						<table id="request">
+							<c:choose>
+								<c:when test="${orderList.size() == 0}">
+									<thead>
+										<tr>
+											<th>발주 내역이 없습니다</th>
+										</tr>
+									</thead>
+								</c:when>
+								<c:otherwise>
+									<thead>
+										<tr>
+											<th>지점명</th>
+											<th>제품명</th>
+											<th>개수</th>
+										</tr>
+									</thead>
+								</c:otherwise>
+							</c:choose>
 
 
-			<table id="request">
-				<thead>
-					<tr>
+							<tbody>
+								<c:forEach var="ol" items="${orderList}">
+									<c:choose>
+										<c:when test="${ol.o_check == 0}">
+											<tr id="tr">
+												<td style="display: none;">${ol.o_no }</td>
+												<td style="display: none;">${ol.m_id }</td>
+												<td>${ol.m_name }</td>
 
-						<th>지점명</th>
-						<th>제품명</th>
-						<th>개수</th>
-					</tr>
-				</thead>
+												<td>${ol.p_name }</td>
+												<td>${ol.p_count }</td>
 
-				<tbody>
-					<c:forEach var="ol" items="${orderList}">
+											</tr>
+										</c:when>
+									</c:choose>
 
-						<tr id="tr">
-							<td style="display: none;">${ol.o_no }</td>
-							<td style="display: none;">${ol.m_id }</td>
-							<td>${ol.m_name }</td>
-							<td>${ol.p_name }</td>
-							<td>${ol.p_count }</td>
 
-						</tr>
+								</c:forEach>
 
-					</c:forEach>
+							</tbody>
+						</table>
+					</td>
+					<td>
+						<div id="reult_div"></div>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<h2>처리 완료</h2>
+						<table>
+							<thead>
+								<tr>
+									<th>지점명</th>
+									<th>제품명</th>
+									<th>개수</th>
+								</tr>
+							</thead>
 
-				</tbody>
+							<c:forEach var="ol" items="${orderList}">
+								<c:choose>
+									<c:when test="${ol.o_check == 1}">
+										<tr>
+											<td style="display: none;">${ol.o_no }</td>
+											<td style="display: none;">${ol.m_id }</td>
+											<td>${ol.m_name }</td>
+
+											<td>${ol.p_name }</td>
+											<td>${ol.p_count }</td>
+
+										</tr>
+									</c:when>
+								</c:choose>
+							</c:forEach>
+						</table>
+					</td>
+					<td>
+						<h2>발주</h2>
+						<table  width="700px" >
+							<thead>
+								<tr>
+
+									<th>NO</th>
+									<th>받음</th>
+									<th>보냄</th>
+									<th>제품명</th>
+									<th>개수</th>
+									<th>날짜</th>
+								</tr>
+							</thead>
+
+							<tbody>
+								<c:forEach var="om" items="${order_managementList}">
+
+									<tr>
+										<td>${om.om_no }</td>
+										<td>${om.request_name }</td>
+										<td>${om.response_name }</td>
+										<td>${om.p_name }</td>
+										<td>${om.p_count }</td>
+										<td>${om.om_date }</td>
+
+									</tr>
+
+								</c:forEach>
+
+							</tbody>
+						</table>
+					</td>
+				</tr>
 			</table>
-			
-			<div id="reult_div">
-				 <!-- <table id="response_table">
-					<tr>
-
-						<th>ID</th>
-						<th>제품명</th>
-						<th>개수</th>
-					</tr>
-					
-				</table> -->
-			</div>
-				<div style="text-align: center">
-					<div id="side_center">
-						<div class="text-center"></div>
-					</div>
-				</div>
 		</div>
-		<table>
-				<thead>
-					<tr>
-
-						<th>NO</th>
-						<th>받음</th>
-						<th>보냄</th>
-						<th>제품명</th>
-						<th>개수</th>
-						<th>날짜</th>
-					</tr>
-				</thead>
-
-				<tbody>
-					<c:forEach var="om" items="${order_managementList}">
-
-						<tr>
-							<td>${om.om_no }</td>
-							<td>${om.request_id }</td>
-							<td>${om.response_id }</td>
-							<td>${om.p_name }</td>
-							<td>${om.p_count }</td>
-							<td>${om.om_date }</td>
-
-						</tr>
-
-					</c:forEach>
-
-				</tbody>
-			</table>
-
 	</div>
 
 </body>

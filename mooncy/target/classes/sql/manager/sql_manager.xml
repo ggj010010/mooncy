@@ -60,6 +60,8 @@
 		<result property="om_no" column="om_no"/>
 		<result property="request_id" column="request_id"/>
     	<result property="response_id" column="response_id"/>
+    	<result property="request_name" column="request_name"/>
+    	<result property="response_name" column="response_name"/>
     	<result property="p_name" column="p_name"/>
     	<result property="p_count" column="p_count"/>
     	<result property="om_date" column="om_date"/>
@@ -87,26 +89,23 @@
 
 		FROM p_order, m_user 
 		
-		where o_check = 0 and m_user.m_id = p_order.m_id
+		where m_user.m_id = p_order.m_id
 		
 		order by p_date desc
 
 	</select>
+	 
 	 <select id="selectOrder_Management" resultMap="Order_ManagementDTO">
 
 	/*manager.selectOrder_Management*/
-
-		SELECT   
-				
-				om_no
-    			,request_id
-    			,response_id
-    			,p_name
-    			,p_count
-    			,om_date
-		
-		FROM order_management
-		
+	SELECT   	
+		DISTINCT om_no
+		,(select DISTINCT m_name from m_user m, order_management om1  where m.m_id = om.request_id and om.om_no = om1.OM_NO) as request_name 
+		,(select DISTINCT m_name from m_user m, order_management om2  where m.m_id = om.response_id and om.om_no = om2.OM_NO) as response_name
+		,p_name
+		,p_count
+		,om_date
+		FROM order_management om, m_user m
 		order by om_date desc
 
 	</select>

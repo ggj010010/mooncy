@@ -4,6 +4,8 @@ public class Order_ManagementDTO {
 	int om_no;
 	String request_id;
 	String response_id;
+	String request_name;
+	String response_name;
 	String p_name;
 	String p_count;
 	String om_date;
@@ -25,6 +27,19 @@ public class Order_ManagementDTO {
 	}
 	public void setResponse_id(String response_id) {
 		this.response_id = response_id;
+	}
+	
+	public String getRequest_name() {
+		return request_name;
+	}
+	public void setRequest_name(String request_name) {
+		this.request_name = request_name;
+	}
+	public String getResponse_name() {
+		return response_name;
+	}
+	public void setResponse_name(String response_name) {
+		this.response_name = response_name;
 	}
 	public String getP_name() {
 		return p_name;
