@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
@@ -6,12 +6,12 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>°Ô½Ã±Û ¸ñ·Ï</title>
+<title>ê²Œì‹œê¸€ ëª©ë¡</title>
 <script type="text/javascript" src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
 <script>
     $(document).ready(function(){
         $("#btnWrite").click(function(){
-            // ÆäÀÌÁö ÁÖ¼Ò º¯°æ(ÀÌµ¿)
+            // íŽ˜ì´ì§€ ì£¼ì†Œ ë³€ê²½(ì´ë™)
             location.href = "/menu/write.do";
         });
     });
@@ -22,10 +22,10 @@
  <div class="wrap">
 
 
-	<div id = "side"><button class="button" onClick="location.href='/menu/main'"> ¸ÞÀÎ</button></div>
-	<div id = "side"><button class="button"onClick="location.href='/order/orderview'"> ¹ßÁÖ°ü¸®</button></div>
-	<div id = "side"><button class="button"onClick="location.href='/menu/quview'"> ÆÇ¸Å°ü¸®</button></div>
- 	<div id = "side"><button class="button"onClick="location.href='/store/store'"> Àç°í°ü¸® </button></div>
+	<div id = "side"><button class="button" onClick="location.href='/menu/main'"> ë©”ì¸</button></div>
+	<div id = "side"><button class="button"onClick="location.href='/order/orderview'"> ë°œì£¼ê´€ë¦¬</button></div>
+	<div id = "side"><button class="button"onClick="location.href='/menu/quview'"> íŒë§¤ê´€ë¦¬</button></div>
+ 	<div id = "side"><button class="button"onClick="location.href='/store/store'"> ìž¬ê³ ê´€ë¦¬ </button></div>
 
 
 </div>
@@ -38,33 +38,33 @@
 
         			<c:when test="${sessionScope.m.m_id == '0'}">
 
-      		    	<li><a>°ü¸®ÀÚ´Ô</a></li>
+      		    	<li><a>ê´€ë¦¬ìžë‹˜</a></li>
 
         			</c:when>
         			<c:otherwise> 
 
-                		<li><a>${sessionScope.m.m_id}´Ô</a></li>
+                		<li><a>${sessionScope.m.m_id}ë‹˜</a></li>
 
  				   <c:set var="idno" value= "${sessionScope.m.m_id}"/>
         			</c:otherwise>
  				</c:choose>
   				
 
-        		<li><a href="/logout">·Î±×¾Æ¿ô</a></li>
+        		<li><a href="/logout">ë¡œê·¸ì•„ì›ƒ</a></li>
 
         		</c:when>
         	
  	</c:choose>
 <div class="board-container" >
 <div id = "side_rigth">
-<h2>ÆÇ¸Å °ü¸®</h2>
+<h2>íŒë§¤ ê´€ë¦¬</h2>
 <table  class="type09" style = "width : 650;">
     <tr>
-        <th>¹øÈ£</th>
-        <th>Á¦¸ñ</th>
-        <th>ÀÌ¸§</th>
-        <th>ÀÛ¼ºÀÏ</th>
-        <th>Ã³¸®¿©ºÎ</th>
+        <th>ë²ˆí˜¸</th>
+        <th>ì œëª©</th>
+        <th>ì´ë¦„</th>
+        <th>ìž‘ì„±ì¼</th>
+        <th>ì²˜ë¦¬ì—¬ë¶€</th>
     </tr>
     <c:forEach var="qv" items="${list}">
 
@@ -75,7 +75,7 @@
         <td><a href="${path}/menu/detail.do?q_no=${qv.q_no}">${qv.q_title}</a></td>
         <td>${qv.m_id}</td>
         <td>
-            <!-- ¿øÇÏ´Â ³¯Â¥Çü½ÄÀ¸·Î Ãâ·ÂÇÏ±â À§ÇØ fmtÅÂ±× »ç¿ë -->
+            <!-- ì›í•˜ëŠ” ë‚ ì§œí˜•ì‹ìœ¼ë¡œ ì¶œë ¥í•˜ê¸° ìœ„í•´ fmtíƒœê·¸ ì‚¬ìš© -->
             <fmt:formatDate value="${qv.q_date}" pattern="yyyy-MM-dd HH:mm:ss"/>
         </td>
         <td>${qv.q_check}</td>
@@ -84,7 +84,7 @@
     </c:forEach>
     
 </table>
-<button type="button" id="btnWrite">±Û¾²±â</button>
+<button type="button" id="btnWrite">ê¸€ì“°ê¸°</button>
 </div>
 </div>
 </body>

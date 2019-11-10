@@ -87,8 +87,10 @@
         <textarea name="q_desc" id="q_desc" rows="4" cols="80" placeholder="내용을 입력해주세요"></textarea>
     </div>
     <div>
-        이름
-        <input name="m_id" id="m_id" value="1">
+        id : 
+        
+ 		<c:set var="idno" value= "${sessionScope.m.m_id}"/>
+        <input name="m_id" id="m_id" type="text" readonly value="${idno}">
     </div>
     <div style="width:650px; text-align: center;">
         <button type="button" id="btnSave">확인</button>
