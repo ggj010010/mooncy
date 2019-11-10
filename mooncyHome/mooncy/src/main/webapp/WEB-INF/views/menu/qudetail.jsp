@@ -1,45 +1,46 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
-<%@include file="/WEB-INF/views/common/common.jsp"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
-<title>°Ô½Ã±Û ÀÛ¼º</title>
+<title>ê²Œì‹œê¸€ ì‘ì„±</title>
 <script type="text/javascript" src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
 <script>
     $(document).ready(function(){
         $("#btnDelete").click(function(){
-            if(confirm("»èÁ¦ÇÏ½Ã°Ú½À´Ï±î?")){
+            if(confirm("ì‚­ì œí•˜ì‹œê² ìŠµë‹ˆê¹Œ?")){
                 document.form1.action = "${path}/menu/delete.do";
                 document.form1.submit();
             }
         });
         
         $("#btnUpdete").click(function(){
-            //var q_title = document.form1.q_title.value; ==> name¼Ó¼ºÀ¸·Î Ã³¸®ÇÒ °æ¿ì
+            //var q_title = document.form1.q_title.value; ==> nameì†ì„±ìœ¼ë¡œ ì²˜ë¦¬í•  ê²½ìš°
             //var q_desc = document.form1.q_desc.value;
             //var m_id = document.form1.m_id.value;
             var q_title = $("#q_title").val();
             var q_desc = $("#q_desc").val();
             var m_id = $("#m_id").val();
             if(q_title == ""){
-                alert("Á¦¸ñÀ» ÀÔ·ÂÇÏ¼¼¿ä");
+                alert("ì œëª©ì„ ì…ë ¥í•˜ì„¸ìš”");
                 document.form1.q_title.focus();
                 return;
             }
             if(q_desc == ""){
-                alert("³»¿ëÀ» ÀÔ·ÂÇÏ¼¼¿ä");
+                alert("ë‚´ìš©ì„ ì…ë ¥í•˜ì„¸ìš”");
                 document.form1.q_desc.focus();
                 return;
             }
             if(m_id == ""){
-                alert("ÀÌ¸§À» ÀÔ·ÂÇÏ¼¼¿ä");
+                alert("ì´ë¦„ì„ ì…ë ¥í•˜ì„¸ìš”");
                 document.form1.m_id.focus();
                 return;
             }
             document.form1.action="${path}/menu/update.do"
-            // Æû¿¡ ÀÔ·ÂÇÑ µ¥ÀÌÅÍ¸¦ ¼­¹ö·Î Àü¼Û
+            // í¼ì— ì…ë ¥í•œ ë°ì´í„°ë¥¼ ì„œë²„ë¡œ ì „ì†¡
             document.form1.submit();
         });
     });
@@ -49,10 +50,10 @@
  <div class="wrap">
 
 
-	<div id = "side"><button class="button" onClick="location.href='/menu/main'"> ¸ŞÀÎ</button></div>
-	<div id = "side"><button class="button"onClick="location.href='/order/orderview'"> ¹ßÁÖ°ü¸®</button></div>
-	<div id = "side"><button class="button"onClick="location.href='/menu/quview'"> ÆÇ¸Å°ü¸®</button></div>
- 	<div id = "side"><button class="button"onClick="location.href='/store/store'"> Àç°í°ü¸® </button></div>
+	<div id = "side"><button class="button" onClick="location.href='/menu/main'"> ë©”ì¸</button></div>
+	<div id = "side"><button class="button"onClick="location.href='/order/orderview'"> ë°œì£¼ê´€ë¦¬</button></div>
+	<div id = "side"><button class="button"onClick="location.href='/menu/quview'"> íŒë§¤ê´€ë¦¬</button></div>
+ 	<div id = "side"><button class="button"onClick="location.href='/store/store'"> ì¬ê³ ê´€ë¦¬ </button></div>
 
 
 </div>
@@ -67,18 +68,18 @@
 
         			<c:when test="${sessionScope.m.m_id == '0'}">
 
-      		    	<li><a>°ü¸®ÀÚ´Ô</a></li>
+      		    	<li><a>ê´€ë¦¬ìë‹˜</a></li>
 
         			</c:when>
         			<c:otherwise> 
 
-                		<li><a>${sessionScope.m.m_id}´Ô</a></li>
+                		<li><a>${sessionScope.m.m_id}ë‹˜</a></li>
 
         			</c:otherwise>
  				</c:choose>
   				
 
-        		<li><a href="/logout">·Î±×¾Æ¿ô</a></li>
+        		<li><a href="/logout">ë¡œê·¸ì•„ì›ƒ</a></li>
 
         		</c:when>
         	
@@ -87,32 +88,32 @@
 <body>
 <div class="board-container" >
 <div id = "side_rigth">
-<h2>°Ô½Ã±Û º¸±â</h2>
+<h2>ê²Œì‹œê¸€ ë³´ê¸°</h2>
 <form name="form1" method="post">
-    <div>        <!-- ¿øÇÏ´Â ³¯Â¥Çü½ÄÀ¸·Î Ãâ·ÂÇÏ±â À§ÇØ fmtÅÂ±× »ç¿ë -->
-        ÀÛ¼ºÀÏÀÚ : <fmt:formatDate value="${dto.q_date}" pattern="yyyy-MM-dd a HH:mm:ss"/>
-                <!-- ³¯Â¥ Çü½Ä => yyyy 4ÀÚ¸®¿¬µµ, MM ¿ù, dd ÀÏ, a ¿ÀÀü/¿ÀÈÄ, HH 24½Ã°£Á¦, hh 12½Ã°£Á¦, mm ºĞ, ss ÃÊ -->
+    <div>        <!-- ì›í•˜ëŠ” ë‚ ì§œí˜•ì‹ìœ¼ë¡œ ì¶œë ¥í•˜ê¸° ìœ„í•´ fmtíƒœê·¸ ì‚¬ìš© -->
+        ì‘ì„±ì¼ì : <fmt:formatDate value="${dto.q_date}" pattern="yyyy-MM-dd a HH:mm:ss"/>
+                <!-- ë‚ ì§œ í˜•ì‹ => yyyy 4ìë¦¬ì—°ë„, MM ì›”, dd ì¼, a ì˜¤ì „/ì˜¤í›„, HH 24ì‹œê°„ì œ, hh 12ì‹œê°„ì œ, mm ë¶„, ss ì´ˆ -->
     </div>
     <div>
-        Ã³¸®¿©ºÎ : ${dto.q_check}
+        ì²˜ë¦¬ì—¬ë¶€ : ${dto.q_check}
     </div>
     <div>
-        Á¦¸ñ
-        <input name="q_title" id="q_title" size="80" value="${dto.q_title}" placeholder="Á¦¸ñÀ» ÀÔ·ÂÇØÁÖ¼¼¿ä">
+        ì œëª©
+        <input name="q_title" id="q_title" size="80" value="${dto.q_title}" placeholder="ì œëª©ì„ ì…ë ¥í•´ì£¼ì„¸ìš”">
     </div>
     <div>
-        ³»¿ë
-        <textarea name="q_desc" id="q_desc" rows="4" cols="80" placeholder="³»¿ëÀ» ÀÔ·ÂÇØÁÖ¼¼¿ä">${dto.q_desc}</textarea>
+        ë‚´ìš©
+        <textarea name="q_desc" id="q_desc" rows="4" cols="80" placeholder="ë‚´ìš©ì„ ì…ë ¥í•´ì£¼ì„¸ìš”">${dto.q_desc}</textarea>
     </div>
     <div>
-        ÀÌ¸§
-        <input name="m_id" id="m_id" value="${dto.m_id}" placeholder="ÀÌ¸§À» ÀÔ·ÂÇØÁÖ¼¼¿ä">
+        ì´ë¦„
+        <input name="m_id" id="m_id" value="${dto.m_id}" placeholder="ì´ë¦„ì„ ì…ë ¥í•´ì£¼ì„¸ìš”">
     </div>
     <div style="width:650px; text-align: center;">
-        <!-- °Ô½Ã¹°¹øÈ£¸¦ hiddenÀ¸·Î Ã³¸® -->
+        <!-- ê²Œì‹œë¬¼ë²ˆí˜¸ë¥¼ hiddenìœ¼ë¡œ ì²˜ë¦¬ -->
         <input type="hidden" name="q_no" value="${dto.q_no}">
-        <button type="button" id="btnUpdete">¼öÁ¤</button>
-        <button type="button" id="btnDelete">»èÁ¦</button>
+        <button type="button" id="btnUpdete">ìˆ˜ì •</button>
+        <button type="button" id="btnDelete">ì‚­ì œ</button>
         </div>
     </div></div>
 </form>

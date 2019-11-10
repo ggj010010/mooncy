@@ -1,6 +1,7 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
-<%@include file="/WEB-INF/views/common/common.jsp"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="EUC-KR"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -32,7 +33,6 @@
 <body>
 <br><br><br>
 	<c:choose>
-
         		<c:when test="${sessionScope.m.m_id != null}">
 				<c:choose>
 
@@ -45,6 +45,7 @@
 
                 		<li><a>${sessionScope.m.m_id}´Ô</a></li>
 
+ 				   <c:set var="idno" value= "${sessionScope.m.m_id}"/>
         			</c:otherwise>
  				</c:choose>
   				
@@ -68,7 +69,8 @@
     <c:forEach var="qv" items="${list}">
 
     <tr>
-    
+    <c:set var="name" value= "${qv.m_id}"/>
+<c:if test="${name== idno}">
         <td>${qv.q_no}</td>
         <td><a href="${path}/menu/detail.do?q_no=${qv.q_no}">${qv.q_title}</a></td>
         <td>${qv.m_id}</td>
@@ -77,8 +79,10 @@
             <fmt:formatDate value="${qv.q_date}" pattern="yyyy-MM-dd HH:mm:ss"/>
         </td>
         <td>${qv.q_check}</td>
-    </tr>    
+    </tr>      
+</c:if>
     </c:forEach>
+    
 </table>
 <button type="button" id="btnWrite">±Û¾²±â</button>
 </div>

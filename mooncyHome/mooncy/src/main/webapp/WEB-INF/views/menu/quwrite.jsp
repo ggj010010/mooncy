@@ -1,11 +1,12 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
-<%@include file="/WEB-INF/views/common/common.jsp"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>°Ô½Ã±Û ÀÛ¼º</title>
+<title>ê²Œì‹œê¸€ ì‘ì„±</title>
 <script type="text/javascript" src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
 <script>
     $(document).ready(function(){
@@ -14,21 +15,21 @@
             var q_desc = $("#q_desc").val();
             var m_id = $("#m_id").val();
             if(q_title == ""){
-                alert("Á¦¸ñÀ» ÀÔ·ÂÇÏ¼¼¿ä");
+                alert("ì œëª©ì„ ì…ë ¥í•˜ì„¸ìš”");
                 document.form1.q_title.focus();
                 return;
             }
             if(q_desc == ""){
-                alert("³»¿ëÀ» ÀÔ·ÂÇÏ¼¼¿ä");
+                alert("ë‚´ìš©ì„ ì…ë ¥í•˜ì„¸ìš”");
                 document.form1.q_desc.focus();
                 return;
             }
             if(m_id == ""){
-                alert("ÀÌ¸§À» ÀÔ·ÂÇÏ¼¼¿ä");
+                alert("ì´ë¦„ì„ ì…ë ¥í•˜ì„¸ìš”");
                 document.form1.m_id.focus();
                 return;
             }
-            // Æû¿¡ ÀÔ·ÂÇÑ µ¥ÀÌÅÍ¸¦ ¼­¹ö·Î Àü¼Û
+            // í¼ì— ì…ë ¥í•œ ë°ì´í„°ë¥¼ ì„œë²„ë¡œ ì „ì†¡
             document.form1.submit();
         });
     });
@@ -37,10 +38,10 @@
  <div class="wrap">
 
 
-	<div id = "side"><button class="button" onClick="location.href='/menu/main'"> ¸ŞÀÎ</button></div>
-	<div id = "side"><button class="button"onClick="location.href='/order/orderview'"> ¹ßÁÖ°ü¸®</button></div>
-	<div id = "side"><button class="button"onClick="location.href='/menu/quview'"> ÆÇ¸Å°ü¸®</button></div>
- 	<div id = "side"><button class="button"onClick="location.href='/store/store'"> Àç°í°ü¸® </button></div>
+	<div id = "side"><button class="button" onClick="location.href='/menu/main'"> ë©”ì¸</button></div>
+	<div id = "side"><button class="button"onClick="location.href='/order/orderview'"> ë°œì£¼ê´€ë¦¬</button></div>
+	<div id = "side"><button class="button"onClick="location.href='/menu/quview'"> íŒë§¤ê´€ë¦¬</button></div>
+ 	<div id = "side"><button class="button"onClick="location.href='/store/store'"> ì¬ê³ ê´€ë¦¬ </button></div>
 
 
 </div>
@@ -53,18 +54,18 @@
 
         			<c:when test="${sessionScope.m.m_id == '0'}">
 
-      		    	<li><a>°ü¸®ÀÚ´Ô</a></li>
+      		    	<li><a>ê´€ë¦¬ìë‹˜</a></li>
 
         			</c:when>
         			<c:otherwise> 
 
-                		<li><a>${sessionScope.m.m_id}´Ô</a></li>
+                		<li><a>${sessionScope.m.m_id}ë‹˜</a></li>
 
         			</c:otherwise>
  				</c:choose>
   				
 
-        		<li><a href="/logout">·Î±×¾Æ¿ô</a></li>
+        		<li><a href="/logout">ë¡œê·¸ì•„ì›ƒ</a></li>
 
         		</c:when>
         	
@@ -75,23 +76,23 @@
 <br><br><br>
 <div class="board-container" >
 <div id = "side_rigth">
-<h2>°Ô½Ã±Û ÀÛ¼º</h2>
+<h2>ê²Œì‹œê¸€ ì‘ì„±</h2>
 <form name="form1" method="post" action="/menu/insert.do">
     <div>
-        Á¦¸ñ
-        <input name="q_title" id="q_title" size="80" placeholder="Á¦¸ñÀ» ÀÔ·ÂÇØÁÖ¼¼¿ä">
+        ì œëª©
+        <input name="q_title" id="q_title" size="80" placeholder="ì œëª©ì„ ì…ë ¥í•´ì£¼ì„¸ìš”">
     </div>
     <div>
-        ³»¿ë
-        <textarea name="q_desc" id="q_desc" rows="4" cols="80" placeholder="³»¿ëÀ» ÀÔ·ÂÇØÁÖ¼¼¿ä"></textarea>
+        ë‚´ìš©
+        <textarea name="q_desc" id="q_desc" rows="4" cols="80" placeholder="ë‚´ìš©ì„ ì…ë ¥í•´ì£¼ì„¸ìš”"></textarea>
     </div>
     <div>
-        ÀÌ¸§
+        ì´ë¦„
         <input name="m_id" id="m_id" value="1">
     </div>
     <div style="width:650px; text-align: center;">
-        <button type="button" id="btnSave">È®ÀÎ</button>
-        <button type="reset">Ãë¼Ò</button></div>
+        <button type="button" id="btnSave">í™•ì¸</button>
+        <button type="reset">ì·¨ì†Œ</button></div>
     </div></div>
 </form>
 </body>
