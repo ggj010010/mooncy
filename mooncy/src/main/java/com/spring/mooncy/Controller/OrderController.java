@@ -49,7 +49,16 @@ public class OrderController {
 			model.addAttribute("totalCnt", OrderService.selectOrderView(pagingDTO, id).get(0).getPagingDTO().getTotalCnt());
 		}
 		model.addAttribute("pageNo", pagingDTO.getPageNo());
-
+		
+		/*
+		 * model.addAttribute("orderResponseList",
+		 * OrderService.selectOrderResponseView(pagingDTO, id));
+		 * if(OrderService.selectOrderResponseView(pagingDTO, id).size() != 0) {
+		 * model.addAttribute("totalCnt2",
+		 * OrderService.selectOrderResponseView(pagingDTO,
+		 * id).get(0).getPagingDTO().getTotalCnt()); } model.addAttribute("pageNo2",
+		 * pagingDTO.getPageNo());
+		 */
 		
 
 		return "order/orderview";

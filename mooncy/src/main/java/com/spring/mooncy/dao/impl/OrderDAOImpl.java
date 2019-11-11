@@ -36,7 +36,14 @@ public class OrderDAOImpl implements OrderDAO{
 		return sqlSession.selectList("order.selectOrderView",pagingDTO);
 
 	}
+	@Override
+	public List<OrderDTO> selectOrderResponseView(PagingDTO pagingDTO) {
 
+		// TODO Auto-generated method stub
+
+		return sqlSession.selectList("order.selectOrder_User",pagingDTO);
+
+	}
 //	@Override
 //
 //	public int insertRoom(OrderDTO OrderDTO) {
