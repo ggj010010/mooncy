@@ -267,14 +267,23 @@
 					<td>
 
 						<table id="request">
+									<% int count = 0; %>
+								 <c:forEach var="ol" items="${orderList}">
+								 <c:if test="${ ol.o_check eq 0}">
+								 	<% count++; %>
+
+								 </c:if>
+								
+								</c:forEach>
+								<c:set var="count" value="<%=count %>"/>
 							<c:choose>
-								<c:when test="${orderList.size() == 0}">
-									<thead>
-										<tr>
-											<th>발주 내역이 없습니다</th>
-										</tr>
-									</thead>
-								</c:when>
+									<c:when test="${count == 0}">
+										<thead>
+											<tr>
+												<th rowspan='3'>발주 내역이 없습니다</th>
+											</tr>
+										</thead>
+									</c:when>
 								<c:otherwise>
 									<thead>
 										<tr>
@@ -286,10 +295,10 @@
 								</c:otherwise>
 							</c:choose>
 
-
 							<tbody>
 								<c:forEach var="ol" items="${orderList}">
 									<c:choose>
+										
 										<c:when test="${ol.o_check == 0}">
 											<tr id="tr">
 												<td style="display: none;">${ol.o_no }</td>

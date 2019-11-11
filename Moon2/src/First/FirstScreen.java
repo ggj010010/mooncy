@@ -141,6 +141,7 @@ public class FirstScreen extends JFrame {
 		panel.add(all);
 
 		tf1 = new JTextField();
+		tf1.setEditable(false);
 		tf1.setForeground(Color.WHITE);
 		tf1.setCaretColor(Color.BLACK);
 		tf1.setBackground(Color.RED);
@@ -150,6 +151,7 @@ public class FirstScreen extends JFrame {
 		tf1.setText("\uB538\uAE30 3,000");
 
 		tf2 = new JTextField();
+		tf2.setEditable(false);
 		tf2.setForeground(Color.DARK_GRAY);
 		tf2.setBackground(Color.ORANGE);
 		tf2.setColumns(10);
@@ -158,6 +160,7 @@ public class FirstScreen extends JFrame {
 		contentPane.add(tf2);
 
 		tf3 = new JTextField();
+		tf3.setEditable(false);
 		tf3.setDisabledTextColor(Color.WHITE);
 		tf3.setForeground(Color.GRAY);
 		tf3.setBackground(Color.YELLOW);
@@ -167,6 +170,7 @@ public class FirstScreen extends JFrame {
 		contentPane.add(tf3);
 
 		tf4 = new JTextField();
+		tf4.setEditable(false);
 		tf4.setForeground(Color.DARK_GRAY);
 		tf4.setBackground(Color.GREEN);
 		tf4.setColumns(10);
@@ -175,6 +179,7 @@ public class FirstScreen extends JFrame {
 		contentPane.add(tf4);
 
 		tf5 = new JTextField();
+		tf5.setEditable(false);
 		tf5.setForeground(Color.GRAY);
 		tf5.setBackground(Color.CYAN);
 		tf5.setColumns(10);
@@ -183,6 +188,7 @@ public class FirstScreen extends JFrame {
 		contentPane.add(tf5);
 
 		tf6 = new JTextField();
+		tf6.setEditable(false);
 		tf6.setForeground(Color.WHITE);
 		tf6.setBackground(Color.BLUE);
 		tf6.setColumns(10);
@@ -191,6 +197,7 @@ public class FirstScreen extends JFrame {
 		contentPane.add(tf6);
 
 		tf7 = new JTextField();
+		tf7.setEditable(false);
 		tf7.setForeground(Color.WHITE);
 		tf7.setBackground(Color.MAGENTA);
 		tf7.setColumns(10);
@@ -199,6 +206,7 @@ public class FirstScreen extends JFrame {
 		contentPane.add(tf7);
 
 		tf8 = new JTextField();
+		tf8.setEditable(false);
 		tf8.setForeground(Color.WHITE);
 		tf8.setBackground(Color.PINK);
 		tf8.setColumns(10);
@@ -207,6 +215,7 @@ public class FirstScreen extends JFrame {
 		contentPane.add(tf8);
 
 		tf9 = new JTextField();
+		tf9.setEditable(false);
 		tf9.setForeground(Color.WHITE);
 		tf9.setBackground(Color.LIGHT_GRAY);
 		tf9.setColumns(10);
@@ -215,6 +224,7 @@ public class FirstScreen extends JFrame {
 		contentPane.add(tf9);
 
 		tf10 = new JTextField();
+		tf10.setEditable(false);
 		tf10.setForeground(Color.WHITE);
 		tf10.setBackground(Color.DARK_GRAY);
 		tf10.setColumns(10);
@@ -1361,6 +1371,7 @@ public class FirstScreen extends JFrame {
 		scrollPane.setViewportView(table);
 
 		tf11 = new JTextField();
+		tf11.setEditable(false);
 		tf11.setText("\uB538\uBC14 2,700");
 		tf11.setForeground(Color.WHITE);
 		tf11.setColumns(10);
@@ -1475,6 +1486,7 @@ public class FirstScreen extends JFrame {
 		contentPane.add(button_11);
 
 		tf12 = new JTextField();
+		tf12.setEditable(false);
 		tf12.setText("\uC624\uD55C 3,700 ");
 		tf12.setForeground(Color.WHITE);
 		tf12.setColumns(10);

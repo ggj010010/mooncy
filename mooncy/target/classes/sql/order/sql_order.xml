@@ -91,7 +91,7 @@
 				
 				,p_date
 				
-				,row_number() over(order by o_no) as numrow
+				,row_number() over(order by o_no desc) as numrow
 
 				,count(*) over() as totalcnt
 
