@@ -5,9 +5,13 @@ import java.util.List;
 import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -17,15 +21,18 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.spring.mooncy.dto.QuRepVO;
 import com.spring.mooncy.dto.QuRepPager;
 import com.spring.mooncy.dto.QuRepVO;
+import com.spring.mooncy.dto.StoreDTO;
 import com.spring.mooncy.service.QuRepService;
+import com.spring.mooncy.service.StoreService;
 
 
 // REST : Representational State Transfer
 // ?•˜?‚˜?˜ URIê°? ?•˜?‚˜?˜ ê³ ìœ ?•œ ë¦¬ì†Œ?Š¤ë¥? ???‘œ?•˜?„ë¡? ?„¤ê³„ëœ ê°œë…
 
-// http://localhost/spring02/list?bno=1 ==> url+?ŒŒ?¼ë¯¸í„°
+// http://localhost/spring02/list?q_no=1 ==> url+?ŒŒ?¼ë¯¸í„°
 // http://localhost/spring02/list/1 ==> url
 // RestController?? ?Š¤?”„ë§? 4.0ë¶??„° ì§??›
 // @Controller, @RestController ì°¨ì´? ?? ë©”ì„œ?“œê°? ì¢…ë£Œ?˜ë©? ?™”ë©´ì „?™˜?˜ ?œ ë¬?
@@ -34,141 +41,39 @@ import com.spring.mooncy.service.QuRepService;
 
 @RequestMapping("/reply/*")
 public class QuRepController {
+	@Autowired
+	QuRepService qurepservice;
+
+   
+   private static final Logger logger = LoggerFactory.getLogger(ManagerController.class);
+   
+   
+
 	
-	@Inject
-	QuRepService replyService;
+	@RequestMapping(value = "/insert", method = {RequestMethod.POST,RequestMethod.GET})
 	
-	// 1_1. ?Œ“ê¸? ?…? ¥(@Controllerë°©ì‹?œ¼ë¡? ?Œ“ê¸? ?…? ¥)
-	@RequestMapping(value="insert", method=RequestMethod.POST)
-	public void insert(@ModelAttribute QuRepVO vo, HttpSession session){
-		// ?„¸?…˜?— ???¥?œ ?šŒ?›?•„?´?””ë¥? ?Œ“ê¸??‘?„±??— ?„¸?Œ…
-		String userId = (String) session.getAttribute("m_id");
-		vo.setUserName(userId);
-		// ?Œ“ê¸? ?…? ¥ ë©”ì„œ?“œ ?˜¸ì¶?
-		replyService.create(vo);
+	@ResponseBody
+	public int order_response(Model model,QuRepVO QuRepVO) throws Exception {
+		logger.info("order_responses");
+		int check = 0;
+		int order_manager = qurepservice.insert_reply(QuRepVO);
+		 
+		 return check;
 		
 	}
 	
-	// 1_2. ?Œ“ê¸??…? ¥ (@RestControllerë°©ì‹?œ¼ë¡? json? „?‹¬?•˜?—¬ ?Œ“ê¸??…? ¥)
-	// @ResponseEntity : ?°?´?„° + http status code
-	// @ResponseBody : ê°ì²´ë¥? json?œ¼ë¡? (json - String)
-	// @RequestBody : json?„ ê°ì²´ë¡?
-	@RequestMapping(value="insertRest", method=RequestMethod.POST)
-	public ResponseEntity<String> insertRest(@RequestBody QuRepVO vo, HttpSession session){
-		ResponseEntity<String> entity = null;
-		try {
-			String userId = (String) session.getAttribute("m_id");
-			vo.setUserName(userId);
-			replyService.create(vo);
-			entity = new ResponseEntity<String>("success", HttpStatus.OK);
-		} catch (Exception e) {
-			e.printStackTrace();
-			entity = new ResponseEntity<String>(e.getMessage(), HttpStatus.BAD_REQUEST);
-		}
-		return entity;
-	}
+@RequestMapping(value = "/delete", method = {RequestMethod.POST,RequestMethod.GET})
 	
-	// 2_1. ?Œ“ê¸? ëª©ë¡(@Controllerë°©ì‹ : veiw(?™”ë©?)ë¥? ë¦¬í„´)
-	@RequestMapping("list")
-	public ModelAndView list(@RequestParam int bno,	@RequestParam(defaultValue="1") int curPage, ModelAndView mav, HttpSession session){
-		// ?˜?´ì§? ì²˜ë¦¬ 
-		int count = replyService.count(bno); // ?Œ“ê¸? ê°??ˆ˜
-		QuRepPager replyPager = new QuRepPager(count, curPage);
-		// ?˜„?¬ ?˜?´ì§??˜ ?˜?´ì§? ?‹œ?‘ ë²ˆí˜¸
-		int start = replyPager.getPageBegin();
-		// ?˜„?¬ ?˜?´ì§??˜ ?˜?´ì§?  ? ë²ˆí˜¸
-		int end = replyPager.getPageEnd();
-		List<QuRepVO> list = replyService.list(bno, start, end, session);
-		// ë·°ì´ë¦? ì§?? •
-		mav.setViewName("menu/replyList");
-		// ë·°ì— ? „?‹¬?•  ?°?´?„° ì§?? •
-		mav.addObject("list", list);
-		mav.addObject("replyPager", replyPager);
-		// replyList.jspë¡? ?¬?›Œ?”©
-		return mav;
-	}
-	
-	// 2_2. ?Œ“ê¸? ëª©ë¡(@RestControllerë°©ì‹ : Json?œ¼ë¡? ?°?´?„°ë¥? ë¦¬í„´)
-	@RequestMapping("listJson")
-	@ResponseBody // ë¦¬í„´?°?´?„°ë¥? json?œ¼ë¡? ë³??™˜(RestController?‚¬?š©?‹œ @ResponseBody?ƒ?µê°??Š¥)
-	public List<QuRepVO> listJson(@RequestParam int bno, @RequestParam(defaultValue="1") int curPage, HttpSession session){
-		// ?˜?´ì§? ì²˜ë¦¬
-		int count = replyService.count(bno); // ?Œ“ê¸? ê°??ˆ˜
-		QuRepPager pager = new QuRepPager(count, curPage);
-		// ?˜„?¬ ?˜?´ì§??˜ ?˜?´ì§? ?‹œ?‘ ë²ˆí˜¸
-		int start = pager.getPageBegin();
-		// ?˜„?¬ ?˜?´ì§??˜ ?˜?´ì§?  ? ë²ˆí˜¸
-		int end = pager.getPageEnd();
-		List<QuRepVO> list = replyService.list(bno, start, end, session);
-		// listë¥? ë¦¬í„´
-		return list;
-	}
-	
-	// ** Controller ì¶”ê? ?‚¬?•­ - Restë°©ì‹?œ¼ë¡? ?Œ“ê¸? ëª©ë¡, ?ˆ˜? •, ?‚­? œ ì²˜ë¦¬
-	
-	// 2_3. ?Œ“ê¸? ëª©ë¡(@RestControllerë°©ì‹ :  json?œ¼ë¡? ? „?‹¬?•˜?—¬ ëª©ë¡?ƒ?„±)
-	// /reply/list/1 => 1ë²? ê²Œì‹œë¬¼ì˜ ?Œ“ê¸? ëª©ë¡ ë¦¬í„´
-	// /reply/list/2 => 2ë²? ê²Œì‹œë¬¼ì˜ ?Œ“ê¸? ëª©ë¡ ë¦¬í„´
-	// @PathVariable : url?— ?…? ¥?  ë³??ˆ˜ê°? ì§?? •
-	@RequestMapping(value="/list/{bno}/{curPage}", method=RequestMethod.GET)
-	public ModelAndView replyList(@PathVariable("bno") int bno, @PathVariable int curPage, ModelAndView mav, HttpSession session){
-		// ?˜?´ì§? ì²˜ë¦¬
-		int count = replyService.count(bno); // ?Œ“ê¸? ê°??ˆ˜
-		QuRepPager replyPager = new QuRepPager(count, curPage);
-		// ?˜„?¬ ?˜?´ì§??˜ ?˜?´ì§? ?‹œ?‘ ë²ˆí˜¸
-		int start = replyPager.getPageBegin();
-		// ?˜„?¬ ?˜?´ì§??˜ ?˜?´ì§?  ? ë²ˆí˜¸
-		int end = replyPager.getPageEnd();
-		List<QuRepVO> list = replyService.list(bno, start, end, session);
-		// ë·°ì´ë¦? ì§?? •
-		mav.setViewName("menu/replyList");
-		// ë·°ì— ? „?‹¬?•  ?°?´?„° ì§?? •
-		mav.addObject("list", list);
-		mav.addObject("replyPager", replyPager);
-		// replyList.jspë¡? ?¬?›Œ?”©
-		return mav;
-	}
-	
-	
-	// 3. ?Œ“ê¸? ?ƒ?„¸ ë³´ê¸°
-	// /reply/detail/1 => 1ë²? ?Œ“ê¸??˜ ?ƒ?„¸?™”ë©? ë¦¬í„´
-	// /reply/detail/2 => 2ë²? ?Œ“ê¸??˜ ?ƒ?„¸?™”ë©? ë¦¬í„´
-	// @PathVariable : url?— ?…? ¥?  ë³??ˆ˜ê°? ì§?? •
-
-	
-	// 4. ?Œ“ê¸? ?ˆ˜? • ì²˜ë¦¬ - PUT:? „ì²? ?ˆ˜? •, PATCH:?¼ë¶??ˆ˜? •
-	// RequestMethodë¥? ?—¬?Ÿ¬ ë°©ì‹?œ¼ë¡? ?„¤? •?•  ê²½ìš° {}?•ˆ?— ?‘?„±
-	@RequestMapping(value="/update/{rno}", method={RequestMethod.POST})
-	public ResponseEntity<String> replyUpdate(@PathVariable("rno") Integer rno, @RequestBody QuRepVO vo){
-		ResponseEntity<String> entity = null;
-		try {
-			vo.setRno(rno);
-			replyService.update(vo);
-			// ?Œ“ê¸? ?ˆ˜? •?´ ?„±ê³µí•˜ë©? ?„±ê³? ?ƒ?ƒœë©”ì‹œì§? ???¥
-			entity = new ResponseEntity<String>("success", HttpStatus.OK);
-		} catch (Exception e) {
-			e.printStackTrace();
-			// ?Œ“ê¸? ?ˆ˜? •?´ ?‹¤?Œ¨?•˜ë©? ?‹¤?Œ¨ ?ƒ?ƒœë©”ì‹œì§? ???¥
-			entity = new ResponseEntity<String>(e.getMessage(), HttpStatus.BAD_REQUEST);
-		}
-		// ?ˆ˜? • ì²˜ë¦¬ HTTP ?ƒ?ƒœ ë©”ì‹œì§? ë¦¬í„´
-		return entity;
-	}
-	
-	// 5. ?Œ“ê¸? ?‚­? œì²˜ë¦¬
-	@RequestMapping(value="/delete/{rno}")
-	public ResponseEntity<String> replyDelete(@PathVariable("rno") Integer rno){
-		ResponseEntity<String> entity = null;
-		try {
-			replyService.delete(rno);
-			// ?Œ“ê¸? ?‚­? œê°? ?„±ê³µí•˜ë©? ?„±ê³? ?ƒ?ƒœë©”ì‹œì§? ???¥
-			entity = new ResponseEntity<String>("success", HttpStatus.OK);
-		} catch (Exception e) {
-			e.printStackTrace();
-			// ?Œ“ê¸? ?‚­? œê°? ?‹¤?Œ¨?•˜ë©? ?‹¤?Œ¨ ?ƒ?ƒœë©”ì‹œì§? ???¥
-			entity = new ResponseEntity<String>(e.getMessage(), HttpStatus.BAD_REQUEST);
-		}
-		// ?‚­? œ ì²˜ë¦¬ HTTP ?ƒ?ƒœ ë©”ì‹œì§? ë¦¬í„´
-		return entity;
-	}
+	@ResponseBody
+    public int delete(Model model,QuRepVO QuRepVO) throws Exception{
+		int result = qurepservice.reply_delete(QuRepVO);
+        return result;
+    }
+/*
+	 @RequestMapping("/menu/delete.do")
+	    public String delete(@RequestParam int q_no) throws Exception{
+	        quService.delete(q_no);
+	        return "redirect:/menu/quview";
+	    }
+   */
 }

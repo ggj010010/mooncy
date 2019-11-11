@@ -141,6 +141,15 @@ table {
     border-bottom: 3px solid #fff;
     background-color : #333;
 }
+ .a th {
+ 	width: 20%;
+    padding: 1px;
+    font-weight : normal;
+    vertical-align: top;
+    color: #fff;
+    border-bottom: 3px solid #fff;
+    background-color : #333;
+}
 
 .a td {
 	width : 50%;

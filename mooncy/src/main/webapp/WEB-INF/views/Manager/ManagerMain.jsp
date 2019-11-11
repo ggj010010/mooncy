@@ -15,7 +15,7 @@
 	
 <div id = "side"><button class="button" onClick="location.href='/Manager/ManagerMain'"> 皋牢</button></div>
 	<div id = "side"><button class="button"onClick="location.href='/Manager/manager_order'"> 惯林包府</button></div>
-	<div id = "side"><button class="button"onClick="location.href='/Manager/ManagerMain'"> 魄概包府</button></div>
+	<div id = "side"><button class="button"onClick="location.href='/menu/quview'"> 魄概包府</button></div>
  	<div id = "side"><button class="button"onClick="location.href='/Manager/manager_store'"> 犁绊包府 </button></div>
 
 

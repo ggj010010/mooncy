@@ -9,57 +9,71 @@ import org.springframework.stereotype.Service;
 
 
 import com.spring.mooncy.dao.QuRepDAO;
+import com.spring.mooncy.dto.OrderDTO;
 import com.spring.mooncy.dto.QuRepVO;
+import com.spring.mooncy.dto.QuVO;
 import com.spring.mooncy.service.QuRepService;
 
 @Service
 public class QuRepServiceImpl implements QuRepService {
-	
-	@Inject
-	QuRepDAO replyDao;
+   
+   @Inject
+   QuRepDAO qurepDAO;
 
-	// 1. ?Œ“ê¸? ?…? ¥
-	@Override
-	public void create(QuRepVO vo) {
-		replyDao.create(vo);
-	}
-	// 2. ?Œ“ê¸? ëª©ë¡
-	@Override
-	public List<QuRepVO> list(Integer bno, int start, int end, HttpSession session) {
-		List<QuRepVO> items = replyDao.list(bno, start, end);
-		// ?„¸?…˜?—?„œ ?˜„?¬ ?‚¬?š©? idê°? ???¥
-		String userId = (String) session.getAttribute("userId");
-		for(QuRepVO vo : items){
-			// ?Œ“ê¸? ëª©ë¡ì¤‘ì— ì¤‘ì— ë¹„ë? ?Œ“ê¸??´ ?ˆ?„ ê²½ìš°
-				if(userId== null){ // ë¹„ë¡œê·¸ì¸ ?ƒ?ƒœë©? ë¹„ë? ?Œ“ê¸?ë¡? ì²˜ë¦¬
-					vo.setReplytext("ë¹„ë? ?Œ“ê¸??…?‹ˆ?‹¤.");
-				} else { // ë¡œê·¸?¸ ?ƒ?ƒœ?¼ ê²½ìš°
-					String writer = vo.getUserName(); // ê²Œì‹œë¬? ?‘?„±? ???¥
-					// ë¡œê·¸?¸?•œ ?‚¬?š©?ê°? ê²Œì‹œë¬¼ì˜ ?‘?„±?X ?Œ“ê¸? ?‘?„±??„ X ë¹„ë??Œ“ê¸?ë¡? ì²˜ë¦¬
+   // 1. ?ï¿½ï¿½ï¿½? ?ï¿½ï¿½?ï¿½ï¿½
+   @Override
+   public void create(QuRepVO vo) {
+      qurepDAO.create(vo);
+   }
+   // 2. ?ï¿½ï¿½ï¿½? ëª©ë¡
+   @Override
+   public List<QuRepVO> list(Integer q_no, int start, int end, HttpSession session) {
+      List<QuRepVO> items = qurepDAO.list(q_no, start, end);
+      // ?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½ ?ï¿½ï¿½?ï¿½ï¿½ ?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½ idï¿½? ???ï¿½ï¿½
+      String userId = (String) session.getAttribute("userId");
+      for(QuRepVO vo : items){
+         // ?ï¿½ï¿½ï¿½? ëª©ë¡ì¤‘ì— ì¤‘ì— ë¹„ï¿½? ?ï¿½ï¿½ï¿½??ï¿½ï¿½ ?ï¿½ï¿½?ï¿½ï¿½ ê²½ìš°
+            if(userId== null){ // ë¹„ë¡œê·¸ì¸ ?ï¿½ï¿½?ï¿½ï¿½ï¿½? ë¹„ï¿½? ?ï¿½ï¿½ï¿½?ï¿½? ì²˜ë¦¬
+               vo.setQ_r_desc("a");
+            } else { // ë¡œê·¸?ï¿½ï¿½ ?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½ ê²½ìš°
+               String writer = vo.getR_id(); // ê²Œì‹œï¿½? ?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½ ???ï¿½ï¿½
+               // ë¡œê·¸?ï¿½ï¿½?ï¿½ï¿½ ?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½ï¿½? ê²Œì‹œë¬¼ì˜ ?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½X ?ï¿½ï¿½ï¿½? ?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½ X ë¹„ï¿½??ï¿½ï¿½ï¿½?ï¿½? ì²˜ë¦¬
 
-				}
-		}
-		return items; 
-	}
-	// 4. ?Œ“ê¸? ?ˆ˜? •
-	@Override
-	public void update(QuRepVO vo) {
-		replyDao.update(vo);
-	}
-	// 5. ?Œ“ê¸? ?‚­? œ
-	@Override
-	public void delete(Integer rno) {
-		replyDao.delete(rno);
-	}
-	// 6. ?Œ“ê¸? ê°??ˆ˜
-	@Override
-	public int count(Integer bno) {
-		return replyDao.count(bno);
-	}
-	@Override
-	public int reply_delete(QuRepVO vo) {
+            }
+      }
+      return items; 
+   }
+   // 4. ?ï¿½ï¿½ï¿½? ?ï¿½ï¿½?ï¿½ï¿½
+
+   // 5. ?ï¿½ï¿½ï¿½? ?ï¿½ï¿½?ï¿½ï¿½
+//   @Override
+//   public void delete(Integer q_r_no) {
+//      qurepDAO.delete(q_r_no);
+//   }
+//   // 6. ?ï¿½ï¿½ï¿½? ï¿½??ï¿½ï¿½
+   @Override
+   public int count(Integer q_no) {
+      return qurepDAO.count(q_no);
+   }
+   @Override
+   public int reply_delete(QuRepVO vo) {
+      // TODO Auto-generated method stub
+      return qurepDAO.reply_delete(vo);
+   }
+   public int insert_reply(QuRepVO vo) {
 		// TODO Auto-generated method stub
-		return replyDao.reply_delete(vo);
+		
+		return qurepDAO.insert_reply(vo);
+
 	}
+@Override
+public void update(QuRepVO vo) {
+	// TODO Auto-generated method stub
+	
+}
+@Override
+public List<QuRepVO> readRep(int q_no) throws Exception {
+        return qurepDAO.readRep(q_no);
+    }
 }
  

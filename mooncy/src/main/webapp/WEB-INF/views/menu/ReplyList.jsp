@@ -19,13 +19,13 @@
 		<c:forEach var="row" items="${list}">
 		<tr>	
 			<td>
-				${row.updatedate }
+				${row.q_r_date }
 				<br>
-				${row.username}님-${row.replytext}
+				${row.r_id}님-${row.q_r_desc}
 				<br>
 				<!-- 본인 댓글만 수정버튼 생성되도록 처리 -->
-				<c:if test="${sessionScope.m_id == row.username}">
-					<input type="button" id="btnModify" value="수정" onclick="showReplyModify('${row.rno}')">
+				<c:if test="${sessionScope.m.m_id == row.r_id}">
+					<input type="button" id="btnModify" value="수정" onclick="showReplyModify('${row.q_r_no}')">
 
 				</c:if>
 				<hr>

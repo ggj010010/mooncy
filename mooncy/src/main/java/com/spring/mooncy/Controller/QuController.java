@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import com.spring.mooncy.dto.QuVO;
+import com.spring.mooncy.service.QuRepService;
 import com.spring.mooncy.service.QuService;
 
 @Controller    // 현재 클래스를 컨트롤러 빈(bean)으로 등록
@@ -20,6 +21,8 @@ public class QuController {
     // IoC 의존관계 역전
     @Inject
     QuService quService;
+    @Inject
+    QuRepService qurepService;
     
     // 01. 게시글 목록
     @RequestMapping("/menu/quview")
@@ -59,7 +62,9 @@ public class QuController {
         // 뷰의 이름
         mav.setViewName("/menu/qudetail");
         // 뷰에 전달할 데이터
+        System.out.println("q"+q_no);
         mav.addObject("dto", quService.read(q_no));
+        mav.addObject("dtoRep",qurepService.readRep(q_no));
         return mav;
     }
     

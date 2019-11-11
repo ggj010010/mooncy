@@ -5,6 +5,7 @@ import java.util.List;
 import javax.servlet.http.HttpSession;
  
 import com.spring.mooncy.dao.QuDAO;
+import com.spring.mooncy.dto.QuRepVO;
 import com.spring.mooncy.dto.QuVO;
  
 public interface QuService {
@@ -19,6 +20,6 @@ public interface QuService {
     // 05. 게시글 전체 목록
     public List<QuVO> listAll() throws Exception;
 //    // 06. 게시글 조회
-//    public void increaseViewcnt(int q_no, HttpSession session) throws Exception;
+
 }
  

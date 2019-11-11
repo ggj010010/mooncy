@@ -1,63 +1,101 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
-<%@include file="/WEB-INF/views/common/common.jsp"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>ê²Œì‹œê¸€ ì‘ì„±</title>
+<script type="text/javascript" src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
+<script>
+    $(document).ready(function(){
+        $("#btnSave").click(function(){
+            var q_title = $("#q_title").val();
+            var q_desc = $("#q_desc").val();
+            var m_id = $("#m_id").val();
+            if(q_title == ""){
+                alert("ì œëª©ì„ ì…ë ¥í•˜ì„¸ìš”");
+                document.form1.q_title.focus();
+                return;
+            }
+            if(q_desc == ""){
+                alert("ë‚´ìš©ì„ ì…ë ¥í•˜ì„¸ìš”");
+                document.form1.q_desc.focus();
+                return;
+            }
+            if(m_id == ""){
+                alert("ì´ë¦„ì„ ì…ë ¥í•˜ì„¸ìš”");
+                document.form1.m_id.focus();
+                return;
+            }
+            // í¼ì— ì…ë ¥í•œ ë°ì´í„°ë¥¼ ì„œë²„ë¡œ ì „ì†¡
+            document.form1.submit();
+        });
+    });
+</script>
 <link rel="stylesheet" type="text/css" href="/resources/js/default.css">
-<meta charset="EUC-KR">
-<title>Àç°í</title>
-<SCRIPT type="text/javascript">
-	function doBlink(){
-		var blink =document.all.tags("BLINK")
-		for(var i=0; i<blink.length;i++)
-			blink[i].style.visiblity = blink[i].style.visiblity=""?"hidden":""
-	}
-	function startBlink(){
-		if(document.all)
-			setInterval("doBlink()",800)
-	}
-	window.onload = startBlink;
-	
-</SCRIPT>
-
-<div class="wrap">
+ <div class="wrap">
 
 
-	<div id = "side"><button class="button" onClick="location.href='/menu/main'"> ¸ŞÀÎ</button></div>
-	<div id = "side"><button class="button"onClick="location.href='/order/orderview'"> ¹ßÁÖ°ü¸®</button></div>
-	<div id = "side"><button class="button"onClick="location.href='/menu/sale'"> ÆÇ¸Å°ü¸®</button></div>
- 	<div id = "side"><button class="button"onClick="location.href='/store/store'"> Àç°í°ü¸® </button></div>
+	<div id = "side"><button class="button" onClick="location.href='/menu/main'"> ë©”ì¸</button></div>
+	<div id = "side"><button class="button"onClick="location.href='/order/orderview'"> ë°œì£¼ê´€ë¦¬</button></div>
+	<div id = "side"><button class="button"onClick="location.href='/menu/quview'"> íŒë§¤ê´€ë¦¬</button></div>
+ 	<div id = "side"><button class="button"onClick="location.href='/store/store'"> ì¬ê³ ê´€ë¦¬ </button></div>
 
 
 </div>
 </head>
 <body>
-<br><br><br>
+	<c:choose>
 
+        		<c:when test="${sessionScope.m.m_id != null}">
+				<c:choose>
+
+        			<c:when test="${sessionScope.m.m_id == '0'}">
+
+      		    	<li><a>ê´€ë¦¬ìë‹˜</a></li>
+
+        			</c:when>
+        			<c:otherwise> 
+
+                		<li><a>${sessionScope.m.m_id}ë‹˜</a></li>
+
+        			</c:otherwise>
+ 				</c:choose>
+  				
+
+        		<li><a href="/logout">ë¡œê·¸ì•„ì›ƒ</a></li>
+
+        		</c:when>
+        	
+ 	</c:choose>
+</head>
+<body>
+
+<br><br><br>
 <div class="board-container" >
 <div id = "side_rigth">
-
-<h2>°Ô½Ã±Û ÀÛ¼º</h2>
-<form name="form1" id="form1" method="get" action="/board/insert">
-	<div>
-		
-		<input name="b_title" id="title" style="width : 100%;" placeholder="Á¦¸ñÀ» ÀÔ·ÂÇØÁÖ¼¼¿ä">
-		<br>
-	</div>
-	<div>
-		<br>
-		<textarea name="b_content" id="content" rows="4" cols="80"  style="width : 100%;" placeholder="³»¿ëÀ» ÀÔ·ÂÇØÁÖ¼¼¿ä"></textarea>
-	</div>
-
-
-			<div id = "side2"><button class ="btn hover" type="reset">Ãë¼Ò</button></div>
-		<div id = "side2"><button class ="btn hover" type="button" id="btnSave">È®ÀÎ</button></div>
-
-	
+<h2>ê²Œì‹œê¸€ ì‘ì„±</h2>
+<form name="form1" method="post" action="/menu/insert.do">
+    <div>
+        ì œëª©
+        <input name="q_title" id="q_title" size="80" placeholder="ì œëª©ì„ ì…ë ¥í•´ì£¼ì„¸ìš”">
+    </div>
+    <div>
+        ë‚´ìš©
+        <textarea name="q_desc" id="q_desc" rows="4" cols="80" placeholder="ë‚´ìš©ì„ ì…ë ¥í•´ì£¼ì„¸ìš”"></textarea>
+    </div>
+    <div>
+        id : 
+        
+ 		<c:set var="idno" value= "${sessionScope.m.m_id}"/>
+        <input name="m_id" id="m_id" type="text" readonly value="${idno}">
+    </div>
+    <div style="width:650px; text-align: center;">
+        <button type="button" id="btnSave">í™•ì¸</button>
+        <button type="reset">ì·¨ì†Œ</button></div>
+    </div></div>
 </form>
-</div></div>
-<br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-
 </body>
 </html>
