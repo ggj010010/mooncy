@@ -10,7 +10,7 @@ public interface  OrderService {
 
 	public List<OrderDTO> selectOrder();
 	public List<OrderDTO> selectOrderView(PagingDTO pagingDTO, String id);
-
+	public List<OrderDTO> selectOrderResponseView(PagingDTO pagingDTO, String id);
 
 //	public int fileNameUpdate(int r_id, String fileName);
 //

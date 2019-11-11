@@ -8,7 +8,7 @@ import com.spring.mooncy.dto.PagingDTO;
 public interface  OrderDAO {
 	public List<OrderDTO> selectOrder();
 	public List<OrderDTO> selectOrderView(PagingDTO pagingDTO);
-
+	public List<OrderDTO> selectOrderResponseView(PagingDTO pagingDTO);
 //	
 //	  public int insertRoom(OrderDTO OrderDTO);
 //	  
