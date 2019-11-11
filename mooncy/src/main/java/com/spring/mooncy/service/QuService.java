@@ -17,10 +17,7 @@ public interface QuService {
     // 04. 게시글 삭제
     public void delete(int q_no) throws Exception;
     // 05. 게시글 전체 목록
-    public List<QuVO> listAllView(QuVO quVO, String m_id) throws Exception;
-    
     public List<QuVO> listAll() throws Exception;
-    
 //    // 06. 게시글 조회
 //    public void increaseViewcnt(int q_no, HttpSession session) throws Exception;
 }

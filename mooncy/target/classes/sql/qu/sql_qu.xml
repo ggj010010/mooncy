@@ -30,23 +30,20 @@
             m_id,
             q_date, 
             q_check 
-        FROM (
+        FROM 
             qu
-        
         ORDER BY 
         	
         	q_check,
             q_no desc, 
-            q_date desc)
-            where m_id = #{m_id ,jdbcType=VARCHAR} and numrow between (#{pageNo, jdbcType=NUMERIC}-1)*5 + 1 AND #{pageNo, jdbcType=NUMERIC}*5
-            
+            q_date desc
     </select>
     <!-- 02. 게시글 작성 -->
     <insert id="insert">
         INSERT INTO qu (
           q_no, m_id, q_title, q_check, q_desc, q_date
         ) VALUES (
-          (SELECT NVL(MAX(q_no)+1, 1)FROM qu), #{m_id},  #{q_title,jdbcType=VARCHAR}, 0,#{q_desc,jdbcType=VARCHAR}, sysdate
+          (SELECT NVL(MAX(q_no)+1, 1)FROM qu), #{m_id},  #{q_title}, 0,#{q_desc}, sysdate
         )
     </insert>
     <!--03. 게시글 상세보기 조회 -->
@@ -62,8 +59,8 @@
     <!-- 05. 게시글 수정처리 -->
     <update id="updateArticle">
         UPDATE qu SET
-            q_title = #{q_title,jdbcType=VARCHAR},
-            q_desc = #{q_desc,jdbcType=VARCHAR},
+            q_title = #{q_title},
+            q_desc = #{q_desc},
             m_id = #{m_id}
         WHERE q_no = #{q_no}
     </update>

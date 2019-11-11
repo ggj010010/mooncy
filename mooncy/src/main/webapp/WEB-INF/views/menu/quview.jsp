@@ -114,11 +114,11 @@
 
 
 		</c:if>
+<button type="button" id="btnWrite">글쓰기</button>
 		</div>
 	</div>
 	    </div>
 	</div>
-<button type="button" id="btnWrite">글쓰기</button>
 </div>
 </div>
 </body>
