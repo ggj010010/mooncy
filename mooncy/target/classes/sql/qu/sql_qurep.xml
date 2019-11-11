@@ -9,11 +9,8 @@
 		<result property="q_r_desc" column="q_r_desc" />
 		<result property="r_id" column="r_id" />
 		<result property="q_r_date" column="q_r_date" />
-<<<<<<< HEAD
 
     
-=======
->>>>>>> d7a152ac7a9032c898705f96d634f87ed37589b4
 	</resultMap>
 
 
@@ -22,30 +19,16 @@
 		INSERT INTO qu_re (q_r_no, q_no, q_r_desc, r_id, secret_reply)
 		VALUES ((SELECT NVL(MAX(q_r_no)+1, 1)FROM qu_re), #{q_no}, #{q_r_desc}, #{r_id}, #{secretReply})
 	</insert> -->
-<<<<<<< HEAD
 	<insert id="insert_reply" parameterType="com.spring.mooncy.dto.QuRepVO">
 
-=======
-	<insert id="insertReply" parameterType="com.spring.mooncy.dto.QuRepVO">
-   <selectKey keyProperty="prdgrIdx" resultType="Integer" order="BEFORE"> 
-         SELECT 
-                nvl(TO_NUMBER(MAX(q_r_no)+1),0)
-             FROM
-                qu_re
-   </selectKey>
->>>>>>> d7a152ac7a9032c898705f96d634f87ed37589b4
    INSERT INTO
       qu_re
       (
          q_r_no, 
          q_no, 
          q_r_desc, 
-<<<<<<< HEAD
          r_id,
          q_r_date
-=======
-         r_id
->>>>>>> d7a152ac7a9032c898705f96d634f87ed37589b4
       )
    VALUES
    (
@@ -58,34 +41,18 @@
         ,#{q_no}
         ,#{q_r_desc}
         ,#{r_id}
-<<<<<<< HEAD
         ,sysdate
-=======
->>>>>>> d7a152ac7a9032c898705f96d634f87ed37589b4
    
    )
    </insert>
 	<!-- 2. 댓글 목록 -->
-<<<<<<< HEAD
 	<select id="select_reply" parameterType="Integer"   resultMap="QuRepVO">
-=======
-	<select id="listReply" resultMap="QuRepVO">
-		<include refid="pagingHeader"/>
-			<!-- SELECT q_r_no, q_no, q_r_desc, r_id, user_name AS userName, r.regdate, r.q_r_date
-			FROM qu_re r, tbl_member m
-			WHERE  r.r_id = m.user_id AND q_no=#{q_no}
-			ORDER BY q_r_no -->
->>>>>>> d7a152ac7a9032c898705f96d634f87ed37589b4
 			SELECT
 			  q_r_no, q_r_desc,r_id , q_r_date
 			FROM qu_re 
 			WHERE
 			  q_no = #{q_no}
 			ORDER BY q_r_no desc
-<<<<<<< HEAD
-=======
-		<include refid="pagingFooter"/>
->>>>>>> d7a152ac7a9032c898705f96d634f87ed37589b4
 	</select>
 	
 	
@@ -103,11 +70,7 @@
 	</delete>
 	<delete id="reply_deleteReply">
 		DELETE FROM qu_re
-<<<<<<< HEAD
 		WHERE q_no = #{q_no} and q_r_no = #{q_r_no}
-=======
-		WHERE q_no = #{q_no}
->>>>>>> d7a152ac7a9032c898705f96d634f87ed37589b4
 	</delete>
 	<!-- 6 .댓글 갯수(for 페이징처리) -->
 	<select id="countReply" resultType="int">

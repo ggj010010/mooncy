@@ -8,8 +8,7 @@
 <meta charset="EUC-KR">
 <title>재고</title>
 <SCRIPT type="text/javascript">
-	document.getElementById('start_date').valueAsDate = new Date();
-	document.getElementById('end_date').valueAsDate = new Date();
+
 </SCRIPT>
 <div class="wrap">
 
@@ -150,11 +149,11 @@
 							<tr>
 								<td>
 									<form>
-										<input type='date' id='startDate' />
+										<input id='startDate' type='date' step='1'/>
 									</form></td>
 								<td>
 									<form>
-										<input type='date' id='endDate' />
+										<input type='date' id='endDate' value=''/>
 									</form>
 								</td>
 							</tr>
@@ -189,6 +188,10 @@
 		</div>
 
 	</div>
+<SCRIPT type="text/javascript">
 
+	document.getElementById('startDate').valueAsDate = new Date();
+	document.getElementById('endDate').value = new Date()+1.toISOString().substring(0, 10);
+</SCRIPT>
 </body>
 </html>
