@@ -3,13 +3,43 @@
 <%@include file="/WEB-INF/views/common/common.jsp"%>
 <!DOCTYPE html>
 <html>
+<SCRIPT type="text/javascript">
+$j(document).ready(function(){
+	$j('#startDate').change(function() {
+		var startDate = $j(this).val();
+		var endDate = $j('#endDate').val();
+		if(startDate == ""){
+			alert("날짜를 입력해주세요");
+			var now = new Date();
+		    var today = now.getFullYear() + '-' + (now.getMonth() + 1) + '-' + now.getDate();
+		    //alert(today);
+			$j('#startDate').val(today);
+		}
+	    console.log(startDate, endDate);
+	    
+	});
+	$j('#endDate').change(function() {
+		var startDate = $j('#startDate').val();
+		var endDate = $j(this).val();
+		if(endDate == ""){
+			alert("날짜를 입력해주세요");
+			var now = new Date();
+		    var today = now.getFullYear() + '-' + (now.getMonth() + 1) + '-' + now.getDate();
+		    //alert(today);
+			$j('#endDate').val(today);
+		}
+		if(endDate < startDate){
+			alert("날짜를 입력해주세요");
+		}
+	    console.log(startDate, endDate);
+	});
+});
+</SCRIPT>
 <head>
 <link rel="stylesheet" type="text/css" href="/resources/js/default.css">
 <meta charset="EUC-KR">
 <title>재고</title>
-<SCRIPT type="text/javascript">
 
-</SCRIPT>
 <div class="wrap">
 
 
@@ -67,9 +97,9 @@
 	<div class="board-container">
 		<div id="side_rigth">
 					<h2>발주 관리</h2>
-			
-			<table style="width : 1600;">
-				
+
+			<table style="width: 1600;">
+
 				<tr>
 					<td>
 						<table class="type09" style="width: 800;">
@@ -145,39 +175,37 @@
 						</div>
 					</td>
 					<td>
+						<table style="width: 800;" border="1">
+							<tr>
+								<td><input id='startDate' type='date' /></td>
+								<td>
+									<p>~</p>
+								</td>
+								<td><input id='endDate' type='date' /></td>
+							</tr>
+						</table>
 						<table class="type09" style="width: 800;">
 							<tr>
-								<td>
-									<form>
-										<input id='startDate' type='date' step='1'/>
-									</form></td>
-								<td>
-									<form>
-										<input type='date' id='endDate' value=''/>
-									</form>
-								</td>
-							</tr>
-							<tr>
 
-								<th>보냄</th>
+					<th>보냄</th>
 								<th>제품명</th>
-								<th>개수</th>
-								<th>날짜</th>
-							</tr>
-							<tr>
-<%-- 								<c:forEach var="orl" items="${orderResponseList}">
+							<th>개수</th>
+							<th>날짜</th>
+				</tr>
+				
+							
+				<tr>
+								<c:forEach var="orl" items="${orderResponseList}">
 
 									<tr>
 
 										<td>${orl.request_name }</td>
 										<td>${orl.p_name }</td>
-
 										<td>${orl.p_count }</td>
 										<td>${orl.om_date }</td>
-
 									</tr>
 
-								</c:forEach> --%>
+								</c:forEach>
 							</tr>
 						</table>
 						
@@ -189,9 +217,8 @@
 
 	</div>
 <SCRIPT type="text/javascript">
-
 	document.getElementById('startDate').valueAsDate = new Date();
-	document.getElementById('endDate').value = new Date()+1.toISOString().substring(0, 10);
+	document.getElementById('endDate').valueAsDate = new Date();
 </SCRIPT>
 </body>
 </html>

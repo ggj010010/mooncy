@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.spring.mooncy.dao.OrderDAO;
 import com.spring.mooncy.dto.OrderDTO;
+import com.spring.mooncy.dto.Order_ManagementDTO;
 import com.spring.mooncy.dto.PagingDTO;
 import com.spring.mooncy.service.OrderService;
 
@@ -43,11 +44,11 @@ public class OrderServiceImpl implements OrderService{
 
 	@Override
 
-	public List<OrderDTO> selectOrderResponseView(PagingDTO pagingDTO, String id) {
+	public List<Order_ManagementDTO> selectOrderResponseView(String id, OrderDTO orderDTO) {
 
 		// TODO Auto-generated method stub
-		pagingDTO.setM_id(id);
-		return OrderDAO.selectOrderResponseView(pagingDTO);
+		orderDTO.setM_id(id);
+		return OrderDAO.selectOrderResponseView(orderDTO);
 		
 	}
 //	@Override

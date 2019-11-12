@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import com.spring.mooncy.dao.OrderDAO;
 import com.spring.mooncy.dto.OrderDTO;
+import com.spring.mooncy.dto.Order_ManagementDTO;
 import com.spring.mooncy.dto.PagingDTO;
 
 @Repository
@@ -37,11 +38,11 @@ public class OrderDAOImpl implements OrderDAO{
 
 	}
 	@Override
-	public List<OrderDTO> selectOrderResponseView(PagingDTO pagingDTO) {
+	public List<Order_ManagementDTO> selectOrderResponseView(OrderDTO orderDTO) {
 
 		// TODO Auto-generated method stub
 
-		return sqlSession.selectList("order.selectOrder_User",pagingDTO);
+		return sqlSession.selectList("order.selectOrder_User", orderDTO);
 
 	}
 //	@Override

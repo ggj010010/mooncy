@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.spring.mooncy.dto.OrderDTO;
 import com.spring.mooncy.dto.PagingDTO;
 import com.spring.mooncy.service.OrderService;
 
@@ -27,7 +28,7 @@ public class OrderController {
 	
 	@RequestMapping(value = "/order/orderview")
 
-	public String selectOrder(Model model,PagingDTO pagingDTO, HttpSession session) throws Exception {
+	public String selectOrder(Model model,PagingDTO pagingDTO, OrderDTO orderDTO, HttpSession session) throws Exception {
 
 		logger.info("order :: page :: " + pagingDTO.getPageNo());
 
@@ -50,15 +51,9 @@ public class OrderController {
 		}
 		model.addAttribute("pageNo", pagingDTO.getPageNo());
 		
-		/*
-		 * model.addAttribute("orderResponseList",
-		 * OrderService.selectOrderResponseView(pagingDTO, id));
-		 * if(OrderService.selectOrderResponseView(pagingDTO, id).size() != 0) {
-		 * model.addAttribute("totalCnt2",
-		 * OrderService.selectOrderResponseView(pagingDTO,
-		 * id).get(0).getPagingDTO().getTotalCnt()); } model.addAttribute("pageNo2",
-		 * pagingDTO.getPageNo());
-		 */
+		
+		model.addAttribute("orderResponseList", OrderService.selectOrderResponseView(id, orderDTO));
+		 
 		
 
 		return "order/orderview";

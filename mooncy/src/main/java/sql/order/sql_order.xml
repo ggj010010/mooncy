@@ -117,27 +117,29 @@
 
 		
 	</select>
-<!-- 	 <select id="selectOrder_User" parameterType="com.spring.mooncy.dto.PagingDTO" resultMap="Order_ManagementDTO">
+	 <select id="selectOrder_User" parameterType="com.spring.mooncy.dto.OrderDTO" resultMap="Order_ManagementDTO">
 
 	/*order.selectOrder_User*/
-	
-	
-			SELECT 
-				request_id as m_id 	
-				,DISTINCT om_no
-				,(select DISTINCT m_name from m_user m, order_management om1  where m.m_id = om.request_id and om.om_no = om1.OM_NO) as request_name 
-				,(select DISTINCT m_name from m_user m, order_management om2  where m.m_id = om.response_id and om.om_no = om2.OM_NO) as response_name
-				,p_name
-				,p_count
-				,om_date
 
-			FROM order_management om, m_user m
-				where om_date between to_date(, 'YYYYMMDD') and to_date('20031201', 'YYYYMMDD')
-				order by om_date desc
 
-	</select> -->
-<!-- 
-	<select id="selectRoomOne" parameterType="com.spring.moon.dto.RoomDTO" resultMap="RoomDTO">
+	SELECT
+		DISTINCT om_no
+		,(select DISTINCT m_name from m_user m, order_management om1 where m.m_id = om.request_id and om.om_no = om1.OM_NO) as request_name
+		,(select DISTINCT m_name from m_user m, order_management om2 where m.m_id = om.response_id and om.om_no = om2.OM_NO) as response_name
+		,p_name
+		,p_count
+		,om_date
+
+	FROM 
+		order_management om, m_user m
+	wHERE 
+		RESPONSE_ID = #{m_id ,jdbcType=VARCHAR} and om_date like to_char(sysdate, 'YY/MM/DD%')
+	order by 
+		om_date desc
+
+	</select>
+
+	<!-- <select id="selectRoomOne" parameterType="com.spring.moon.dto.RoomDTO" resultMap="RoomDTO">
 
 	/*room.selectRoomOne*/
 
@@ -271,6 +273,7 @@
 
 			room_id = #{r_id}
 
-	</update> -->
+	</update>
 
-</mapper>
+ -->
+ </mapper>

@@ -62,6 +62,8 @@
 			});
 		});
 	$j(document).ready(function(){
+		
+		
 		// tr 태그에 마우스를 올릴때
 		
 		$j('#request tbody tr').mouseover(function() {
@@ -210,7 +212,7 @@
 		});
 	
 	});
-	
+
 </SCRIPT>
 </head>
 <body>
