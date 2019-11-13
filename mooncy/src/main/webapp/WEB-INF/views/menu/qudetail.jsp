@@ -212,8 +212,8 @@
 				<td></td><td></td><td></td>
 				
 					<td>
-					<c:if test="${dto.q_check == '0'}">
-<button type="button" class="button" onClick="location.href='${path}/menu/update.do?q_no=${dto.q_no}'"   
+					<c:if test="${dto.q_check == '0'|| sessionScope.m.m_id == dto.m_id}}">
+                    <button type="button" class="button" onClick="location.href='${path}/menu/update.do?q_no=${dto.q_no}'"   
 					style="float : right; width : 80%; height : 100%;">수정</button></c:if>
 
 					<td>

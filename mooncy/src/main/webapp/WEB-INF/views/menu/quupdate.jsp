@@ -191,7 +191,7 @@
 			<form name="form1" method="post">
 				<div>
 					<!-- 원하는 날짜형식으로 출력하기 위해 fmt태그 사용 -->
-					<th style= "width : 50;">${dto.q_no}</th>
+					<th style= "width : 50; float : right;">${dto.q_no}</th>
 					
 					<th colspan="3"><div>
 					
@@ -199,7 +199,7 @@
 						value="${dto.q_title}" placeholder="제목을 입력해주세요">
 				</div></th><th>
 					<fmt:formatDate value="${dto.q_date}"
-						pattern="yyyy-MM-dd a HH:mm:ss" />
+						pattern="yyyy-MM-dd HH:mm:ss" />
 					<!-- 날짜 형식 => yyyy 4자리연도, MM 월, dd 일, a 오전/오후, HH 24시간제, hh 12시간제, mm 분, ss 초 -->
 				</div>
 				</th>
