@@ -16,6 +16,7 @@
 
 
 <script>
+<!--게시글 수정삭제-->
 	$(document).ready(function() {
 		$("#btnDelete").click(function() {
 			if (confirm("삭제하시겠습니까?")) {
@@ -50,11 +51,20 @@
 			// 폼에 입력한 데이터를 서버로 전송
 			document.form1.submit();
 		});
+		<!--댓글 수정삭제-->
 
 		$("#btn_result").click(function() {
 
-			var q_no = ${dto.q_no};
-			var r_id = ${sessionScope.m.m_id};
+			var q_no = $
+			{
+				dto.q_no
+			}
+			;
+			var r_id = $
+			{
+				sessionScope.m.m_id
+			}
+			;
 			var q_r_desc = $("#q_r_desc").val();
 
 			$.ajax({
@@ -71,8 +81,12 @@
 				timeout : 3000,
 				success : function(returndata) {
 					alert("정상적으로 보내졌습니다.");
-					window.location.href = "/menu/detail.do?q_no=" + ${dto.q_no};
-					},//end success
+					window.location.href = "/menu/detail.do?q_no=" + $
+					{
+						dto.q_no
+					}
+					;
+				},//end success
 				error : function(jqXHR, textStatus, errorThrown) {
 					alert("실패");
 
@@ -175,30 +189,27 @@
 		<tr>
 		
 			<form name="form1" method="post">
-				
+				<div>
 					<!-- 원하는 날짜형식으로 출력하기 위해 fmt태그 사용 -->
-					<th style= "width : 50; text-align : left;">${dto.q_no}</th>
+					<th style= "width : 50;">${dto.q_no}</th>
 					
-					<th colspan="2" style = "text-align : left;"><div>
+					<th colspan="3"><div>
 					
-					${dto.q_title}
-				</th>
-				<th  style = "text-align : right;"><div>
-					
-					처리 : ${dto.q_check}
-				</div></th>
-				<th style = "text-align : right;">
+					<input name="q_title" id="q_title" size="95"
+						value="${dto.q_title}" placeholder="제목을 입력해주세요">
+				</div></th><th>
 					<fmt:formatDate value="${dto.q_date}"
-						pattern="yyyy-MM-dd HH:mm:ss" />
+						pattern="yyyy-MM-dd a HH:mm:ss" />
 					<!-- 날짜 형식 => yyyy 4자리연도, MM 월, dd 일, a 오전/오후, HH 24시간제, hh 12시간제, mm 분, ss 초 -->
 				</div>
 				</th>
 </tr>
-<tr><td colspan = "5" style = "text-align : left;">
+<tr><td colspan = "5">
 				<div>
 					
 
-				${dto.q_desc}<br><br><br>
+					<textarea name="q_desc" id="q_desc" rows="10" cols="130"
+						placeholder="내용을 입력해주세요">${dto.q_desc}</textarea>
 				</div></td>
 				<div>
 					<input type="hidden" name="m_id" id="m_id" value="${dto.m_id}">
@@ -210,57 +221,15 @@
 				</div>
 				<tr>
 				<td></td><td></td><td></td>
-				
-					<td>
-					<c:if test="${dto.q_check == '0'}">
-<button type="button" class="button" onClick="location.href='${path}/menu/update.do?q_no=${dto.q_no}'"   
-					style="float : right; width : 80%; height : 100%;">수정</button></c:if>
-
-					<td>
-					<c:if test="${dto.q_check == '0'|| sessionScope.m.m_id == '0'}">
-						
-							<button type="button"  class="button" id="btnDelete"style="width :
-					 		80%;height : 100%;">삭제</button></c:if>
-					</td>
+					<td><button type="button" class="button" id="btnUpdete" style="align : right; width : 30%; height : 100%;">수정</button></td>
+					<td><button type="button"  class="button" 
+					onClick="location.href='${path}/menu/detail.do?q_no=${dto.q_no}'"
+					style="width : 100%;height : 100%;">취소</button></td>
 				</tr>
 
 </div>
 		</table>
-		<table  class="type09" style = "width : 650;">
-							<div style="width: 650px; text-align: center;">
-			<c:forEach var="qv" items="${dtoRep}">
-			<fmt:formatDate var="resultRegDt" value="${qv.q_r_date}" pattern="yyyy/MM/dd HH:MM"/>
-		    <tr>
-        <td style = "text-align : left;">RE : ${qv.q_r_no}</td>
-        <td style = "text-align : left;">${qv.q_r_desc}</td>
-        <td style = "text-align : left;">${qv.r_id}</td>
-        <td style = "text-align : left;">${resultRegDt}</td>
-        <td>
 
-
-    
-
-
-					
-					<c:if test="${sessionScope.m.m_id == '0'}">
-						<button type="button" class="btn_delete">댓글 삭제</button></td>
-    </tr> 
-				  
-						<input type="hidden" class="delete" value="${qv.q_r_no}" />
-
-
-					</c:if>
-
-				</div>
-			</c:forEach>
-			
-								<br>
-					<!-- 로그인 한 회원에게만 댓글 작성폼이 보이게 처리 -->
-					<c:if test="${dto.q_check == '0'}"><tr>
-					<td colspan="4"><textarea rows="2" cols="90" id="q_r_desc" placeholder="댓글을 작성해주세요"></textarea></td>
-					<td><button type="button" class="button" id="btn_result" style = "float : right; width : 80%; height : 100%">댓글작성</button></td>
-					</tr></c:if>
-			</table>
 		</div>
 	</div>
 					</div>

@@ -18,43 +18,43 @@ public class QuRepServiceImpl implements QuRepService {
 	@Inject
 	QuRepDAO replyDao;
 
-	// 1. ?Œ“ê¸? ?…? ¥
+	// 1. ?ï¿½ï¿½ï¿½? ?ï¿½ï¿½?ï¿½ï¿½
 	@Override
 	public void create(QuRepVO vo) {
 		replyDao.create(vo);
 	}
-	// 2. ?Œ“ê¸? ëª©ë¡
+	// 2. ?ï¿½ï¿½ï¿½? ëª©ë¡
 	@Override
-	public List<QuRepVO> list(Integer bno, int start, int end, HttpSession session) {
-		List<QuRepVO> items = replyDao.list(bno, start, end);
-		// ?„¸?…˜?—?„œ ?˜„?¬ ?‚¬?š©? idê°? ???¥
+	public List<QuRepVO> list(Integer q_no, int start, int end, HttpSession session) {
+		List<QuRepVO> items = replyDao.list(q_no, start, end);
+		// ?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½ ?ï¿½ï¿½?ï¿½ï¿½ ?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½ idï¿½? ???ï¿½ï¿½
 		String userId = (String) session.getAttribute("userId");
 		for(QuRepVO vo : items){
-			// ?Œ“ê¸? ëª©ë¡ì¤‘ì— ì¤‘ì— ë¹„ë? ?Œ“ê¸??´ ?ˆ?„ ê²½ìš°
-				if(userId== null){ // ë¹„ë¡œê·¸ì¸ ?ƒ?ƒœë©? ë¹„ë? ?Œ“ê¸?ë¡? ì²˜ë¦¬
-					vo.setReplytext("ë¹„ë? ?Œ“ê¸??…?‹ˆ?‹¤.");
-				} else { // ë¡œê·¸?¸ ?ƒ?ƒœ?¼ ê²½ìš°
-					String writer = vo.getUserName(); // ê²Œì‹œë¬? ?‘?„±? ???¥
-					// ë¡œê·¸?¸?•œ ?‚¬?š©?ê°? ê²Œì‹œë¬¼ì˜ ?‘?„±?X ?Œ“ê¸? ?‘?„±??„ X ë¹„ë??Œ“ê¸?ë¡? ì²˜ë¦¬
+			// ?ï¿½ï¿½ï¿½? ëª©ë¡ì¤‘ì— ì¤‘ì— ë¹„ï¿½? ?ï¿½ï¿½ï¿½??ï¿½ï¿½ ?ï¿½ï¿½?ï¿½ï¿½ ê²½ìš°
+				if(userId== null){ // ë¹„ë¡œê·¸ì¸ ?ï¿½ï¿½?ï¿½ï¿½ï¿½? ë¹„ï¿½? ?ï¿½ï¿½ï¿½?ï¿½? ì²˜ë¦¬
+					vo.setQ_r_desc("ë¡œê·¸ì¸ì„ ì•ˆí•˜ì…§ìŠµë‹ˆë‹¤.");
+				} else { // ë¡œê·¸?ï¿½ï¿½ ?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½ ê²½ìš°
+					String writer = vo.getR_id(); // ê²Œì‹œï¿½? ?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½ ???ï¿½ï¿½
+					// ë¡œê·¸?ï¿½ï¿½?ï¿½ï¿½ ?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½ï¿½? ê²Œì‹œë¬¼ì˜ ?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½X ?ï¿½ï¿½ï¿½? ?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½ X ë¹„ï¿½??ï¿½ï¿½ï¿½?ï¿½? ì²˜ë¦¬
 
 				}
 		}
 		return items; 
 	}
-	// 4. ?Œ“ê¸? ?ˆ˜? •
+	// 4. ?ï¿½ï¿½ï¿½? ?ï¿½ï¿½?ï¿½ï¿½
 	@Override
 	public void update(QuRepVO vo) {
 		replyDao.update(vo);
 	}
-	// 5. ?Œ“ê¸? ?‚­? œ
+	// 5. ?ï¿½ï¿½ï¿½? ?ï¿½ï¿½?ï¿½ï¿½
 	@Override
-	public void delete(Integer rno) {
-		replyDao.delete(rno);
+	public void delete(Integer q_r_no) {
+		replyDao.delete(q_r_no);
 	}
-	// 6. ?Œ“ê¸? ê°??ˆ˜
+	// 6. ?ï¿½ï¿½ï¿½? ï¿½??ï¿½ï¿½
 	@Override
-	public int count(Integer bno) {
-		return replyDao.count(bno);
+	public int count(Integer q_no) {
+		return replyDao.count(q_no);
 	}
 	@Override
 	public int reply_delete(QuRepVO vo) {

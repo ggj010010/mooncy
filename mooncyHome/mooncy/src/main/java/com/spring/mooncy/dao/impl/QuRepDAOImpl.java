@@ -27,9 +27,9 @@ public class QuRepDAOImpl implements QuRepDAO {
 		}
 	// 2. ?Œ“ê¸? ëª©ë¡
 	@Override
-	public List<QuRepVO> list(Integer bno,  int start, int end) {
+	public List<QuRepVO> list(Integer q_no,  int start, int end) {
 		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("bno", bno);
+		map.put("q_no", q_no);
 		map.put("start", start);
 		map.put("end", end);
 		return sqlSession.selectList("reply.listReply", map);
@@ -41,8 +41,8 @@ public class QuRepDAOImpl implements QuRepDAO {
 	}
 	// 5. ?Œ“ê¸? ?‚­? œ
 	@Override
-	public void delete(Integer rno) {
-		sqlSession.delete("reply.deleteReply", rno);
+	public void delete(Integer q_r_no) {
+		sqlSession.delete("reply.deleteReply", q_r_no);
 	}
 	@Override
 	public int reply_delete(QuRepVO vo) {
@@ -50,8 +50,8 @@ public class QuRepDAOImpl implements QuRepDAO {
 	}
 	// 6. ?Œ“ê¸? ê°??ˆ˜
 	@Override
-	public int count(Integer bno) {
-		return sqlSession.selectOne("reply.countReply", bno);
+	public int count(Integer q_no) {
+		return sqlSession.selectOne("reply.countReply", q_no);
 	}
 
 }

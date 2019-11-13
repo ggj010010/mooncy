@@ -43,7 +43,7 @@ public class QuRepController {
 	public void insert(@ModelAttribute QuRepVO vo, HttpSession session){
 		// ?„¸?…˜?— ???¥?œ ?šŒ?›?•„?´?””ë¥? ?Œ“ê¸??‘?„±??— ?„¸?Œ…
 		String userId = (String) session.getAttribute("m_id");
-		vo.setUserName(userId);
+		vo.setR_id(userId);
 		// ?Œ“ê¸? ?…? ¥ ë©”ì„œ?“œ ?˜¸ì¶?
 		replyService.create(vo);
 		
@@ -58,7 +58,7 @@ public class QuRepController {
 		ResponseEntity<String> entity = null;
 		try {
 			String userId = (String) session.getAttribute("m_id");
-			vo.setUserName(userId);
+			vo.setR_id(userId);
 			replyService.create(vo);
 			entity = new ResponseEntity<String>("success", HttpStatus.OK);
 		} catch (Exception e) {
@@ -142,7 +142,7 @@ public class QuRepController {
 	public ResponseEntity<String> replyUpdate(@PathVariable("rno") Integer rno, @RequestBody QuRepVO vo){
 		ResponseEntity<String> entity = null;
 		try {
-			vo.setRno(rno);
+			vo.setQ_r_no(rno);
 			replyService.update(vo);
 			// ?Œ“ê¸? ?ˆ˜? •?´ ?„±ê³µí•˜ë©? ?„±ê³? ?ƒ?ƒœë©”ì‹œì§? ???¥
 			entity = new ResponseEntity<String>("success", HttpStatus.OK);

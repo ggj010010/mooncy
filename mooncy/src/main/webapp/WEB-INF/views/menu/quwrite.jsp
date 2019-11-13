@@ -73,48 +73,32 @@
 <body>
 
 <br><br><br>
-<div class="board-container" >
-<div id = "side_rigth">
-<h2>게시글 작성</h2>
-<table  class="type10" style = "width : 650;">
-    <tr>
-        <th style="width: 20%;">제목</th><td>   <input name="q_title" id="q_title" size="80" placeholder="제목을 입력해주세요"></td>
-   <tr>  <th>내용</th><td>   <textarea name="q_desc" id="q_desc" rows="4" cols="80" placeholder="내용을 입력해주세요"></textarea></td></tr>
-</table>
-        <button class="button" type="button" id="btnSave">확인</button>
-        <button class="button" type="reset">취소</button></div>
-    <c:forEach var="qv" items="${list}">
-
-    
-    <c:set var="name" value= "${qv.m_id}"/>
-   
-
-
-
-
-    </c:forEach>
-    
-</table>
-<input type = "hidden" name="m_id" id="m_id" value="${sessionScope.m.m_id}">
+        </div>
 <div class="board-container" >
 <div id = "side_rigth">
 <h2>게시글 작성</h2>
 <form name="form1" method="post" action="/menu/insert.do">
-    <div>
-        제목
-        <input name="q_title" id="q_title" size="80" placeholder="제목을 입력해주세요">
-    </div>
-    <div>
-        내용
-        <textarea name="q_desc" id="q_desc" rows="4" cols="80" placeholder="내용을 입력해주세요"></textarea>
-    </div>
-    <div>
-        이름
-        <input name="m_id" id="m_id" value="1">
-    </div>
-    <div style="width:650px; text-align: center;">
-        <button type="button" id="btnSave">확인</button>
-        <button type="reset">취소</button></div>
+  <table  class="type10" style = "width : 650;">
+    <tr>
+        <th style="width: 20%;">제목</th>
+        <td colspan ="2">   <input name="q_title" id="q_title" size="100" placeholder="제목을 입력해주세요"></td>
+   <tr>  <th>내용</th>
+   			<td colspan ="2">   
+   				<textarea name="q_desc" id="q_desc" rows="4" cols="90" placeholder="내용을 입력해주세요"></textarea>
+   			</td>
+   	</tr>
+	<tr>
+	<td>
+        <td>
+        	<button class="button" type="button" id="btnSave" style="width : 50%; float : right; height : 80%">확인</button>
+        <td>
+        	<button class="button" type="reset" style="width : 50%; height : 80%; float : center;">취소</button>
+    </tr>
+<input type = "hidden" name="m_id" id="m_id" value="${sessionScope.m.m_id}">
+    <c:forEach var="qv" items="${list}">
+    <c:set var="name" value= "${qv.m_id}"/>
+    </c:forEach>
+</table>
     </div></div>
 </form>
 </body>

@@ -67,6 +67,20 @@ public class QuController {
         mav.addObject("dtoRep",qurepService.readRep(q_no));
         return mav;
     }
+    @RequestMapping(value="/menu/update.do", method=RequestMethod.GET)
+    public ModelAndView update(@RequestParam int q_no, HttpSession session) throws Exception{
+        // 조회수 증가 처리
+   //     quService.increaseViewcnt(q_no, session);
+        // 모델(데이터)+뷰(화면)를 함께 전달하는 객체
+        ModelAndView mav = new ModelAndView();
+        // 뷰의 이름
+        mav.setViewName("/menu/quupdate");
+        // 뷰에 전달할 데이터
+        System.out.println("q"+q_no);
+        mav.addObject("dto", quService.read(q_no));
+        mav.addObject("dtoRep",qurepService.readRep(q_no));
+        return mav;
+    }
     
     // 04. 게시글 수정
     // 폼에서 입력한 내용들은 @ModelAttribute QuVO vo로 전달됨

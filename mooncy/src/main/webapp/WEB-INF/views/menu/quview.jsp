@@ -116,8 +116,9 @@
 
     </c:forEach>
     
+    
 </table>
-<button type="button" id="btnWrite">글쓰기</button>
+<button type="button" id="btnWrite" class="button" style="width : 15%; height : 100%; float : right;">글쓰기</button>
 </div>
 </div>
 </body>

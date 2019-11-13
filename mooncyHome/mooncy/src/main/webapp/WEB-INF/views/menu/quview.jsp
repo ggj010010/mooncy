@@ -70,7 +70,7 @@
 
     <tr>
     <c:set var="name" value= "${qv.m_id}"/>
-<c:if test="${name== idno}">
+<c:if test="${name== '0'}">
         <td>${qv.q_no}</td>
         <td><a href="${path}/menu/detail.do?q_no=${qv.q_no}">${qv.q_title}</a></td>
         <td>${qv.m_id}</td>
@@ -80,6 +80,17 @@
         </td>
         <td>${qv.q_check}</td>
     </tr>      
+    </c:if>
+	<c:if test="${name== idno}">
+    	    <td>${qv.q_no}</td>
+       		 <td><a href="${path}/menu/detail.do?q_no=${qv.q_no}">${qv.q_title}</a></td>
+        	<td>${qv.m_id}</td>
+        	<td>
+           	 <!-- 원하는 날짜형식으로 출력하기 위해 fmt태그 사용 -->
+           	 <fmt:formatDate value="${qv.q_date}" pattern="yyyy-MM-dd HH:mm:ss"/>
+        	</td>
+        	<td>${qv.q_check}</td>
+  	  </tr>  
 </c:if>
     </c:forEach>
     

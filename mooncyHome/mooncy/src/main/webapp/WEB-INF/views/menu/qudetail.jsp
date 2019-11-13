@@ -200,7 +200,12 @@
 <body>
 <div class="board-container" >
 <div id = "side_rigth">
-<h2>게시글 보기</h2>
+<table  class="type09" style = "width : 650;">
+<tr>
+<h2>게시글 보기</h2></tr><tr>
+        <button type="button" id="btnUpdete"class = "button" style="width : 10%; float : right;">수정</button>
+                </tr>
+        <button type="button" id="btnDelete" class = "button">삭제</button>
 <form name="form1" method="post">
     <div>        <!-- 원하는 날짜형식으로 출력하기 위해 fmt태그 사용 -->
         작성일자 : <fmt:formatDate value="${dto.q_date}" pattern="yyyy-MM-dd a HH:mm:ss"/>
@@ -221,11 +226,10 @@
         이름
         <input name="m_id" id="m_id" value="${dto.m_id}" placeholder="이름을 입력해주세요">
     </div>
+    </table>
     <div style="width:650px; text-align: center;">
         <!-- 게시물번호를 hidden으로 처리 -->
         <input type="hidden" name="q_no" value="${dto.q_no}">
-        <button type="button" id="btnUpdete">수정</button>
-        <button type="button" id="btnDelete">삭제</button>
         </div>
     </div></div>
     
