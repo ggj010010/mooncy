@@ -269,23 +269,27 @@
 					<td>
 
 						<table id="request">
-									<% int count = 0; %>
-								 <c:forEach var="ol" items="${orderList}">
-								 <c:if test="${ ol.o_check eq 0}">
-								 	<% count++; %>
+							<%
+								int count = 0;
+							%>
+							<c:forEach var="ol" items="${orderList}">
+								<c:if test="${ ol.o_check eq 0}">
+									<%
+										count++;
+									%>
 
-								 </c:if>
-								
-								</c:forEach>
-								<c:set var="count" value="<%=count %>"/>
+								</c:if>
+
+							</c:forEach>
+							<c:set var="count" value="<%=count%>" />
 							<c:choose>
-									<c:when test="${count == 0}">
-										<thead>
-											<tr>
-												<th rowspan='3'>발주 내역이 없습니다</th>
-											</tr>
-										</thead>
-									</c:when>
+								<c:when test="${count == 0}">
+									<thead>
+										<tr>
+											<th rowspan='3'>발주 내역이 없습니다</th>
+										</tr>
+									</thead>
+								</c:when>
 								<c:otherwise>
 									<thead>
 										<tr>
@@ -327,7 +331,7 @@
 				<tr>
 					<td>
 						<h2>처리 완료</h2>
-						<table>
+						<table style="width: 500px; height:300px;">
 							<thead>
 								<tr>
 									<th>지점명</th>
@@ -355,7 +359,7 @@
 					</td>
 					<td>
 						<h2>발주</h2>
-						<table  width="700px" >
+						<table style="width: 700px;">
 							<thead>
 								<tr>
 

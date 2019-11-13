@@ -5,6 +5,11 @@
 <html>
 <SCRIPT type="text/javascript">
 $j(document).ready(function(){
+	var now = new Date();
+    var today = now.getFullYear() + '-' + (now.getMonth() + 1) + '-' + now.getDate();
+	$j('#startDate').val(today);
+	$j('#endDate').val(today);
+	
 	$j('#startDate').change(function() {
 		var startDate = $j(this).val();
 		var endDate = $j('#endDate').val();
@@ -15,7 +20,41 @@ $j(document).ready(function(){
 		    //alert(today);
 			$j('#startDate').val(today);
 		}
+		if(startDate > endDate){
+			alert("종료 날짜보다 높을수 없습니다.");
+			$j('#startDate').val(endDate);
+		}
 	    console.log(startDate, endDate);
+	    
+	    $j.ajax({
+			url : "/order/responseDate",
+			type : "POST",
+			data : {
+				"startDate": startDate,
+				"endDate": endDate
+				}
+			,
+			//JSON.stringify()
+			dataType : "json",
+			//contentType:"application/json;charset=UTF-8",
+			timeout : 3000,
+			success : function(returndata) {
+					alert("성공");
+				
+			},//end success
+			error : function(jqXHR, textStatus, errorThrown) {
+				 if(textStatus=="timeout") {
+
+			        	alert("시간이 초과되어 데이터를 수신하지 못하였습니다.");
+
+			        } else {
+
+			        	alert("데이터 전송에 실패했습니다. 다시 시도해 주세요");
+
+			        } 
+				
+			}//end error 
+		});//end ajax.productInfoWriteAction 
 	    
 	});
 	$j('#endDate').change(function() {
@@ -28,10 +67,40 @@ $j(document).ready(function(){
 		    //alert(today);
 			$j('#endDate').val(today);
 		}
-		if(endDate < startDate){
-			alert("날짜를 입력해주세요");
+		if(startDate > endDate){
+			alert("시작 날짜보다 작아질수 없습니다");
+			$j('#endDate').val(startDate);
 		}
 	    console.log(startDate, endDate);
+	    
+	    $j.ajax({
+			url : "/order/responseDate",
+			type : "POST",
+			data : {
+				"startDate": startDate,
+				"endDate": endDate
+				}
+			,
+			//JSON.stringify()
+			dataType : "json",
+			//contentType:"application/json;charset=UTF-8",
+			timeout : 3000,
+			success : function(returndata) {
+					alert("성공");
+					/*var list = returndata.ResponseDate_User;
+			 		console.loh(returndata);
+					console.loh(list); */
+			},//end success
+			error : function(jqXHR, textStatus, errorThrown) {
+				 if(textStatus=="timeout") {
+			        alert("시간이 초과되어 데이터를 수신하지 못하였습니다.");
+			     } 
+				 else {
+			        alert("데이터 전송에 실패했습니다. 다시 시도해 주세요");
+			     } 
+				
+			}//end error 
+		});//end ajax.productInfoWriteAction 
 	});
 });
 </SCRIPT>
@@ -178,37 +247,52 @@ $j(document).ready(function(){
 						<table style="width: 800;" border="1">
 							<tr>
 								<td><input id='startDate' type='date' /></td>
-								<td>
-									<p>~</p>
-								</td>
+								<td><p>~</p></td>
 								<td><input id='endDate' type='date' /></td>
 							</tr>
-						</table>
-						<table class="type09" style="width: 800;">
-							<tr>
+						</table> 
+						<c:choose>
+							<c:when test="${count <= 10}">
 
-					<th>보냄</th>
-								<th>제품명</th>
-							<th>개수</th>
-							<th>날짜</th>
-				</tr>
-				
-							
-				<tr>
-								<c:forEach var="orl" items="${orderResponseList}">
 
+								<table id="response_table" style="width: 800;">
 									<tr>
 
-										<td>${orl.request_name }</td>
-										<td>${orl.p_name }</td>
-										<td>${orl.p_count }</td>
-										<td>${orl.om_date }</td>
+										<th>보냄</th>
+										<th>제품명</th>
+										<th>개수</th>
+										<th>날짜</th>
 									</tr>
 
-								</c:forEach>
-							</tr>
-						</table>
-						
+									<tr>
+										<c:forEach var="orl" items="${orderResponseList}">
+											<tr>
+												<td>${orl.request_name }</td>
+												<td>${orl.p_name }</td>
+												<td>${orl.p_count }</td>
+												<td>${orl.om_date }</td>
+											</tr>
+
+										</c:forEach>
+									</tr>
+								</table>
+							</c:when>
+
+							<c:otherwise>
+								<div id="order_group">
+									<c:forEach var="user" items="${user}">
+										<p>${user.request_name}</p>
+										<c:forEach var="orgl" items="${orderResponseGroupList}">
+
+											<c:if test="${orgl.request_name == user.request_name}">
+												<pre>${orgl.p_name}:${orgl.p_count}</pre>
+											</c:if>
+
+										</c:forEach>
+									</c:forEach>
+								</div>
+							</c:otherwise>
+						</c:choose>
 					</td>
 				</tr>
 
@@ -216,9 +300,5 @@ $j(document).ready(function(){
 		</div>
 
 	</div>
-<SCRIPT type="text/javascript">
-	document.getElementById('startDate').valueAsDate = new Date();
-	document.getElementById('endDate').valueAsDate = new Date();
-</SCRIPT>
 </body>
 </html>

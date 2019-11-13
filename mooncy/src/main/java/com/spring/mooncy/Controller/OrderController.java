@@ -1,5 +1,8 @@
 package com.spring.mooncy.Controller;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -11,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.spring.mooncy.dto.OrderDTO;
 import com.spring.mooncy.dto.PagingDTO;
+import com.spring.mooncy.dto.ResponseDTO;
 import com.spring.mooncy.service.OrderService;
 
 @Controller
@@ -51,12 +55,45 @@ public class OrderController {
 		}
 		model.addAttribute("pageNo", pagingDTO.getPageNo());
 		
-		
-		model.addAttribute("orderResponseList", OrderService.selectOrderResponseView(id, orderDTO));
-		 
+		int count = OrderService.selectOrder_User_Count(id, orderDTO);
+		System.out.println("count"+count);
+		model.addAttribute("count", count);
+		if(count <= 10) {
+			model.addAttribute("orderResponseList", OrderService.selectOrderResponseView(id, orderDTO));
+		}
+		else {
+			model.addAttribute("user", OrderService.selectOrder_User_Group(id, orderDTO));
+			model.addAttribute("orderResponseGroupList", OrderService.selectOrder_Group(id, orderDTO));
+		}
 		
 
 		return "order/orderview";
+
+	}
+	
+
+	@RequestMapping(value = "/order/responseDate")
+	public Map<String,Object> ResponseDate(Model model,ResponseDTO responseDTO, HttpSession session) throws Exception {
+
+		logger.info("/order/responseDate");
+		Map<String, Object> map = new HashMap<String, Object>();
+
+
+ 		
+ 		String id = (String)session.getAttribute("m_id");
+		int count = OrderService.selectOrder_Date_Count(id, responseDTO);
+		System.out.println(count);
+		if(count <= 10) {
+			map.put("ResponseDate_User", OrderService.ResponseDate_User(id, responseDTO));
+			//model.addAttribute("ResponseDate_User", OrderService.ResponseDate_User(id, responseDTO));
+			System.out.println("-");
+		}
+		else {
+			System.out.println("Å©´Ù");
+		}
+		//model.addAttribute("orderList", OrderService.selectOrderView(responseDTO, id));
+		
+		return map;
 
 	}
 }

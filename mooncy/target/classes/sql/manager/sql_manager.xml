@@ -58,6 +58,7 @@
 
     <resultMap type="com.spring.mooncy.dto.Order_ManagementDTO" id="Order_ManagementDTO">
 		<result property="om_no" column="om_no"/>
+		<result property="o_no" column="o_no"/>
 		<result property="request_id" column="request_id"/>
     	<result property="response_id" column="response_id"/>
     	<result property="request_name" column="request_name"/>
@@ -100,6 +101,7 @@
 	/*manager.selectOrder_Management*/
 	SELECT   	
 		DISTINCT om_no
+		,o_no
 		,(select DISTINCT m_name from m_user m, order_management om1  where m.m_id = om.request_id and om.om_no = om1.OM_NO) as request_name 
 		,(select DISTINCT m_name from m_user m, order_management om2  where m.m_id = om.response_id and om.om_no = om2.OM_NO) as response_name
 		,p_name
@@ -169,6 +171,7 @@
 			order_management
 			(
     			 om_no
+    			,o_no
     			,request_id
     			,response_id
     			,p_name
@@ -178,6 +181,7 @@
     	VALUES
 		(
     		(SELECT NVL(MAX(om_no)+1, 1)FROM order_management)
+	  		,#{o_no}
 	  		,#{request_id}
     		,#{m_id}
     		,#{p_name}

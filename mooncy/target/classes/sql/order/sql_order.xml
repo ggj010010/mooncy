@@ -32,11 +32,14 @@
     	
     	<result property="p_date" column="p_date"/>
 
+		<result property="p_date" column="om_count"/>
+		
     	<collection property="pagingDTO" resultMap="PagingDTO" />
 
     </resultMap>
 	<resultMap type="com.spring.mooncy.dto.Order_ManagementDTO" id="Order_ManagementDTO">
 		<result property="om_no" column="om_no"/>
+    	<result property="om_count" column="om_count"/>
 		<result property="request_id" column="request_id"/>
     	<result property="response_id" column="response_id"/>
     	<result property="request_name" column="request_name"/>
@@ -47,8 +50,16 @@
     	<result property="m_name" column="m_name"/>
     </resultMap>
     
+	<resultMap type="com.spring.mooncy.dto.ResponseDTO" id="ResponseDTO">
+		<result property="request_id" column="request_id"/>
+		<result property="m_id" column="m_id"/>
+		<result property="request_name" column="request_name"/>
+    	<result property="p_name" column="p_name"/>
+    	<result property="p_count" column="p_count"/>
+    	<result property="startDate" column="startDate"/>
+    	<result property="endDate" column="endDate"/>
+    </resultMap>
 
-    
 
 	<select id="selectOrder" parameterType="com.spring.mooncy.dto.PagingDTO" resultMap="OrderDTO">
 
@@ -124,6 +135,7 @@
 
 	SELECT
 		DISTINCT om_no
+		, o_no
 		,(select DISTINCT m_name from m_user m, order_management om1 where m.m_id = om.request_id and om.om_no = om1.OM_NO) as request_name
 		,(select DISTINCT m_name from m_user m, order_management om2 where m.m_id = om.response_id and om.om_no = om2.OM_NO) as response_name
 		,p_name
@@ -138,142 +150,83 @@
 		om_date desc
 
 	</select>
+	
 
-	<!-- <select id="selectRoomOne" parameterType="com.spring.moon.dto.RoomDTO" resultMap="RoomDTO">
+	
+	<select id="selectOrder_User_Count" parameterType="com.spring.mooncy.dto.OrderDTO" resultType="int">
+  		SELECT
+			count(*)
+		FROM 
+			order_management om
+		wHERE 
+			RESPONSE_ID = #{m_id ,jdbcType=VARCHAR} and om_date like to_char(sysdate, 'YY/MM/DD%')
+		
+	</select>
+	<select id="selectOrder_Group" parameterType="com.spring.mooncy.dto.OrderDTO" resultMap="ResponseDTO">
+	  SELECT
+             DISTINCT (select DISTINCT m_name from m_user m, order_management om1 where m.m_id = om.request_id and om.om_no = om1.OM_NO) as request_name
+             ,P_NAME
+             ,sum(p_count) OVER(PARTITION by P_NAME, request_id) as p_count
+		FROM 
+			order_management om
+		wHERE 
+			RESPONSE_ID = #{m_id, jdbcType=VARCHAR} and om_date like to_char(sysdate, 'YY/MM/DD%')
+    </select>
+    <select id="selectOrder_User_Group" parameterType="com.spring.mooncy.dto.OrderDTO" resultMap="ResponseDTO">
+     	 SELECT
+        	DISTINCT (select DISTINCT m_name from m_user m, order_management om1 where m.m_id = om.request_id and om.om_no = om1.OM_NO) as request_name
+		FROM 
+			order_management om
+		wHERE 
+			RESPONSE_ID = #{m_id, jdbcType=VARCHAR} and om_date like to_char(sysdate, 'YY/MM/DD%')
+    </select>
+    <select id="ResponseDate_User_Group" parameterType="com.spring.mooncy.dto.OrderDTO" resultMap="ResponseDTO">
+     	 SELECT
+        	DISTINCT (select DISTINCT m_name from m_user m, order_management om1 where m.m_id = om.request_id and om.om_no = om1.OM_NO) as request_name
+		FROM 
+			order_management om
+		wHERE 
+			RESPONSE_ID = #{m_id, jdbcType=VARCHAR} and and 
+            substr(om_date, 0, 8) BETWEEN to_date( #{startDate}, 'YY/MM/DD') and to_date( #{endDate}, 'YY/MM/DD')
+    </select>
+    <select id="ResponseDate_Group" parameterType="com.spring.mooncy.dto.OrderDTO" resultMap="ResponseDTO">
+	  SELECT
+             DISTINCT (select DISTINCT m_name from m_user m, order_management om1 where m.m_id = om.request_id and om.om_no = om1.OM_NO) as request_name
+             ,P_NAME
+             ,sum(p_count) OVER(PARTITION by P_NAME, request_id) as p_count
+		FROM 
+			order_management om
+		wHERE 
+			RESPONSE_ID = #{m_id, jdbcType=VARCHAR} and substr(om_date, 0, 8) BETWEEN to_date( #{startDate}, 'YY/MM/DD') and to_date( #{endDate}, 'YY/MM/DD')
+    </select>
+    <select id="selectOrder_Date_Count" parameterType="com.spring.mooncy.dto.OrderDTO" resultType="int">
+  		SELECT
+			count(*)
+		FROM 
+			order_management om
+		wHERE 
+			RESPONSE_ID = #{m_id ,jdbcType=VARCHAR} and substr(om_date, 0, 8) BETWEEN to_date( #{startDate}, 'YY/MM/DD') and to_date( #{endDate}, 'YY/MM/DD')
+	</select>
+	<select id="ResponseDate_User" parameterType="com.spring.mooncy.dto.OrderDTO" resultMap="Order_ManagementDTO">
 
-	/*room.selectRoomOne*/
+	/*order.ResponseDate_User*/
 
-		SELECT *
 
-		FROM room
+	SELECT
+		DISTINCT om_no
+		, o_no
+		,(select DISTINCT m_name from m_user m, order_management om1 where m.m_id = om.request_id and om.om_no = om1.OM_NO) as request_name
+		,(select DISTINCT m_name from m_user m, order_management om2 where m.m_id = om.response_id and om.om_no = om2.OM_NO) as response_name
+		,p_name
+		,p_count
+		,om_date
 
-		where room_id = #{r_id}
+	FROM 
+		order_management om, m_user m
+	wHERE 
+		RESPONSE_ID = #{m_id ,jdbcType=VARCHAR} and substr(om_date, 0, 8) BETWEEN to_date( #{startDate}, 'YY/MM/DD') and to_date( #{endDate}, 'YY/MM/DD')
+	order by 
+		om_date desc
 
 	</select>
-
-
-
-	
-
-	<insert id="insertRoom" parameterType="com.spring.moon.dto.RoomDTO">
-
-	/*room.insertRoom*/
-
-	<selectKey keyProperty="r_id" resultType="Integer" order="BEFORE"> 
-
-		SELECT 
-
-			nvl(TO_NUMBER(MAX(room_id)+1),0)
-
-		FROM
-
-			room 
-
-	</selectKey>
-
-		INSERT INTO
-
-			room
-
-			(
-
-    			room_id
-
-    			,room_name
-
-    			,room_com
-
-    			,room_price
-
-    			,room_img
-
-			)
-
-    	VALUES
-
-		(
-
-    		#{r_id}
-
-	  		,#{r_name}
-
-    		,#{r_com, jdbcType=VARCHAR}
-
-    		,#{r_price}
-
-    		,#{r_img, jdbcType=VARCHAR}
-
-    	)
-
-    	
-
-	</insert>
-
-	
-
-	<update id="updateRoom" parameterType="com.spring.moon.dto.RoomDTO">
-
-	/*room.updateRoom*/
-
-		UPDATE
-
-			room
-
-		SET
-
-			room_name = #{r_name}
-
-			,room_com = #{r_com }
-
-			,room_price = #{r_price}
-
-		WHERE
-
-			room_id = #{r_id}
-
-	
-
-	</update>
-
-	
-
-	<delete id="deleteRoom" parameterType="com.spring.moon.dto.RoomDTO">
-
-	/*room.deleteRoom*/
-
-		DELETE
-
-		FROM
-
-			room
-
-		WHERE
-
-			room_id = #{r_id}
-
-	
-
-	</delete>
-
-	
-
-	<update id="fileNameUpdate" parameterType="com.spring.moon.dto.RoomDTO">
-
-	/*room.fileNameUpdate*/
-
-		UPDATE
-
-			room
-
-		SET
-
-			room_img = #{r_img}
-
-		WHERE
-
-			room_id = #{r_id}
-
-	</update>
-
- -->
  </mapper>

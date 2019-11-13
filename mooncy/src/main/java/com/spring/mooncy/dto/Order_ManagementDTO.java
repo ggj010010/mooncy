@@ -2,6 +2,7 @@ package com.spring.mooncy.dto;
 
 public class Order_ManagementDTO {
 	int om_no;
+	int o_no;
 	String request_id;
 	String response_id;
 	String request_name;
@@ -10,11 +11,18 @@ public class Order_ManagementDTO {
 	String p_count;
 	String om_date;
 	String m_name;
+	int om_count;
 	public int getOm_no() {
 		return om_no;
 	}
 	public void setOm_no(int om_no) {
 		this.om_no = om_no;
+	}
+	public int getO_no() {
+		return o_no;
+	}
+	public void setO_no(int o_no) {
+		this.o_no = o_no;
 	}
 	public String getRequest_id() {
 		return request_id;
@@ -28,7 +36,6 @@ public class Order_ManagementDTO {
 	public void setResponse_id(String response_id) {
 		this.response_id = response_id;
 	}
-	
 	public String getRequest_name() {
 		return request_name;
 	}
@@ -65,6 +72,14 @@ public class Order_ManagementDTO {
 	public void setM_name(String m_name) {
 		this.m_name = m_name;
 	}
+	public int getOm_count() {
+		return om_count;
+	}
+	public void setOm_count(int om_count) {
+		this.om_count = om_count;
+	}
+	
+	
 	
 	
 }
