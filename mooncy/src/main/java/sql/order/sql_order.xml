@@ -150,9 +150,7 @@
 		om_date desc
 
 	</select>
-	
-
-	
+		
 	<select id="selectOrder_User_Count" parameterType="com.spring.mooncy.dto.OrderDTO" resultType="int">
   		SELECT
 			count(*)
@@ -162,6 +160,7 @@
 			RESPONSE_ID = #{m_id ,jdbcType=VARCHAR} and om_date like to_char(sysdate, 'YY/MM/DD%')
 		
 	</select>
+	
 	<select id="selectOrder_Group" parameterType="com.spring.mooncy.dto.OrderDTO" resultMap="ResponseDTO">
 	  SELECT
              DISTINCT (select DISTINCT m_name from m_user m, order_management om1 where m.m_id = om.request_id and om.om_no = om1.OM_NO) as request_name
@@ -172,6 +171,7 @@
 		wHERE 
 			RESPONSE_ID = #{m_id, jdbcType=VARCHAR} and om_date like to_char(sysdate, 'YY/MM/DD%')
     </select>
+    
     <select id="selectOrder_User_Group" parameterType="com.spring.mooncy.dto.OrderDTO" resultMap="ResponseDTO">
      	 SELECT
         	DISTINCT (select DISTINCT m_name from m_user m, order_management om1 where m.m_id = om.request_id and om.om_no = om1.OM_NO) as request_name
@@ -180,6 +180,7 @@
 		wHERE 
 			RESPONSE_ID = #{m_id, jdbcType=VARCHAR} and om_date like to_char(sysdate, 'YY/MM/DD%')
     </select>
+    
     <select id="ResponseDate_User_Group" parameterType="com.spring.mooncy.dto.OrderDTO" resultMap="ResponseDTO">
      	 SELECT
         	DISTINCT (select DISTINCT m_name from m_user m, order_management om1 where m.m_id = om.request_id and om.om_no = om1.OM_NO) as request_name
@@ -189,6 +190,7 @@
 			RESPONSE_ID = #{m_id, jdbcType=VARCHAR} and 
             substr(om_date, 0, 8) BETWEEN to_date( #{startDate}, 'YY/MM/DD') and to_date( #{endDate}, 'YY/MM/DD')
     </select>
+    
     <select id="ResponseDate_Group" parameterType="com.spring.mooncy.dto.OrderDTO" resultMap="ResponseDTO">
 	  SELECT
              DISTINCT (select DISTINCT m_name from m_user m, order_management om1 where m.m_id = om.request_id and om.om_no = om1.OM_NO) as request_name
@@ -200,6 +202,7 @@
 			RESPONSE_ID = #{m_id, jdbcType=VARCHAR} and 
 			substr(om_date, 0, 8) BETWEEN to_date( #{startDate}, 'YY/MM/DD') and to_date( #{endDate}, 'YY/MM/DD')
     </select>
+    
     <select id="selectOrder_Date_Count" parameterType="com.spring.mooncy.dto.OrderDTO" resultType="int">
   		SELECT
 			count(*)
@@ -209,10 +212,10 @@
 			RESPONSE_ID = #{m_id ,jdbcType=VARCHAR} and 
 			substr(om_date, 0, 8) BETWEEN to_date( #{startDate}, 'YY/MM/DD') and to_date( #{endDate}, 'YY/MM/DD')
 	</select>
+	
 	<select id="ResponseDate_User" parameterType="com.spring.mooncy.dto.OrderDTO" resultMap="Order_ManagementDTO">
 
 	/*order.ResponseDate_User*/
-
 
 	SELECT
 		DISTINCT om_no
@@ -232,4 +235,5 @@
 		om_date desc
 
 	</select>
+	
  </mapper>

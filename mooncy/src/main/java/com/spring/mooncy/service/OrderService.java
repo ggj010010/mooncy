@@ -19,6 +19,10 @@ public interface  OrderService {
 	public List<ResponseDTO> ResponseDate(String id, OrderDTO orderDTO);
 	public int selectOrder_Date_Count(String id, ResponseDTO responseDTO);
 	public List<ResponseDTO> ResponseDate_User(String id, ResponseDTO responseDTO);
+	public List<ResponseDTO> ResponseDate_Group(String id, ResponseDTO responseDTO);
+	public List<ResponseDTO> ResponseDate_User_Group(String id, ResponseDTO responseDTO);
+	
+
 //	public int fileNameUpdate(int r_id, String fileName);
 //
 //

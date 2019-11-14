@@ -35,16 +35,50 @@ $j(document).ready(function(){
 				,
 				//JSON.stringify()
 				dataType : "json",
-				contentType:"application/json;charset=UTF-8",
+				//contentType:"application/json;charset=UTF-8",
 				timeout : 3000,
 				success : function(returndata) {
-						alert("성공");
 						//console.log(returndata.count);
 						if(returndata.count == "N"){
-							console.log("10이상");
+							var html = "";
+							$j("#reult_div").empty();
+							var User_Group = returndata.ResponseDate_User_Group;
+							var ResponseDate_Group = returndata.ResponseDate_Group;
+							$j.each(User_Group , function(idx, Ugval) {
+									html += "<div><p>"+Ugval.request_name+"</p>"
+								$j.each(returndata.ResponseDate_Group , function(idx, Gval) {
+									if(Ugval.request_name == Gval.request_name){
+										html += "<pre>"+Gval.p_name+":"+Gval.p_count+"</pre>"
+									}
+								});
+							});
+							
+							html += "</div>";
+							$j("#reult_div").append(html); 
 						} 
 						else{
-							console.log("10이하");
+							var html = "";
+						
+							$j("#reult_div").empty();
+							html += "<table id='response_date_table'>";
+							html += "<tr><th>보냄</th><th>제품명</th><th>개수</th><th>날짜</th></tr>";
+							
+							var Date_User = returndata.ResponseDate_User;
+							$j.each(Date_User , function(idx, val) {
+								
+								html += "<tr><td style='display: none;'>"+val.m_id+"</td>"
+								html += "<td>"+val.request_name+"</td>"
+								
+								html += "<td>"+val.p_name+"</td>"
+								html += "<td>"+val.p_count+"</td>"
+								html += "<td>"+val.om_date+"</td></tr>"
+								
+								
+								
+								
+							});
+							html += "</table>";
+							$j("#reult_div").append(html);
 						}
 				},//end success
 				error : function(jqXHR, textStatus, errorThrown) {
@@ -92,12 +126,45 @@ $j(document).ready(function(){
 				//contentType:"application/json;charset=UTF-8",
 				timeout : 3000,
 				success : function(returndata) {
-						alert("성공");
 						if(returndata.count == 'N'){
-							console.log("10이상");
+							var html = "";
+							$j("#reult_div").empty();
+							
+							$j.each(returndata.ResponseDate_User_Group , function(idx, Ugval) {
+									html += "<div><p>"+Ugval.request_name+"</p>"
+								$j.each(returndata.ResponseDate_Group , function(idx, Gval) {
+									if(Ugval.request_name == Gval.request_name){
+										html += "<pre>"+Gval.p_name+":"+Gval.p_count+"</pre>"
+									}
+								});
+							});
+							
+							html += "</div>";
+							$j("#reult_div").append(html); 
 						} 
 						else{
-							console.log("10이하");
+							var html = "";
+							
+							$j("#reult_div").empty();
+							html += "<table id='response_date_table'>";
+							html += "<tr><th>보냄</th><th>제품명</th><th>개수</th><th>날짜</th></tr>";
+							
+							var Date_User = returndata.ResponseDate_User;
+							$j.each(Date_User , function(idx, val) {
+								
+								html += "<tr><td style='display: none;'>"+val.m_id+"</td>"
+								html += "<td>"+val.request_name+"</td>"
+								
+								html += "<td>"+val.p_name+"</td>"
+								html += "<td>"+val.p_count+"</td>"
+								html += "<td>"+val.om_date+"</td></tr>"
+								
+								
+								
+								
+							});
+							html += "</table>";
+							$j("#reult_div").append(html);
 						}
 				},//end success
 				error : function(jqXHR, textStatus, errorThrown) {
@@ -258,42 +325,44 @@ $j(document).ready(function(){
 						</div>
 					</td>
 					<td>
+
 						<table style="width: 800;" border="1">
 							<tr>
 								<td><input id='startDate' type='date' /></td>
 								<td><p>~</p></td>
 								<td><input id='endDate' type='date' /></td>
 							</tr>
-						</table> 
-						<c:choose>
-							<c:when test="${count <= 10}">
+						</table>
+						<div id = "reult_div">
+							<c:choose>
+								<c:when test="${count <= 10}">
 
 
-								<table id="response_table" style="width: 800;">
-									<tr>
+									<table id="response_table" style="width: 800;">
+										<tr>
 
-										<th>보냄</th>
-										<th>제품명</th>
-										<th>개수</th>
-										<th>날짜</th>
-									</tr>
+											<th>보냄</th>
+											<th>제품명</th>
+											<th>개수</th>
+											<th>날짜</th>
+										</tr>
 
-									<tr>
-										<c:forEach var="orl" items="${orderResponseList}">
-											<tr>
-												<td>${orl.request_name }</td>
-												<td>${orl.p_name }</td>
-												<td>${orl.p_count }</td>
-												<td>${orl.om_date }</td>
-											</tr>
+										<tr>
+											<c:forEach var="orl" items="${orderResponseList}">
+												<tr>
+													<td>${orl.request_name }</td>
+													<td>${orl.p_name }</td>
+													<td>${orl.p_count }</td>
+													<td>${orl.om_date }</td>
+												</tr>
 
-										</c:forEach>
-									</tr>
-								</table>
-							</c:when>
+											</c:forEach>
+										</tr>
+									</table>
+								</c:when>
 
-							<c:otherwise>
-								<div id="order_group">
+								<c:otherwise>
+
 									<c:forEach var="user" items="${user}">
 										<p>${user.request_name}</p>
 										<c:forEach var="orgl" items="${orderResponseGroupList}">
@@ -304,9 +373,10 @@ $j(document).ready(function(){
 
 										</c:forEach>
 									</c:forEach>
-								</div>
-							</c:otherwise>
-						</c:choose>
+
+								</c:otherwise>
+							</c:choose>
+						</div>
 					</td>
 				</tr>
 

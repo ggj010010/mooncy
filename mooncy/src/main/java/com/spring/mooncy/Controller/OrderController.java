@@ -25,7 +25,6 @@ public class OrderController {
 	
 
 	@Autowired
-
 	OrderService OrderService;
 
 
@@ -75,7 +74,8 @@ public class OrderController {
 	}
 	
 
-	@RequestMapping(value = "/order/responseDate",  method = RequestMethod.GET, produces = "application/json;")
+	@RequestMapping(value = "/order/responseDate",  method = RequestMethod.GET, produces = "application/text; charset=utf8")
+
 	@ResponseBody
 	public String ResponseDate(Model model,ResponseDTO responseDTO, HttpSession session) throws Exception {
 
@@ -92,7 +92,9 @@ public class OrderController {
 			System.out.println("-");
 		}
 		else {
-			System.out.println("Å©´Ù");
+			result.put("ResponseDate_Group", OrderService.ResponseDate_Group(id, responseDTO));
+			result.put("ResponseDate_User_Group", OrderService.ResponseDate_User_Group(id, responseDTO));
+			
 		}
 	      String callbackMsg = commonUtil.getJsonCallBackString(" ",result);
 	      

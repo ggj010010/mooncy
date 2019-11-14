@@ -106,6 +106,24 @@ public class OrderServiceImpl implements OrderService{
 		return OrderDAO.ResponseDate_User(responseDTO);
 		
 	}
+	@Override
+
+	public List<ResponseDTO> ResponseDate_Group(String id, ResponseDTO responseDTO) {
+
+		// TODO Auto-generated method stub
+		responseDTO.setM_id(id);
+		return OrderDAO.ResponseDate_Group(responseDTO);
+		
+	}
+	@Override
+
+	public List<ResponseDTO> ResponseDate_User_Group(String id, ResponseDTO responseDTO) {
+
+		// TODO Auto-generated method stub
+		responseDTO.setM_id(id);
+		return OrderDAO.ResponseDate_User_Group(responseDTO);
+		
+	}
 	
 	
 //

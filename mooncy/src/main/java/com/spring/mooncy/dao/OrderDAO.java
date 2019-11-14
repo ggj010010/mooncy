@@ -17,6 +17,8 @@ public interface  OrderDAO {
 	public List<ResponseDTO> ResponseDate(OrderDTO orderDTO);
 	public int selectOrder_Date_Count(ResponseDTO responseDTO);
 	public List<ResponseDTO> ResponseDate_User(ResponseDTO responseDTO);
+	public List<ResponseDTO> ResponseDate_Group(ResponseDTO responseDTO);
+	public List<ResponseDTO> ResponseDate_User_Group(ResponseDTO responseDTO);
 //	  public int insertRoom(OrderDTO OrderDTO);
 //	  
 //	  

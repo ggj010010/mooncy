@@ -78,7 +78,6 @@ public class OrderDAOImpl implements OrderDAO{
 		return sqlSession.selectList("order.ResponseDate", orderDTO);
 	}
 	@Override
-
 	public int selectOrder_Date_Count(ResponseDTO responseDTO) {
 
 		// TODO Auto-generated method stub
@@ -91,7 +90,19 @@ public class OrderDAOImpl implements OrderDAO{
 		// TODO Auto-generated method stub
 		return sqlSession.selectList("order.ResponseDate_User", responseDTO);
 	}
+	@Override
+	public List<ResponseDTO> ResponseDate_Group(ResponseDTO responseDTO) {
 
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("order.ResponseDate_Group", responseDTO);
+	}
+	@Override
+	public List<ResponseDTO> ResponseDate_User_Group(ResponseDTO responseDTO) {
+
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("order.ResponseDate_User_Group", responseDTO);
+	}
+	
 //
 //	
 //
