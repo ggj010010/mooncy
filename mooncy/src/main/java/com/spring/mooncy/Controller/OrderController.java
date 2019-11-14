@@ -1,7 +1,7 @@
 package com.spring.mooncy.Controller;
 
 import java.util.HashMap;
-import java.util.Map;
+import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
@@ -11,7 +11,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.spring.mooncy.common.CommonUtil;
 import com.spring.mooncy.dto.OrderDTO;
 import com.spring.mooncy.dto.PagingDTO;
 import com.spring.mooncy.dto.ResponseDTO;
@@ -72,28 +75,30 @@ public class OrderController {
 	}
 	
 
-	@RequestMapping(value = "/order/responseDate")
-	public Map<String,Object> ResponseDate(Model model,ResponseDTO responseDTO, HttpSession session) throws Exception {
+	@RequestMapping(value = "/order/responseDate",  method = RequestMethod.GET, produces = "application/json;")
+	@ResponseBody
+	public String ResponseDate(Model model,ResponseDTO responseDTO, HttpSession session) throws Exception {
 
 		logger.info("/order/responseDate");
-		Map<String, Object> map = new HashMap<String, Object>();
-
-
+		HashMap<String, Object> result = new HashMap<String, Object>();
+		CommonUtil commonUtil = new CommonUtil();
  		
  		String id = (String)session.getAttribute("m_id");
 		int count = OrderService.selectOrder_Date_Count(id, responseDTO);
-		System.out.println(count);
+		result.put("count", (count <= 10) ? "Y" : "N");
+		System.out.println("count"+count);
 		if(count <= 10) {
-			map.put("ResponseDate_User", OrderService.ResponseDate_User(id, responseDTO));
-			//model.addAttribute("ResponseDate_User", OrderService.ResponseDate_User(id, responseDTO));
+			result.put("ResponseDate_User", OrderService.ResponseDate_User(id, responseDTO));
 			System.out.println("-");
 		}
 		else {
 			System.out.println("Å©´Ù");
 		}
-		//model.addAttribute("orderList", OrderService.selectOrderView(responseDTO, id));
-		
-		return map;
+	      String callbackMsg = commonUtil.getJsonCallBackString(" ",result);
+	      
+	      System.out.println("callbackMsg::"+callbackMsg);
+	      
+	      return callbackMsg;
 
 	}
 }

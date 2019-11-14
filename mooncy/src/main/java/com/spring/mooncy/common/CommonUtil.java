@@ -4,12 +4,17 @@ import java.io.BufferedReader;
 import java.io.IOException;
 
 import javax.servlet.http.HttpServletRequest;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import com.spring.mooncy.Controller.ExController;
 
 import org.codehaus.jackson.JsonProcessingException;
 import org.codehaus.jackson.map.ObjectMapper;
 
 public class CommonUtil {
 	
+	private static final Logger logger = LoggerFactory.getLogger(ExController.class);
 
 	/**
 	 * Gets the json call back string.
@@ -19,24 +24,8 @@ public class CommonUtil {
 	 * @return the json call back string
 	 * @throws IOException 
 	 */
-	public String readJSONStringFromRequestBody(HttpServletRequest request){
-	    StringBuffer json = new StringBuffer();
-	    String line = null;
-	 
-	    try {
-	        BufferedReader reader = request.getReader();
-	        while((line = reader.readLine()) != null) {
-	            json.append(line);
-	        }
-	 
-	    }catch(Exception e) {
-	        System.out.println("Error reading JSON string: " + e.toString());
-	    }
-	    return json.toString();
-	}
 
-
-	public String getJsonCallBackString(String callback, Object obj) throws IOException {
+	public static String getJsonCallBackString(String callback, Object obj) throws IOException {
 		StringBuffer sb = new StringBuffer();
 //		sb.append(callback).append("(");
 
@@ -64,7 +53,7 @@ public class CommonUtil {
         try {
         	rtnStr = objectMapper.writeValueAsString(obj);
 		} catch (JsonProcessingException e) {
-			
+			logger.debug("toJson parsing Error",e);
 		}
         return rtnStr;
 	}

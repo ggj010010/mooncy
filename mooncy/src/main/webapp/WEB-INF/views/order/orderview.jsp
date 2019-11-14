@@ -24,37 +24,44 @@ $j(document).ready(function(){
 			alert("종료 날짜보다 높을수 없습니다.");
 			$j('#startDate').val(endDate);
 		}
-	    console.log(startDate, endDate);
-	    
-	    $j.ajax({
-			url : "/order/responseDate",
-			type : "POST",
-			data : {
-				"startDate": startDate,
-				"endDate": endDate
-				}
-			,
-			//JSON.stringify()
-			dataType : "json",
-			//contentType:"application/json;charset=UTF-8",
-			timeout : 3000,
-			success : function(returndata) {
-					alert("성공");
-				
-			},//end success
-			error : function(jqXHR, textStatus, errorThrown) {
-				 if(textStatus=="timeout") {
+		else{	    
+	    	$j.ajax({
+				url : "/order/responseDate",
+				type : "GET",
+				data : {
+					"startDate": startDate,
+					"endDate": endDate
+					}
+				,
+				//JSON.stringify()
+				dataType : "json",
+				contentType:"application/json;charset=UTF-8",
+				timeout : 3000,
+				success : function(returndata) {
+						alert("성공");
+						//console.log(returndata.count);
+						if(returndata.count == "N"){
+							console.log("10이상");
+						} 
+						else{
+							console.log("10이하");
+						}
+				},//end success
+				error : function(jqXHR, textStatus, errorThrown) {
+				 	if(textStatus=="timeout") {
 
 			        	alert("시간이 초과되어 데이터를 수신하지 못하였습니다.");
 
-			        } else {
+			        } 
+				 	else {
 
-			        	alert("데이터 전송에 실패했습니다. 다시 시도해 주세요");
+			        	alert(jqXHR.status+jqXHR.responseText+textStatus+errorThrown+"데이터 전송에 실패했습니다. 다시 시도해 주세요");
 
 			        } 
 				
-			}//end error 
-		});//end ajax.productInfoWriteAction 
+				}//end error 
+			});//end ajax.productInfoWriteAction 
+		}
 	    
 	});
 	$j('#endDate').change(function() {
@@ -71,36 +78,43 @@ $j(document).ready(function(){
 			alert("시작 날짜보다 작아질수 없습니다");
 			$j('#endDate').val(startDate);
 		}
-	    console.log(startDate, endDate);
-	    
-	    $j.ajax({
-			url : "/order/responseDate",
-			type : "POST",
-			data : {
-				"startDate": startDate,
-				"endDate": endDate
-				}
-			,
-			//JSON.stringify()
-			dataType : "json",
-			//contentType:"application/json;charset=UTF-8",
-			timeout : 3000,
-			success : function(returndata) {
-					alert("성공");
-					/*var list = returndata.ResponseDate_User;
-			 		console.loh(returndata);
-					console.loh(list); */
-			},//end success
-			error : function(jqXHR, textStatus, errorThrown) {
-				 if(textStatus=="timeout") {
-			        alert("시간이 초과되어 데이터를 수신하지 못하였습니다.");
-			     } 
-				 else {
-			        alert("데이터 전송에 실패했습니다. 다시 시도해 주세요");
-			     } 
+		else{	    
+	    	$j.ajax({
+				url : "/order/responseDate",
+				type : "GET",
+				data : {
+					"startDate": startDate,
+					"endDate": endDate
+					}
+				,
+				//JSON.stringify()
+				dataType : "json",
+				//contentType:"application/json;charset=UTF-8",
+				timeout : 3000,
+				success : function(returndata) {
+						alert("성공");
+						if(returndata.count == 'N'){
+							console.log("10이상");
+						} 
+						else{
+							console.log("10이하");
+						}
+				},//end success
+				error : function(jqXHR, textStatus, errorThrown) {
+				 	if(textStatus=="timeout") {
+
+			        	alert("시간이 초과되어 데이터를 수신하지 못하였습니다.");
+
+			        } 
+				 	else {
+
+			        	alert("데이터 전송에 실패했습니다. 다시 시도해 주세요");
+
+			        } 
 				
-			}//end error 
-		});//end ajax.productInfoWriteAction 
+				}//end error 
+			});//end ajax.productInfoWriteAction 
+		}
 	});
 });
 </SCRIPT>
