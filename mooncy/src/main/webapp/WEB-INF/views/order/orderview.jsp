@@ -4,13 +4,12 @@
 <!DOCTYPE html>
 <html>
 <SCRIPT type="text/javascript">
-$j(document).ready(function(){
+ $j(document).ready(function(){
 	var now = new Date();
     var today = now.getFullYear() + '-' + (now.getMonth() + 1) + '-' + now.getDate();
 	$j('#startDate').val(today);
 	$j('#endDate').val(today);
-	
-	$j('#startDate').change(function() {
+}).on("change", "#startDate", function(){
 		var startDate = $j(this).val();
 		var endDate = $j('#endDate').val();
 		if(startDate == ""){
@@ -38,23 +37,128 @@ $j(document).ready(function(){
 				//contentType:"application/json;charset=UTF-8",
 				timeout : 3000,
 				success : function(returndata) {
-						//console.log(returndata.count);
+						//console.log(returndata.count)
+						
 						if(returndata.count == "N"){
-							var html = "";
+		 					var html = "";
 							$j("#reult_div").empty();
 							var User_Group = returndata.ResponseDate_User_Group;
 							var ResponseDate_Group = returndata.ResponseDate_Group;
-							$j.each(User_Group , function(idx, Ugval) {
-									html += "<div><p>"+Ugval.request_name+"</p>"
-								$j.each(returndata.ResponseDate_Group , function(idx, Gval) {
-									if(Ugval.request_name == Gval.request_name){
-										html += "<pre>"+Gval.p_name+":"+Gval.p_count+"</pre>"
-									}
-								});
-							});
 							
-							html += "</div>";
-							$j("#reult_div").append(html); 
+							 $j.each(User_Group , function(idx1, Ugval) {
+								 
+								 html += "<tr><td class = 'store'>"+Ugval.request_name+"</td><td class = 'DDALGI'>0</td><td class = 'ORANGE'>0</td>"+
+									"<td class = 'BANANA'>0</td><td class = 'KIWI'>0</td><td>0</td>"+
+									"<td class = 'HANLA'>0</td><td class= 'SUBACK'>0</td><td class = 'TOMATO'>0</td><td class = 'APPLE'>0</td>"+
+									"<td class = 'MANGO'>0</td><td class = 'ICE'>0</td><td class = 'BBALDE'>0</td><td class = 'DDUGGUNG'>0</td><td = 'CUP'>0</td></tr></table>"
+								
+								$j.each(returndata.ResponseDate_Group , function(idx2, Gval) {
+									
+									if(Ugval.request_name == Gval.request_name){
+										if(Gval.p_name == "µþ±â" ){
+											//document.getElementById('DDALGI').innerHTML = Gval.p_count;
+											//$j("#re_table").children().children().eq(0).children().eq(1).text(Gval.p_count);
+										}
+										
+										/* if(Gval.p_name == "¿À·»Áö"){
+											 $j('#re_table td:eq('+idx1+')').html(Gval.p_count);
+										}
+											
+										if(Gval.p_name == "¹Ù³ª³ª"){
+											$j('#re_table td:eq('+idx1+')').html(Gval.p_count);
+										}
+										else{
+											$j('#re_table td:eq('+idx1+')').html('0');
+										}
+										if(Gval.p_name == "Å°À§"){
+											$j('#re_table td:eq('+idx1+')').html(Gval.p_count);
+										}
+										else{
+											$j('#re_table td:eq('+idx1+')').html('0');
+										}
+										if(Gval.p_name == "ÆÄÀÎ¾ÖÇÃ"){
+											$j('#re_table td:eq('+idx1+')').html(Gval.p_count);
+										}
+										else{
+											$j('#re_table td:eq('+idx1+')').html('0');
+										}
+										if(Gval.p_name == "ÇÑ¶óºÀ"){
+											$j('#re_table td:eq('+idx1+')').html(Gval.p_count);
+										}
+										else{
+											$j('#re_table td:eq('+idx1+')').html('0');
+										}
+										if(Gval.p_name == "¼ö¹Ú"){
+											$j('#re_table td:eq('+idx1+')').html(Gval.p_count);
+										}
+										else{
+											$j('#re_table td:eq('+idx1+')').html('0');
+										}
+										if(Gval.p_name == "Åä¸¶Åä"){
+											$j('#re_table td:eq('+idx1+')').html(Gval.p_count);
+										}
+										else{
+											$j('#re_table td:eq('+idx1+')').html('0');
+										}
+										if(Gval.p_name == "»ç°ú"){
+											$j('#re_table td:eq('+idx1+')').html(Gval.p_count);
+										}
+										else{
+											$j('#re_table td:eq('+idx1+')').html('0');
+										}
+										if(Gval.p_name == "¸Á°í"){
+											$j('#re_table td:eq('+idx1+')').html(Gval.p_count);
+										}
+										else{
+											$j('#re_table td:eq('+idx1+')').html('0');
+										}
+										if(Gval.p_name == "¾óÀ½"){
+											$j('#re_table td:eq('+idx1+')').html(Gval.p_count);
+										}
+										else{
+											$j('#re_table td:eq('+idx1+')').html('0');
+										}
+										if(Gval.p_name == "»¡´ë"){
+											$j('#re_table td:eq('+idx1+')').html(Gval.p_count);
+										}
+										else{
+											$j('#re_table td:eq('+idx1+')').html('0');
+										}
+										if(Gval.p_name == "¶Ñ²±"){
+											$j('#re_table td:eq('+idx1+')').html(Gval.p_count);
+										}
+										else{
+											$j('#re_table td:eq('+idx1+')').html('0');
+										}
+										if(Gval.p_name == "ÄÅ"){
+											$j('#re_table td:eq('+idx1+')').html(Gval.p_count);
+										}
+										else{
+											$j('#re_table td:eq('+idx1+')').html('0');
+										}  */
+										 
+										
+									}
+									
+								}); 
+									
+							   });  
+							
+							
+							// var html = "";
+							//$j("#reult_div").empty();
+							
+							//$j.each(returndata.ResponseDate_User_Group , function(idx, Ugval) {
+							//		html += "<div><p>"+Ugval.request_name+"</p>"
+							//	$j.each(returndata.ResponseDate_Group , function(idx, Gval) {
+							//		if(Ugval.request_name == Gval.request_name){
+							//			html += "<pre>"+Gval.p_name+":"+Gval.p_count+"</pre>"
+							//		}
+							//	});
+							//});
+							
+							//html += "</div>";
+							
 						} 
 						else{
 							var html = "";
@@ -97,8 +201,7 @@ $j(document).ready(function(){
 			});//end ajax.productInfoWriteAction 
 		}
 	    
-	});
-	$j('#endDate').change(function() {
+	}).on("change", "#endDate", function(){
 		var startDate = $j('#startDate').val();
 		var endDate = $j(this).val();
 		if(endDate == ""){
@@ -183,7 +286,7 @@ $j(document).ready(function(){
 			});//end ajax.productInfoWriteAction 
 		}
 	});
-});
+ 
 </SCRIPT>
 <head>
 <link rel="stylesheet" type="text/css" href="/resources/js/default.css">
@@ -214,6 +317,7 @@ $j(document).ready(function(){
 </div>
 </head>
 <body>
+
 	<c:choose>
 
 		<c:when test="${sessionScope.m.m_id != null}">
@@ -336,8 +440,6 @@ $j(document).ready(function(){
 						<div id = "reult_div">
 							<c:choose>
 								<c:when test="${count <= 10}">
-
-
 									<table id="response_table" style="width: 800;">
 										<tr>
 
@@ -376,6 +478,29 @@ $j(document).ready(function(){
 
 								</c:otherwise>
 							</c:choose>
+						</div>
+						<div id="reult_table" style='display: none;'>
+							<table id="response_table" style="width: 800;">
+								<tr>
+									<th>¸ÅÀå</th>
+									<th>µþ±â</th>
+									<th>¿À·»Áö</th>
+									<th>¹Ù³ª³ª</th>
+									<th>Å°À§</th>
+									<th>ÆÄÀÎ¾ÖÇÃ</th>
+									<th>ÇÑ¶óºÀ</th>
+									<th>¼ö¹Ú</th>
+									<th>Åä¸¶Åä</th>
+									<th>»ç°ú</th>
+									<th>¸Á°í</th>
+									<th>¾óÀ½</th>
+									<th>»¡´ë</th>
+									<th>¶Ñ²±</th>
+									<th>ÄÅ</th>
+								</tr>
+
+
+							</table>
 						</div>
 					</td>
 				</tr>
