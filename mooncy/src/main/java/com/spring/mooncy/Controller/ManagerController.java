@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.spring.mooncy.dto.OrderDTO;
-import com.spring.mooncy.dto.Order_ManagementDTO;
+import com.spring.mooncy.dto.PagingDTO;
 import com.spring.mooncy.dto.StoreDTO;
 import com.spring.mooncy.service.ManagerService;
 import com.spring.mooncy.service.StoreService;
@@ -45,11 +45,34 @@ public class ManagerController {
 	}
 
 	@RequestMapping(value = "/Manager/manager_order")
-	public String manager_order(Model model) throws Exception {
+	public String manager_order(Model model, PagingDTO pagingDTO) throws Exception {
+		logger.info("Manager :: page :: " + pagingDTO.getPageNo());
 		
+		int pageNo = 1;
+ 		if(pagingDTO.getPageNo() <= 0 ) {
 
-		model.addAttribute("orderList", managerService.selectOrder());
-		model.addAttribute("order_managementList", managerService.selectOrder_Management());
+ 			pagingDTO.setPageNo(pageNo);
+
+ 		}
+// 		int pageNo2 = 1;
+// 		if(pagingDTO.getPageNo2() <= 0 ) {
+//
+// 			pagingDTO.setPageNo2(pageNo2);
+//
+// 		}
+		model.addAttribute("orderList", managerService.selectOrder(pagingDTO));
+		System.out.println("ol"+managerService.selectOrder(pagingDTO).size());
+		if(managerService.selectOrder(pagingDTO).size() != 0) {
+			model.addAttribute("totalCnt", managerService.selectOrder(pagingDTO).get(0).getPagingDTO().getTotalCnt());
+		}
+		model.addAttribute("pageNo", pagingDTO.getPageNo());
+		
+		model.addAttribute("order_managementList", managerService.selectOrder_Management(pagingDTO));
+		//System.out.println("oml"+managerService.selectOrder_Management(pagingDTO).size());
+		//if(managerService.selectOrder_Management(pagingDTO).size() != 0) {
+		//	model.addAttribute("totalCnt2", managerService.selectOrder_Management(pagingDTO).get(0).getPagingDTO().getTotalCnt2());
+		//}
+		//model.addAttribute("pageNo2", pagingDTO.getPageNo2());
 		return "/Manager/manager_order";
 
 	}
@@ -79,14 +102,27 @@ public class ManagerController {
 	public int order_response(Model model,OrderDTO orderDTO) throws Exception {
 		logger.info("order_responses");
 		int check = 0;
-		int order_manager = managerService.order_Manager(orderDTO);
-		int order_update = managerService.order_Update(orderDTO);
-		int request_update = managerService.request_Update(orderDTO);
-		int check_update = managerService.check_Update(orderDTO);
+		int order_manager = managerService.order_Manager(orderDTO); //Insert
+		int order_update = managerService.order_Update(orderDTO); //수량-
+		int request_update = managerService.request_Update(orderDTO); //수량+
+		int check_update = managerService.check_Update(orderDTO); //check 0 -> 1
 		 
 		 check=order_update+request_update+check_update+order_manager;
 		 return check;
 		
 	}
+@RequestMapping(value = "/manager/manager_response", method = {RequestMethod.POST,RequestMethod.GET})
 	
+	@ResponseBody
+	public int order_manager_response(Model model,OrderDTO orderDTO) throws Exception {
+		logger.info("order_responses");
+		int check = 0;
+		int order_manager = managerService.order_Manager(orderDTO);
+		int request_update = managerService.request_Update(orderDTO);
+		int check_update = managerService.check_Update(orderDTO);
+		 
+		 check=request_update+check_update+order_manager;
+		 return check;
+		
+	}
 }

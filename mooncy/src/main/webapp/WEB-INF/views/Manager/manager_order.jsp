@@ -12,6 +12,50 @@
  var o_no;
  var m_id;
  $j(document).ready(function(){
+	 $j(document).on("click", "#btn_manager_result", function(){
+			
+			var tdArr = new Array();
+			
+			var tr = $j("#request tbody tr");
+			var td = tr.children();
+			var mr_id = "0";
+			var m_name = td.eq(2).text();
+			var p_name = td.eq(3).text();
+			/* var p_count = ${sessionScope.request_count};
+			var request_id = ${sessionScope.request_id};
+			var o_no = ${sessionScope.o_no};  */
+			console.log("P-count : " + p_count);
+			td.each(function(i) {
+				tdArr.push(td.eq(i).text());
+			});
+			console.log("btn 배열에 담긴 값 : " + tdArr);
+			$j.ajax({
+				url : "/manager/manager_response",
+				type : "POST",
+				data : {
+					"m_id": mr_id,
+					"p_name": p_name,
+					"p_count": p_count,
+					"request_id" : m_id,
+					"o_no" : o_no
+					}
+				,
+				//JSON.stringify()
+				dataType : "json",
+				//contentType:"application/json;charset=UTF-8",
+				timeout : 3000,
+				success : function(returndata) {
+					if(returndata == 3){
+						alert("정상적으로 보내졌습니다.");
+						window.location.href = "/Manager/manager_order";
+					}
+				},//end success
+				error : function(jqXHR, textStatus, errorThrown) {
+					alert("실패");
+					
+				}//end error 
+			});//end ajax.productInfoWriteAction 
+		});
 		$j(document).on("click", "#btn_result", function(){
 			
 			var tdArr = new Array();
@@ -101,7 +145,6 @@
 			console.log("배열에 담긴 값 : " + tdArr);
 
 			// td.eq(index)를 통해 값을 가져올 수도 있다.
-			a = td.eq(0).text();
 			o_no = td.eq(0).text();
 			m_id = td.eq(1).text();
 			var p_name = td.eq(3).text();
@@ -197,7 +240,14 @@
 					
 					}
 					else{
-						alert("보내줄수 있는 재고가 없습니다.")
+						var html = "";
+						alert("보내줄수 있는 재고가 없습니다.");
+						
+						html += "<table id='response_table'>"
+						html += "<tr><th>보내줄수 있는 재고가 없습니다</th></tr>"
+						html += "<tr><td><input type='button' class='btn' id='btn_manager_result' value='본사에서 보내기'></td></tr>"
+						html += "</table>";
+						$j("#reult_div").append(html);
 					}
 
 					
@@ -356,6 +406,25 @@
 								</c:choose>
 							</c:forEach>
 						</table>
+						<div style="text-align: center">
+							<div id="side_center">
+								<div class="text-center">
+									<c:if test="${totalCnt/5 > 1 }">
+										<c:forEach var="i" begin="1" end="${(totalCnt-1)/5+1}">
+											<c:choose>
+												<c:when test="${pageNo==i }">
+													<a href="/Manager/manager_order?pageNo=${i }">(${i}) 
+													<span class="sr-only"></span></a>
+												</c:when>
+												<c:otherwise>
+													<a href="/Manager/manager_order?pageNo=${i }">${i }</a>
+												</c:otherwise>
+											</c:choose>
+										</c:forEach>
+									</c:if>
+								</div>
+							</div>
+						</div>
 					</td>
 					<td>
 						<h2>발주</h2>
@@ -389,6 +458,25 @@
 
 							</tbody>
 						</table>
+						<%-- <div style="text-align: center">
+							<div id="side_center">
+								<div class="text-center">
+									<c:if test="${totalCnt2/5 > 1 }">
+										<c:forEach var="i" begin="1" end="${(totalCnt2-1)/5+1}">
+											<c:choose>
+												<c:when test="${pageNo2==i }">
+													<a href="/Manager/manager_order?pageNo2=${i }">(${i}) 
+													<span class="sr-only"></span></a>
+												</c:when>
+												<c:otherwise>
+													<a href="/Manager/manager_order?pageNo2=${i }">${i }</a>
+												</c:otherwise>
+											</c:choose>
+										</c:forEach>
+									</c:if>
+								</div>
+							</div>
+						</div> --%>
 					</td>
 				</tr>
 			</table>

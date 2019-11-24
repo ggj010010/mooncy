@@ -112,19 +112,18 @@
 				
 				,p_date
 				
-				,row_number() over(order by o_no desc) as numrow
+				,row_number() over(order by p_date desc, o_check asc) as numrow
 
 				,count(*) over() as totalcnt
 
 			from
 
 				p_order
-
+			where m_id = #{m_id ,jdbcType=VARCHAR}
 			order by p_date desc , o_check asc
 
 		)
-
-		where m_id = #{m_id ,jdbcType=VARCHAR} and numrow between (#{pageNo, jdbcType=NUMERIC}-1)*5 + 1 AND #{pageNo, jdbcType=NUMERIC}*5
+		where numrow between (#{pageNo, jdbcType=NUMERIC}-1)*5 + 1 AND #{pageNo, jdbcType=NUMERIC}*5
 
 		
 	</select>

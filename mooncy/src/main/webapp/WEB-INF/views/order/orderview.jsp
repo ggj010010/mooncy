@@ -44,125 +44,28 @@
 							$j("#reult_div").empty();
 							var User_Group = returndata.ResponseDate_User_Group;
 							var ResponseDate_Group = returndata.ResponseDate_Group;
-							
-							 $j.each(User_Group , function(idx1, Ugval) {
-								 
-								 html += "<tr><td class = 'store'>"+Ugval.request_name+"</td><td class = 'DDALGI'>0</td><td class = 'ORANGE'>0</td>"+
-									"<td class = 'BANANA'>0</td><td class = 'KIWI'>0</td><td>0</td>"+
-									"<td class = 'HANLA'>0</td><td class= 'SUBACK'>0</td><td class = 'TOMATO'>0</td><td class = 'APPLE'>0</td>"+
-									"<td class = 'MANGO'>0</td><td class = 'ICE'>0</td><td class = 'BBALDE'>0</td><td class = 'DDUGGUNG'>0</td><td = 'CUP'>0</td></tr></table>"
-								
-								$j.each(returndata.ResponseDate_Group , function(idx2, Gval) {
-									
-									if(Ugval.request_name == Gval.request_name){
-										if(Gval.p_name == "µþ±â" ){
-											//document.getElementById('DDALGI').innerHTML = Gval.p_count;
-											//$j("#re_table").children().children().eq(0).children().eq(1).text(Gval.p_count);
+							$j.each(User_Group , function(idx, Ugval) {
+									html += "<br><table><caption>"+Ugval.request_name+"</caption>"
+									$j.each(returndata.ResponseDate_Group , function(idx, Gval) {
+										if(Ugval.request_name == Gval.request_name){
+												html += "<th>"+Gval.p_name+"</th>"	
 										}
-										
-										/* if(Gval.p_name == "¿À·»Áö"){
-											 $j('#re_table td:eq('+idx1+')').html(Gval.p_count);
+									});
+									html += "<tr>"
+									$j.each(returndata.ResponseDate_Group , function(idx, Gval) {
+										if(Ugval.request_name == Gval.request_name){
+												html += "<td>"+Gval.p_count+"</td>"	
 										}
-											
-										if(Gval.p_name == "¹Ù³ª³ª"){
-											$j('#re_table td:eq('+idx1+')').html(Gval.p_count);
-										}
-										else{
-											$j('#re_table td:eq('+idx1+')').html('0');
-										}
-										if(Gval.p_name == "Å°À§"){
-											$j('#re_table td:eq('+idx1+')').html(Gval.p_count);
-										}
-										else{
-											$j('#re_table td:eq('+idx1+')').html('0');
-										}
-										if(Gval.p_name == "ÆÄÀÎ¾ÖÇÃ"){
-											$j('#re_table td:eq('+idx1+')').html(Gval.p_count);
-										}
-										else{
-											$j('#re_table td:eq('+idx1+')').html('0');
-										}
-										if(Gval.p_name == "ÇÑ¶óºÀ"){
-											$j('#re_table td:eq('+idx1+')').html(Gval.p_count);
-										}
-										else{
-											$j('#re_table td:eq('+idx1+')').html('0');
-										}
-										if(Gval.p_name == "¼ö¹Ú"){
-											$j('#re_table td:eq('+idx1+')').html(Gval.p_count);
-										}
-										else{
-											$j('#re_table td:eq('+idx1+')').html('0');
-										}
-										if(Gval.p_name == "Åä¸¶Åä"){
-											$j('#re_table td:eq('+idx1+')').html(Gval.p_count);
-										}
-										else{
-											$j('#re_table td:eq('+idx1+')').html('0');
-										}
-										if(Gval.p_name == "»ç°ú"){
-											$j('#re_table td:eq('+idx1+')').html(Gval.p_count);
-										}
-										else{
-											$j('#re_table td:eq('+idx1+')').html('0');
-										}
-										if(Gval.p_name == "¸Á°í"){
-											$j('#re_table td:eq('+idx1+')').html(Gval.p_count);
-										}
-										else{
-											$j('#re_table td:eq('+idx1+')').html('0');
-										}
-										if(Gval.p_name == "¾óÀ½"){
-											$j('#re_table td:eq('+idx1+')').html(Gval.p_count);
-										}
-										else{
-											$j('#re_table td:eq('+idx1+')').html('0');
-										}
-										if(Gval.p_name == "»¡´ë"){
-											$j('#re_table td:eq('+idx1+')').html(Gval.p_count);
-										}
-										else{
-											$j('#re_table td:eq('+idx1+')').html('0');
-										}
-										if(Gval.p_name == "¶Ñ²±"){
-											$j('#re_table td:eq('+idx1+')').html(Gval.p_count);
-										}
-										else{
-											$j('#re_table td:eq('+idx1+')').html('0');
-										}
-										if(Gval.p_name == "ÄÅ"){
-											$j('#re_table td:eq('+idx1+')').html(Gval.p_count);
-										}
-										else{
-											$j('#re_table td:eq('+idx1+')').html('0');
-										}  */
-										 
-										
-									}
-									
-								}); 
-									
-							   });  
-							
-							
-							// var html = "";
-							//$j("#reult_div").empty();
-							
-							//$j.each(returndata.ResponseDate_User_Group , function(idx, Ugval) {
-							//		html += "<div><p>"+Ugval.request_name+"</p>"
-							//	$j.each(returndata.ResponseDate_Group , function(idx, Gval) {
-							//		if(Ugval.request_name == Gval.request_name){
-							//			html += "<pre>"+Gval.p_name+":"+Gval.p_count+"</pre>"
-							//		}
-							//	});
-							//});
-							
-							//html += "</div>";
+									});
+										html += "<tr>"
+							}); 
+							html += "</table>";
+							$j("#reult_div").append(html); 
 							
 						} 
 						else{
 							var html = "";
-						
+							$j("#reult_div_group").css("display", "none");
 							$j("#reult_div").empty();
 							html += "<table id='response_date_table'>";
 							html += "<tr><th>º¸³¿</th><th>Á¦Ç°¸í</th><th>°³¼ö</th><th>³¯Â¥</th></tr>";
@@ -232,17 +135,24 @@
 						if(returndata.count == 'N'){
 							var html = "";
 							$j("#reult_div").empty();
-							
-							$j.each(returndata.ResponseDate_User_Group , function(idx, Ugval) {
-									html += "<div><p>"+Ugval.request_name+"</p>"
-								$j.each(returndata.ResponseDate_Group , function(idx, Gval) {
-									if(Ugval.request_name == Gval.request_name){
-										html += "<pre>"+Gval.p_name+":"+Gval.p_count+"</pre>"
-									}
-								});
-							});
-							
-							html += "</div>";
+							var User_Group = returndata.ResponseDate_User_Group;
+							var ResponseDate_Group = returndata.ResponseDate_Group;
+							$j.each(User_Group , function(idx, Ugval) {
+									html += "<br><table><caption>"+Ugval.request_name+"</caption>"
+									$j.each(returndata.ResponseDate_Group , function(idx, Gval) {
+										if(Ugval.request_name == Gval.request_name){
+												html += "<th>"+Gval.p_name+"</th>"	
+										}
+									});
+									html += "<tr>"
+									$j.each(returndata.ResponseDate_Group , function(idx, Gval) {
+										if(Ugval.request_name == Gval.request_name){
+												html += "<td>"+Gval.p_count+"</td>"	
+										}
+									});
+										html += "<tr>"
+							}); 
+							html += "</table>";
 							$j("#reult_div").append(html); 
 						} 
 						else{
@@ -383,11 +293,6 @@
 											</c:when>
 										</c:choose>
 										<td>${ol.p_date }</td>
-
-
-										<!-- 				<td><input type="submit" id="updateRoom" value="¼öÁ¤"> -->
-
-
 									</tr>
 
 								</c:forEach>
@@ -396,33 +301,18 @@
 						<div style="text-align: center">
 							<div id="side_center">
 								<div class="text-center">
-
 									<c:if test="${totalCnt/5 > 1 }">
-
-
-
-
 										<c:forEach var="i" begin="1" end="${(totalCnt-1)/5+1}">
-
 											<c:choose>
-
 												<c:when test="${pageNo==i }">
-
-													<a href="/order/orderview?pageNo=${i }">(${i}) <span
-														class="sr-only"></span></a>
-
+													<a href="/order/orderview?pageNo=${i }">(${i}) 
+													<span class="sr-only"></span></a>
 												</c:when>
-
 												<c:otherwise>
-
 													<a href="/order/orderview?pageNo=${i }">${i }</a>
-
 												</c:otherwise>
-
 											</c:choose>
-
 										</c:forEach>
-
 									</c:if>
 								</div>
 							</div>
@@ -437,7 +327,7 @@
 								<td><input id='endDate' type='date' /></td>
 							</tr>
 						</table>
-						<div id = "reult_div">
+						<div id = "reult_div" style="display: block">
 							<c:choose>
 								<c:when test="${count <= 10}">
 									<table id="response_table" style="width: 800;">
@@ -479,28 +369,7 @@
 								</c:otherwise>
 							</c:choose>
 						</div>
-						<div id="reult_table" style='display: none;'>
-							<table id="response_table" style="width: 800;">
-								<tr>
-									<th>¸ÅÀå</th>
-									<th>µþ±â</th>
-									<th>¿À·»Áö</th>
-									<th>¹Ù³ª³ª</th>
-									<th>Å°À§</th>
-									<th>ÆÄÀÎ¾ÖÇÃ</th>
-									<th>ÇÑ¶óºÀ</th>
-									<th>¼ö¹Ú</th>
-									<th>Åä¸¶Åä</th>
-									<th>»ç°ú</th>
-									<th>¸Á°í</th>
-									<th>¾óÀ½</th>
-									<th>»¡´ë</th>
-									<th>¶Ñ²±</th>
-									<th>ÄÅ</th>
-								</tr>
-
-
-							</table>
+						<div id="reult_div_group" >
 						</div>
 					</td>
 				</tr>

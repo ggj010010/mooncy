@@ -36,7 +36,7 @@ public class OrderServiceImpl implements OrderService{
 	@Override
 
 	public List<OrderDTO> selectOrderView(PagingDTO pagingDTO, String id) {
-
+		System.out.println("sm 1 "+pagingDTO.getPageNo());
 		// TODO Auto-generated method stub
 		pagingDTO.setM_id(id);
 		return OrderDAO.selectOrderView(pagingDTO);

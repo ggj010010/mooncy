@@ -18,6 +18,7 @@ import com.spring.mooncy.common.CommonUtil;
 import com.spring.mooncy.dto.OrderDTO;
 import com.spring.mooncy.dto.PagingDTO;
 import com.spring.mooncy.dto.ResponseDTO;
+import com.spring.mooncy.dto.StoreDTO;
 import com.spring.mooncy.service.OrderService;
 
 @Controller
@@ -39,9 +40,6 @@ public class OrderController {
 		logger.info("order :: page :: " + pagingDTO.getPageNo());
 
  		int pageNo = 1;
-
-		
-
  		if(pagingDTO.getPageNo() <= 0 ) {
 
  			pagingDTO.setPageNo(pageNo);
@@ -50,9 +48,11 @@ public class OrderController {
  		
  		String id = (String)session.getAttribute("m_id");
 		
-
+ 		System.out.println(id);
 		model.addAttribute("orderList", OrderService.selectOrderView(pagingDTO, id));
+		System.out.println(OrderService.selectOrderView(pagingDTO, id).size());
 		if(OrderService.selectOrderView(pagingDTO, id).size() != 0) {
+			System.out.println("!0");
 			model.addAttribute("totalCnt", OrderService.selectOrderView(pagingDTO, id).get(0).getPagingDTO().getTotalCnt());
 		}
 		model.addAttribute("pageNo", pagingDTO.getPageNo());
@@ -82,7 +82,6 @@ public class OrderController {
 		logger.info("/order/responseDate");
 		HashMap<String, Object> result = new HashMap<String, Object>();
 		CommonUtil commonUtil = new CommonUtil();
- 		
  		String id = (String)session.getAttribute("m_id");
 		int count = OrderService.selectOrder_Date_Count(id, responseDTO);
 		result.put("count", (count <= 10) ? "Y" : "N");
@@ -94,6 +93,7 @@ public class OrderController {
 		else {
 			result.put("ResponseDate_Group", OrderService.ResponseDate_Group(id, responseDTO));
 			result.put("ResponseDate_User_Group", OrderService.ResponseDate_User_Group(id, responseDTO));
+			
 			
 		}
 	      String callbackMsg = commonUtil.getJsonCallBackString(" ",result);

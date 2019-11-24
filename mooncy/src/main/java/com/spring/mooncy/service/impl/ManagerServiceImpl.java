@@ -11,6 +11,7 @@ import org.springframework.web.context.request.SessionScope;
 import com.spring.mooncy.dao.ManagerDAO;
 import com.spring.mooncy.dto.OrderDTO;
 import com.spring.mooncy.dto.Order_ManagementDTO;
+import com.spring.mooncy.dto.PagingDTO;
 import com.spring.mooncy.dto.StoreDTO;
 import com.spring.mooncy.service.ManagerService;
 
@@ -23,11 +24,11 @@ public class ManagerServiceImpl implements ManagerService{
 
 	@Override
 
-	public List<OrderDTO> selectOrder() {
-
+	public List<OrderDTO> selectOrder(PagingDTO pagingDTO) {
+		System.out.println("sm 1 "+pagingDTO.getPageNo());
 		// TODO Auto-generated method stub
 
-		return ManagerDAO.selectOrder();
+		return ManagerDAO.selectOrder(pagingDTO);
 
 	}
 
@@ -46,9 +47,9 @@ public class ManagerServiceImpl implements ManagerService{
 	}
 	@Override
 
-	public List<Order_ManagementDTO> selectOrder_Management() {
-
-		return ManagerDAO.selectOrder_Management();
+	public List<Order_ManagementDTO> selectOrder_Management(PagingDTO pagingDTO) {
+		//System.out.println("2"+pagingDTO.getPageNo2());
+		return ManagerDAO.selectOrder_Management(pagingDTO);
 
 	}
 	@Override

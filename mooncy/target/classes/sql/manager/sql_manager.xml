@@ -15,7 +15,7 @@
 	<resultMap type="com.spring.mooncy.dto.OrderDTO" id="OrderDTO">
 
 		<result property="request_id" column="request_id"/>
-		
+
     	<result property="o_no" column="o_no"/>
 
     	<result property="m_id" column="m_id"/>
@@ -30,6 +30,8 @@
     	
     	<result property="p_date" column="p_date"/>
 
+		<result property="p_date" column="om_count"/>
+		
     	<collection property="pagingDTO" resultMap="PagingDTO" />
 
     </resultMap>
@@ -67,14 +69,15 @@
     	<result property="p_count" column="p_count"/>
     	<result property="om_date" column="om_date"/>
     	<result property="m_name" column="m_name"/>
+    	<collection property="pagingDTO" resultMap="PagingDTO" />
+    	
     </resultMap>
     <select id="selectOrder" parameterType="com.spring.mooncy.dto.PagingDTO" resultMap="OrderDTO">
 
 	/*order.selectOrder*/
-
 		SELECT  
 		
-		distinct  m_user.m_name
+				distinct  m_user.m_name
 				
 				,o_no
 				
@@ -87,28 +90,37 @@
 				,p_count
 				
 				,p_date
-
-		FROM p_order, m_user 
+				
+				,row_number() over(order by p_date desc) as numrow
+				
+        		,count(*) over() as totalcnt
+		FROM 
+			p_order, m_user 
+		where
+			m_user.m_id = p_order.m_id
+		order by 
+			p_date desc
 		
-		where m_user.m_id = p_order.m_id
-		
-		order by p_date desc
 
 	</select>
 	 
-	 <select id="selectOrder_Management" resultMap="Order_ManagementDTO">
+	 <select id="selectOrder_Management" parameterType="com.spring.mooncy.dto.PagingDTO" resultMap="Order_ManagementDTO">
 
 	/*manager.selectOrder_Management*/
-	SELECT   	
-		DISTINCT om_no
-		,o_no
-		,(select DISTINCT m_name from m_user m, order_management om1  where m.m_id = om.request_id and om.om_no = om1.OM_NO) as request_name 
-		,(select DISTINCT m_name from m_user m, order_management om2  where m.m_id = om.response_id and om.om_no = om2.OM_NO) as response_name
-		,p_name
-		,p_count
-		,om_date
-	FROM order_management om, m_user m
-		order by om_date desc
+	
+		SELECT   	
+			DISTINCT om_no
+			,o_no
+			,(select DISTINCT m_name from m_user m, order_management om1  where m.m_id = om.request_id and om.om_no = om1.OM_NO) as request_name 
+			,(select DISTINCT m_name from m_user m, order_management om2  where m.m_id = om.response_id and om.om_no = om2.OM_NO) as response_name
+			,p_name
+			,p_count
+			,om_date
+			,row_number() over(order by om_date desc) as numrow2
+        	,count(*) over() as totalcnt2
+		FROM order_management om, m_user m
+			order by om_date desc
+	
 
 	</select>
     <select id="requestOrder" parameterType="com.spring.mooncy.dto.OrderDTO" resultMap="StoreDTO" >
@@ -153,6 +165,7 @@
 			m_id = #{request_id}
 	
 	</update>
+	
 	<update id="check_Update" parameterType="com.spring.mooncy.dto.OrderDTO">
 	/*manager.check_Update*/
 		UPDATE

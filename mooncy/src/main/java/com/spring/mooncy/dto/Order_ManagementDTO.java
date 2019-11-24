@@ -11,6 +11,13 @@ public class Order_ManagementDTO {
 	String p_count;
 	String om_date;
 	String m_name;
+	PagingDTO pagingDTO;
+	public PagingDTO getPagingDTO() {
+		return pagingDTO;
+	}
+	public void setPagingDTO(PagingDTO pagingDTO) {
+		this.pagingDTO = pagingDTO;
+	}
 	int om_count;
 	public int getOm_no() {
 		return om_no;

@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 import com.spring.mooncy.dao.ManagerDAO;
 import com.spring.mooncy.dto.OrderDTO;
 import com.spring.mooncy.dto.Order_ManagementDTO;
+import com.spring.mooncy.dto.PagingDTO;
 import com.spring.mooncy.dto.StoreDTO;
 @Repository
 public class ManagerDAOImpl implements ManagerDAO{
@@ -19,7 +20,7 @@ public class ManagerDAOImpl implements ManagerDAO{
 
 	@Override
 
-	public List<OrderDTO> selectOrder() {
+	public List<OrderDTO> selectOrder(PagingDTO pagingDTO) {
 
 		// TODO Auto-generated method stub
 
@@ -38,7 +39,7 @@ public class ManagerDAOImpl implements ManagerDAO{
 	}
 	@Override
 
-	public List<Order_ManagementDTO> selectOrder_Management() {
+	public List<Order_ManagementDTO> selectOrder_Management(PagingDTO pagingDTO) {
 
 		// TODO Auto-generated method stub
 
