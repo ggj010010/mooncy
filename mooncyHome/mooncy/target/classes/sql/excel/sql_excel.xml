@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<insert id="insertExcel" parameterType="egovMap" >
+
+    insert into INSERTEXCEL(
+            id,
+            name,
+            age,
+            email
+        )values
+    <foreach collection="excelContent" item="item" separator=",">
+        (
+            #{item.A},
+            #{item.B},
+            #{item.C},
+            #{item.D}
+        )
+        </foreach>
+  </insert>
