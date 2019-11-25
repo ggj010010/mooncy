@@ -20,6 +20,6 @@ public interface QuService {
     // 05. 게시글 전체 목록
     public List<QuVO> listAll() throws Exception;
 //    // 06. 게시글 조회
-
+    public void updatecheck(QuVO vo) throws Exception;
 }
  

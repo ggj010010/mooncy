@@ -24,6 +24,10 @@ public class QuController {
     @Inject
     QuRepService qurepService;
     
+    
+    
+    
+    
     // 01. 게시글 목록
     @RequestMapping("/menu/quview")
     public ModelAndView list() throws Exception{
@@ -33,6 +37,7 @@ public class QuController {
         mav.setViewName("/menu/quview"); // 뷰를 list.jsp로 설정
         mav.addObject("list", list); // 데이터를 저장
         return mav; // list.jsp로 List가 전달된다.
+        
     }
     
     // 02_01. 게시글 작성화면
@@ -80,6 +85,14 @@ public class QuController {
         mav.addObject("dto", quService.read(q_no));
         mav.addObject("dtoRep",qurepService.readRep(q_no));
         return mav;
+    }
+
+    // 06. 게시글 수정
+    // 폼에서 입력한 내용들은 @ModelAttribute QuVO vo로 전달됨
+    @RequestMapping(value="/menu/updatecheck.do", method=RequestMethod.POST)
+    public String updatecheck(@ModelAttribute QuVO vo) throws Exception{
+        quService.updatecheck(vo);
+        return "redirect:/menu/quview";
     }
     
     // 04. 게시글 수정

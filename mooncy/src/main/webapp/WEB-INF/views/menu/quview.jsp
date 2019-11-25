@@ -91,7 +91,14 @@
             <!-- 원하는 날짜형식으로 출력하기 위해 fmt태그 사용 -->
             <fmt:formatDate value="${qv.q_date}" pattern="yyyy-MM-dd HH:mm:ss"/>
         </td>
-        <td>${qv.q_check}</td>
+        <td>
+					<c:if test="${qv.q_check == '0' }">
+                   		미확인
+					</c:if>
+					<c:if test="${qv.q_check == '1' }">
+                   		처리완료
+					</c:if>
+		</td>
     </tr>     
 
     </c:when>
@@ -109,9 +116,30 @@
     </tr>      
 
     </c:when>
-
-
 </c:choose>
+							<c:if test="${totalCnt/5 > 1 }">
+										<c:forEach var="i" begin="1" end="${(totalCnt-1)/5+1}">
+
+											<c:choose>
+
+												<c:when test="${pageNo==i }">
+
+													<a href="/menu/quview?pageNo=${i }">(${i}) <span
+														class="sr-only"></span></a>
+
+												</c:when>
+
+												<c:otherwise>
+
+													<a href="/menu/quview?pageNo=${i }">${i }</a>
+
+												</c:otherwise>
+
+											</c:choose>
+
+										</c:forEach>
+
+									</c:if>
 
 
     </c:forEach>

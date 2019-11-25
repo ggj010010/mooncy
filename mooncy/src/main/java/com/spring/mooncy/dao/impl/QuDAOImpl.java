@@ -63,7 +63,12 @@ public class QuDAOImpl implements QuDAO {
 		return sqlSession.selectList("main.listAll",pagingDTO);
 
 	}
-
+	//   06   게시글 체크 수정
+    @Override
+    public void updatecheck(QuVO vo) throws Exception {
+    	sqlSession.update("main.updateCheck", vo);
+ 
+    }
 
 
 }

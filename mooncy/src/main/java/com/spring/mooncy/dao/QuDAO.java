@@ -17,7 +17,8 @@ public interface QuDAO {
     // 05. 게시글 전체 목록
     public List<QuVO> listAll() throws Exception;
     public List<QuVO> listAllView(PagingDTO pagingDTO) throws Exception;
-
+    // 06. 게시글 체크수정
+    public void updatecheck(QuVO vo) throws Exception;
     
 
 

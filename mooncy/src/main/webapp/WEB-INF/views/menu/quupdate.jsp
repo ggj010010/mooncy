@@ -191,13 +191,13 @@
 			<form name="form1" method="post">
 				<div>
 					<!-- 원하는 날짜형식으로 출력하기 위해 fmt태그 사용 -->
-					<th style= "width : 50; float : right;">${dto.q_no}</th>
+					<th style= "width : 50; text-align : center;">${dto.q_no}</th>
 					
-					<th colspan="3"><div>
+					<th colspan="2"><div>
 					
-					<input name="q_title" id="q_title" size="95"
+					<input name="q_title" id="q_title" size="95" style="height : 100%;"
 						value="${dto.q_title}" placeholder="제목을 입력해주세요">
-				</div></th><th>
+				</div></th><th colspan="2" style= " height : 47px;">
 					<fmt:formatDate value="${dto.q_date}"
 						pattern="yyyy-MM-dd HH:mm:ss" />
 					<!-- 날짜 형식 => yyyy 4자리연도, MM 월, dd 일, a 오전/오후, HH 24시간제, hh 12시간제, mm 분, ss 초 -->
@@ -208,7 +208,7 @@
 				<div>
 					
 
-					<textarea name="q_desc" id="q_desc" rows="10" cols="130"
+					<textarea name="q_desc" id="q_desc" rows="10" cols="130" style="width: 100%;"
 						placeholder="내용을 입력해주세요">${dto.q_desc}</textarea>
 				</div></td>
 				<div>
@@ -221,7 +221,7 @@
 				</div>
 				<tr>
 				<td></td><td></td><td></td>
-					<td><button type="button" class="button" id="btnUpdete" style="align : right; width : 30%; height : 100%;">수정</button></td>
+					<td><button type="button" class="button" id="btnUpdete" style="align : right; width : 100%; height : 100%;">수정</button></td>
 					<td><button type="button"  class="button" 
 					onClick="location.href='${path}/menu/detail.do?q_no=${dto.q_no}'"
 					style="width : 100%;height : 100%;">취소</button></td>
