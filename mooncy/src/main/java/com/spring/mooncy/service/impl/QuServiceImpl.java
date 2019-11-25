@@ -60,10 +60,6 @@ public class QuServiceImpl implements QuService {
     public List<QuVO> listAll() throws Exception {
         return quDao.listAll();
     }
-    // 06. 게시글 처리수정
-    @Override
-    public void updatecheck(QuVO vo) throws Exception {
-        quDao.updatecheck(vo);
-    }
+    
 
 }

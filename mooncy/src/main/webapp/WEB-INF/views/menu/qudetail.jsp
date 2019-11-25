@@ -25,9 +25,28 @@
 		});
 
 		$("#btnUpdete").click(function() {
-			var q_check = $("#q_check").val();
-
-			document.form1.action = "${path}/menu/updatecheck.do"
+			//var q_title = document.form1.q_title.value; ==> name속성으로 처리할 경우
+			//var q_desc = document.form1.q_desc.value;
+			//var m_id = document.form1.m_id.value;
+			var q_title = $("#q_title").val();
+			var q_desc = $("#q_desc").val();
+			var m_id = $("#m_id").val();
+			if (q_title == "") {
+				alert("제목을 입력하세요");
+				document.form1.q_title.focus();
+				return;
+			}
+			if (q_desc == "") {
+				alert("내용을 입력하세요");
+				document.form1.q_desc.focus();
+				return;
+			}
+			if (m_id == "") {
+				alert("이름을 입력하세요");
+				document.form1.m_id.focus();
+				return;
+			}
+			document.form1.action = "${path}/menu/update.do"
 			// 폼에 입력한 데이터를 서버로 전송
 			document.form1.submit();
 		});
@@ -166,12 +185,7 @@
 				</th>
 				<th  style = "text-align : right;"><div>
 					
-					<c:if test="${dto.q_check == '0' }">
-                   		미확인
-					</c:if>
-					<c:if test="${dto.q_check == '1' }">
-                   		처리완료
-					</c:if>
+					처리 : ${dto.q_check}
 				</div></th>
 				<th style = "text-align : right;">
 					<fmt:formatDate value="${dto.q_date}"
@@ -198,25 +212,15 @@
 				<td></td><td></td><td></td>
 				
 					<td>
-					<c:if test="${dto.q_check == '0' && sessionScope.m.m_id == dto.m_id}">
-                   		<button type="button" class="button" onClick="location.href='${path}/menu/update.do?q_no=${dto.q_no}'"   
-						style="float : right; width : 80%; height : 100%;">수정</button>
-					</c:if>
-					<c:if test="${dto.q_check == '0' && sessionScope.m.m_id == '0' && sessionScope.m.m_id != dto.m_id}">
-						<input type="hidden" name="q_check" value="1">
-						<button type="button" class="button" id="btnUpdete" style="align : right; width : 100%; height : 100%;">처리하기</button>
-					</c:if>
-					<c:if test="${dto.q_check == '1' && sessionScope.m.m_id == '0' && sessionScope.m.m_id != dto.m_id}">
-						<input type="hidden" name="q_check" value="0">
-						<button type="button" class="button" id="btnUpdete" style="align : right; width : 100%; height : 100%;">처리해제</button>
-					</c:if>
-					</td>
+					<c:if test="${dto.q_check == '0'|| sessionScope.m.m_id == dto.m_id}}">
+                    <button type="button" class="button" onClick="location.href='${path}/menu/update.do?q_no=${dto.q_no}'"   
+					style="float : right; width : 80%; height : 100%;">수정</button></c:if>
 
 					<td>
 					<c:if test="${dto.q_check == '0'|| sessionScope.m.m_id == '0'}">
+						
 							<button type="button"  class="button" id="btnDelete"style="width :
-					 		80%;height : 100%;">삭제</button>
-					 </c:if>
+					 		80%;height : 100%;">삭제</button></c:if>
 					</td>
 				</tr>
 
@@ -237,7 +241,7 @@
     
 
 
-		
+					
 					<c:if test="${sessionScope.m.m_id == '0'}">
 						<button type="button" class="btn_delete">댓글 삭제</button></td>
     </tr> 

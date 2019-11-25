@@ -64,12 +64,6 @@
             m_id = #{m_id}
         WHERE q_no = #{q_no}
     </update>
-    <!-- 05. 게시글 check처리 -->  
-    <update id="updateCheck">
-        UPDATE qu SET
-            q_check = #{q_check}
-        WHERE q_no = #{q_no}
-    </update>
     <!-- 06. 게시글 삭제처리 -->
     <delete id="deleteArticle">
         DELETE FROM qu

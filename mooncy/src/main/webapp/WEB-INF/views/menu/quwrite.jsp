@@ -81,10 +81,10 @@
   <table  class="type10" style = "width : 650;">
     <tr>
         <th style="width: 20%;">제목</th>
-        <td colspan ="2">   <input name="q_title" id="q_title" size="100" style="width : 100%;" placeholder="제목을 입력해주세요"></td>
+        <td colspan ="2">   <input name="q_title" id="q_title" size="100" placeholder="제목을 입력해주세요"></td>
    <tr>  <th>내용</th>
-   			<td colspan ="2">
-   				<textarea name="q_desc" id="q_desc" rows="4" cols="90" style="width : 100%;" placeholder="내용을 입력해주세요"></textarea>
+   			<td colspan ="2">   
+   				<textarea name="q_desc" id="q_desc" rows="4" cols="90" placeholder="내용을 입력해주세요"></textarea>
    			</td>
    	</tr>
 	<tr>
