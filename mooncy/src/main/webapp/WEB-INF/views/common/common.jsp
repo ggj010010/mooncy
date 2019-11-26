@@ -12,6 +12,8 @@
 </head>
 <%-- <script src="/resources/js/jquery-1.10.2.js"></script> --%>
 <script type="text/javascript" src="http://code.jquery.com/jquery-2.1.4.min.js"></script> 
+<script src="http://malsup.github.com/jquery.form.js"></script> 
+
 <script type="text/javascript">
    var $j = jQuery.noConflict();
 </script>

@@ -21,9 +21,6 @@ import com.spring.mooncy.service.StoreService;
 
 @Controller
 public class ManagerController {
-	//	@Autowired
-	//
-	//	LoginService loginService;
 
 
 	@Autowired
