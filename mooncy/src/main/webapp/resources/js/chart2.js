@@ -7,24 +7,27 @@ window.chartColors = {
 	green: 'rgb(75, 192, 192)',
 	blue: 'rgb(54, 162, 235)',
 	purple: 'rgb(153, 102, 255)',
-	grey: 'rgb(201, 203, 207)'
+	grey: 'rgb(201, 203, 207)',
 };
-
+var colorNames = [
+	'딸기',
+	'오렌지',
+	'바나나',
+	'키위',
+	'파인애플',
+	'한라봉',
+	'수박',
+	'토마토',
+	'사과',
+	'망고',
+	'얼음',
+	'빨대',
+	'뚜껑',
+	'컵'
+	
+];
 (function(global) {
-	var MONTHS = [
-		'January',
-		'February',
-		'March',
-		'April',
-		'May',
-		'June',
-		'July',
-		'August',
-		'September',
-		'October',
-		'November',
-		'December'
-	];
+
 
 	var COLORS = [
 		'#4dc9f6',
@@ -49,8 +52,8 @@ window.chartColors = {
 
 		rand: function(min, max) {
 			var seed = this._seed;
-			min = min === undefined ? 0 : min;
-			max = max === undefined ? 1 : max;
+			min = min === undefined ? 0 : 0;
+			max = max === undefined ? 1 : 100;
 			this._seed = (seed * 9301 + 49297) % 233280;
 			return min + (this._seed / 233280) * (max - min);
 		},
@@ -125,7 +128,7 @@ window.chartColors = {
 
 	// DEPRECATED
 	window.randomScalingFactor = function() {
-		return Math.round(Samples.utils.rand(-100, 100));
+		return Math.round(Samples.utils.rand(0, 100));
 	};
 
 	// INITIALIZATION

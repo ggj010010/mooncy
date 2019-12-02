@@ -24,32 +24,7 @@
 			}
 		});
 
-		$("#btnUpdete").click(function() {
-			//var q_title = document.form1.q_title.value; ==> name속성으로 처리할 경우
-			//var q_desc = document.form1.q_desc.value;
-			//var m_id = document.form1.m_id.value;
-			var q_title = $("#q_title").val();
-			var q_desc = $("#q_desc").val();
-			var m_id = $("#m_id").val();
-			if (q_title == "") {
-				alert("제목을 입력하세요");
-				document.form1.q_title.focus();
-				return;
-			}
-			if (q_desc == "") {
-				alert("내용을 입력하세요");
-				document.form1.q_desc.focus();
-				return;
-			}
-			if (m_id == "") {
-				alert("이름을 입력하세요");
-				document.form1.m_id.focus();
-				return;
-			}
-			document.form1.action = "${path}/menu/update.do"
-			// 폼에 입력한 데이터를 서버로 전송
-			document.form1.submit();
-		});
+		
 
 		$("#btn_result").click(function() {
 

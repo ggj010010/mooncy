@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.context.request.SessionScope;
 
 import com.spring.mooncy.dao.ManagerDAO;
+import com.spring.mooncy.dto.CustomerDTO;
 import com.spring.mooncy.dto.OrderDTO;
 import com.spring.mooncy.dto.Order_ManagementDTO;
 import com.spring.mooncy.dto.PagingDTO;
@@ -134,6 +135,18 @@ public class ManagerServiceImpl implements ManagerService{
 	public List<Order_ManagementDTO> selectManagerPop(Order_ManagementDTO order_managementDTO)  {
 		// TODO Auto-generated method stub
 		return ManagerDAO.selectManagerPop(order_managementDTO);
+	}
+
+	@Override
+	public List<CustomerDTO> selectCustomer() {
+		// TODO Auto-generated method stub
+		return ManagerDAO.selectCustomer();
+	}
+
+	@Override
+	public List<Order_ManagementDTO> selectManagerName(Order_ManagementDTO order_managementDTO) {
+		// TODO Auto-generated method stub
+		return ManagerDAO.selectManagerName(order_managementDTO);
 	}
 
 }

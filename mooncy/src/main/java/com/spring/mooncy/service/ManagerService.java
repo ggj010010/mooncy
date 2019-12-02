@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
+import com.spring.mooncy.dto.CustomerDTO;
 import com.spring.mooncy.dto.OrderDTO;
 import com.spring.mooncy.dto.Order_ManagementDTO;
 import com.spring.mooncy.dto.PagingDTO;
@@ -20,4 +21,6 @@ public interface ManagerService {
 	public int request_Update(OrderDTO orderDTO);
 	public int order_Manager(OrderDTO orderDTO);
 	public List<Order_ManagementDTO> selectManagerPop(Order_ManagementDTO order_managementDTO);
+	public List<CustomerDTO> selectCustomer();
+	public List<Order_ManagementDTO> selectManagerName(Order_ManagementDTO order_managementDTO);
 }

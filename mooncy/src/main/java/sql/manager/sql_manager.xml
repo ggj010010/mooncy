@@ -57,7 +57,18 @@
 		<result property="cup" column="cup"/>
 		
     </resultMap>
+    
+	<resultMap type="com.spring.mooncy.dto.CustomerDTO"
 
+		id="CustomerDTO">
+
+		<result property="m_id" column="m_id" />
+		<result property="m_pw" column="m_pw" />
+		<result property="m_name" column="m_name" />
+
+
+	</resultMap>
+	
     <resultMap type="com.spring.mooncy.dto.Order_ManagementDTO" id="Order_ManagementDTO">
 		<result property="om_no" column="om_no"/>
 		<result property="o_no" column="o_no"/>
@@ -218,10 +229,38 @@
 
 
 	
-		select  response_id,request_id, p_name,sum(p_count) AS p_count from ORDER_MANAGEMENT 
-		WHERE response_id=3 group by p_name,response_id,request_id
+		select  
+                DISTINCT (select DISTINCT m_name from m_user m, order_management om1 where m.m_id = om.request_id and om.om_no = om1.OM_NO) as request_name
+				,response_id,
+				request_id, 
+				p_name,
+				sum(p_count) OVER(PARTITION by P_NAME, request_id) as p_count
+		from 
+				ORDER_MANAGEMENT om
+		WHERE 
+			response_id= #{response_id}  
+			and om_date BETWEEN #{start} AND #{end}
 	
 
 	</select>
+	
+	<select id="selectCustomer" parameterType="com.spring.mooncy.dto.CustomerDTO" resultMap="CustomerDTO">
+
+
+	
+		select  * from m_user
+	
+
+	</select>
+	
+	<select id="selectManagerName" parameterType="com.spring.mooncy.dto.Order_ManagementDTO" resultMap="Order_ManagementDTO">
+
+
+	
+		select Distinct REQUEST_ID from ORDER_MANAGEMENT where response_id = #{response_id}
+	
+
+	</select>
+	
 	
 </mapper>

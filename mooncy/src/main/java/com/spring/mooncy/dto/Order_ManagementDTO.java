@@ -13,22 +13,22 @@ public class Order_ManagementDTO {
 	String p_count;
 	String om_date;
 	String m_name;
-	Date start;
-	Date end;
+	String start;
+	String end;
 	
-	public Date getStart() {
+	
+	public String getStart() {
 		return start;
 	}
-	public void setStart(Date start) {
+	public void setStart(String start) {
 		this.start = start;
 	}
-	public Date getEnd() {
+	public String getEnd() {
 		return end;
 	}
-	public void setEnd(Date end) {
+	public void setEnd(String end) {
 		this.end = end;
 	}
-	
 	PagingDTO pagingDTO;
 	public PagingDTO getPagingDTO() {
 		return pagingDTO;

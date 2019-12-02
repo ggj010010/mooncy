@@ -119,9 +119,9 @@ app.post('/', function(req, res){
         <input type="date" name="start" th:value="${start}" />
         <input type="date" name="end" th:value="${end}" />
         <select id="response_id" name="response_id" >
-     			 <option value="1" selected>A</option> 
-     			 <option value="2">B</option>
-     			 <option value="3">C</option> 
+        <c:foreach var="sc" items="${selectCustomer}">
+     			 <option value="${sc.m_id}">${sc.m_name}</option>
+     	</c:foreach>
       	</select>
         <input type="submit" value="Click" />
     </form>

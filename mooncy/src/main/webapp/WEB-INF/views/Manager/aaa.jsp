@@ -67,7 +67,7 @@ var myBarChart = new Chart(ctx, {
 var button = document.getElementById("sendAjax")
 
 button.addEventListener("click", function() {
-    sendAjax('http://localhost:3000/');
+    sendAjax('http://localhost:8181/Manager/aaa');
 })
  
 function sendAjax(url) {

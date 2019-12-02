@@ -3,6 +3,8 @@ package com.spring.mooncy.Controller;
 import java.util.List;
 import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,9 +21,9 @@ public class QuController {
     
     // 의존관계 주입 => QuServiceImpl 생성
     // IoC 의존관계 역전
-    @Inject
+    @Autowired
     QuService quService;
-    @Inject
+    @Autowired
     QuRepService qurepService;
     
     // 01. 게시글 목록

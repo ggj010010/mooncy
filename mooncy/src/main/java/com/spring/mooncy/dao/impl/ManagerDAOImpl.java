@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.spring.mooncy.dao.ManagerDAO;
+import com.spring.mooncy.dto.CustomerDTO;
 import com.spring.mooncy.dto.OrderDTO;
 import com.spring.mooncy.dto.Order_ManagementDTO;
 import com.spring.mooncy.dto.PagingDTO;
@@ -87,6 +88,18 @@ public class ManagerDAOImpl implements ManagerDAO{
 		// TODO Auto-generated method stub
 		System.out.println(order_managementDTO.getResponse_id());
 		return sqlSession.selectList("manager.selectManagerPop", order_managementDTO);
+	}
+
+	@Override
+	public List<CustomerDTO> selectCustomer() {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("manager.selectCustomer");
+	}
+
+	@Override
+	public List<Order_ManagementDTO> selectManagerName(Order_ManagementDTO order_managementDTO) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("manager.selectManagerName",order_managementDTO);
 	}
 
 
