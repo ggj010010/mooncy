@@ -1,12 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
 	pageEncoding="EUC-KR"%>
 <%@include file="/WEB-INF/views/common/common.jsp"%>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
 <!DOCTYPE html>
 <html>
 <head>
 <link rel="stylesheet" type="text/css" href="/resources/js/default.css">
+	<script src="/resources/js/chart.js"></script>
+	<script src="/resources/js/chart2.js"></script>
 <meta charset="EUC-KR">
 <title>재고</title>
+
+
+
 <SCRIPT>
  var p_count;
  var o_no;
@@ -265,6 +271,7 @@
 
 </SCRIPT>
 </head>
+
 <body>
 
 
@@ -443,7 +450,6 @@
 
 							<tbody>
 								<c:forEach var="om" items="${order_managementList}">
-
 									<tr>
 										<td>${om.om_no }</td>
 										<td>${om.request_name }</td>
@@ -480,6 +486,42 @@
 					</td>
 				</tr>
 			</table>
+			
+			<script>
+//삭제버튼
+	$(document).ready(function() {
+		$("#btnDelete").click(function() {
+			var val = $(this).val();
+			if (confirm(val+" 를 삭제하시겠습니까?")) {
+				location.href="/customer/delete.do?c_tel="+$(this).val();
+			}
+		});
+	});
+</script>
+			
+				       <table style = "width : 100%";>
+
+           <tr>
+              <td colspan="2">
+              <form name="searchForm" action="<c:url value="/Manager/managerpop" />" method="GET" >
+                    <div>Start &nbsp<input type="date" id="start" name="userdate" value="2019-11-14"></div>
+             </td>
+              <td colspan="2">
+                    <div>End &nbsp<input type="date" id="end" name="userdate" value="2019-11-14"></div>
+             </td>
+
+         
+              <td>
+  			<select name="searchType">
+  				<option value="A" <c:out value="A"/>>A</option>
+  				<option value="B" <c:out value="B"/>>B</option>
+  				<option value="C" <c:out value="C"/>>C</option>
+  			</select>
+  			<input id="submit" type="button" value="검색">
+  		</form>
+			</td>
+           </tr>
+        </table>
 		</div>
 	</div>
 

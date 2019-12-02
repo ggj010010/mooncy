@@ -1,5 +1,6 @@
 package com.spring.mooncy.service;
 
+import java.sql.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -18,4 +19,5 @@ public interface ManagerService {
 	public int check_Update(OrderDTO orderDTO);
 	public int request_Update(OrderDTO orderDTO);
 	public int order_Manager(OrderDTO orderDTO);
+	public List<Order_ManagementDTO> selectManagerPop(Order_ManagementDTO order_managementDTO);
 }

@@ -1,5 +1,6 @@
 package com.spring.mooncy.service.impl;
 
+import java.sql.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -128,4 +129,11 @@ public class ManagerServiceImpl implements ManagerService{
 			orderDTO.setP_name("cup");
 		}
 	}
+
+	@Override
+	public List<Order_ManagementDTO> selectManagerPop(Order_ManagementDTO order_managementDTO)  {
+		// TODO Auto-generated method stub
+		return ManagerDAO.selectManagerPop(order_managementDTO);
+	}
+
 }

@@ -204,4 +204,24 @@
     	
 	</insert>
 
+	<select id="selectManagerPop2" parameterType="com.spring.mooncy.dto.Order_ManagementDTO" resultMap="Order_ManagementDTO">
+
+
+	
+		select  response_id,request_id, p_name,sum(p_count) AS p_count from ORDER_MANAGEMENT group by p_name,response_id,request_id
+		 WHERE response_id=#{response_id}  and om_date BETWEEN #{start} AND #{end} 
+	
+
+	</select>
+	
+		<select id="selectManagerPop" parameterType="com.spring.mooncy.dto.Order_ManagementDTO" resultMap="Order_ManagementDTO">
+
+
+	
+		select  response_id,request_id, p_name,sum(p_count) AS p_count from ORDER_MANAGEMENT 
+		WHERE response_id=3 group by p_name,response_id,request_id
+	
+
+	</select>
+	
 </mapper>

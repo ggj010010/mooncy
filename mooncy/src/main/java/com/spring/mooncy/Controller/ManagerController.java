@@ -1,5 +1,6 @@
 package com.spring.mooncy.Controller;
 
+import java.sql.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -11,9 +12,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.spring.mooncy.dto.OrderDTO;
+import com.spring.mooncy.dto.Order_ManagementDTO;
 import com.spring.mooncy.dto.PagingDTO;
 import com.spring.mooncy.dto.StoreDTO;
 import com.spring.mooncy.service.ManagerService;
@@ -76,6 +80,7 @@ public class ManagerController {
 		return "/Manager/manager_order";
 
 	}
+	
 	@RequestMapping(value = "/Manager/manager_store")
 	public String manager_store(Model model) throws Exception {
 		
@@ -125,4 +130,41 @@ public class ManagerController {
 		 return check;
 		
 	}
+
+@RequestMapping(value = "/Manager/managerpop2")
+public ModelAndView managerpop2(Order_ManagementDTO order_managementDTO) throws Exception{
+    ModelAndView mav = new ModelAndView();
+    mav.setViewName("Manager/managerpop"); // 뷰를 custview.jsp로 설정
+    return mav; // custview.jsp로 custview가 전달된다.
+	}
+
+@RequestMapping(value = "/Manager/managerpop.do")
+public ModelAndView managerpop(Order_ManagementDTO order_managementDTO) throws Exception{
+	
+    List<Order_ManagementDTO> managerpop = managerService.selectManagerPop(order_managementDTO);
+    // ModelAndView - 모델과 뷰
+    ModelAndView mav = new ModelAndView();
+    mav.setViewName("Manager/managerpop"); // 뷰를 custview.jsp로 설정
+    for (int i=0; i<managerpop.size(); i++) {
+    	Order_ManagementDTO str = managerpop.get(i);
+    	System.out.println(str);
+    }
+    	
+
+    mav.addObject("managerpop", managerpop); // 데이터를 저장
+    System.out.println(mav);
+    return mav; // custview.jsp로 custview가 전달된다.
+	}
+
+
+@RequestMapping(value = "/Manager/aaa")
+public ModelAndView aaa(Order_ManagementDTO order_managementDTO) throws Exception{
+	
+
+    ModelAndView mav = new ModelAndView();
+    mav.setViewName("Manager/aaa"); // 뷰를 custview.jsp로 설정
+
+    return mav; // custview.jsp로 custview가 전달된다.
+	}
+
 }

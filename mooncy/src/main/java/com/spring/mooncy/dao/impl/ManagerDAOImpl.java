@@ -1,5 +1,6 @@
 package com.spring.mooncy.dao.impl;
 
+import java.sql.Date;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
@@ -80,5 +81,14 @@ public class ManagerDAOImpl implements ManagerDAO{
 		return sqlSession.insert("manager.order_Manager", orderDTO);
 
 	}
+
+	@Override
+	public List<Order_ManagementDTO> selectManagerPop(Order_ManagementDTO order_managementDTO) {
+		// TODO Auto-generated method stub
+		System.out.println(order_managementDTO.getResponse_id());
+		return sqlSession.selectList("manager.selectManagerPop", order_managementDTO);
+	}
+
+
 	
 }

@@ -1,5 +1,6 @@
 package com.spring.mooncy.dao;
 
+import java.sql.Date;
 import java.util.List;
 
 import com.spring.mooncy.dto.OrderDTO;
@@ -16,5 +17,6 @@ public  interface ManagerDAO {
 	public int check_Update(OrderDTO orderDTO);
 	public int order_Manager(OrderDTO orderDTO);
 	public List<Order_ManagementDTO> selectOrder_Management(PagingDTO pagingDTO);
+	public List<Order_ManagementDTO> selectManagerPop(Order_ManagementDTO order_managementDTO);
 	//public int order_request(OrderDTO orderDTO);
 }
