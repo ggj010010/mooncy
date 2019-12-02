@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="excel">
+
+	<resultMap type="com.spring.mooncy.dto.CustomerDTO" id="CustomerDTO">
+		<result property="m_id" column="m_id" />
+		<result property="m_pw" column="m_pw" />
+		<result property="m_name" column="m_name" />
+	</resultMap>
+	
+<insert id="insertExcel" parameterType="java.util.List">
+INSERT all
+<foreach collection="list" item="item" separator=" ">
+INTO m_user
+(
+     m_id
+   , m_pw
+   , m_name
+)
+VALUES
+(
+     #{item.m_id}
+   , #{item.m_pw}
+   , #{item.m_name}
+)
+</foreach>
+select * from dual
+</insert>
+</mapper>
