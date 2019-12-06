@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
 	pageEncoding="EUC-KR"%>
 <%@include file="/WEB-INF/views/common/common.jsp"%>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script> -->
 <!DOCTYPE html>
 <html>
 <head>
@@ -394,6 +394,7 @@
 									<th>지점명</th>
 									<th>제품명</th>
 									<th>개수</th>
+									<th>날짜</th>
 								</tr>
 							</thead>
 
@@ -404,10 +405,9 @@
 											<td style="display: none;">${ol.o_no }</td>
 											<td style="display: none;">${ol.m_id }</td>
 											<td>${ol.m_name }</td>
-
 											<td>${ol.p_name }</td>
 											<td>${ol.p_count }</td>
-
+											<td>${ol.p_date }</td>
 										</tr>
 									</c:when>
 								</c:choose>
@@ -416,15 +416,20 @@
 						<div style="text-align: center">
 							<div id="side_center">
 								<div class="text-center">
-									<c:if test="${totalCnt/5 > 1 }">
-										<c:forEach var="i" begin="1" end="${(totalCnt-1)/5+1}">
+									<c:if test="${totalCnt/10 > 1 }">
+										<%	String pageNo2 = "1";
+										 if(request.getParameter("pageNo") != null){
+												pageNo2 = request.getParameter("pageNo");
+											}
+										%>
+										<c:forEach var="i" begin="1" end="${(totalCnt-1)/10+1}">
 											<c:choose>
 												<c:when test="${pageNo==i }">
-													<a href="/Manager/manager_order?pageNo=${i }">(${i}) 
+													<a href="/Manager/manager_order?pageNo=${i }&pageNo2=<%=pageNo2%>">(${i}) 
 													<span class="sr-only"></span></a>
 												</c:when>
 												<c:otherwise>
-													<a href="/Manager/manager_order?pageNo=${i }">${i }</a>
+													<a href="/Manager/manager_order?pageNo=${i }&pageNo2=<%=pageNo2%>">${i }</a>
 												</c:otherwise>
 											</c:choose>
 										</c:forEach>
@@ -439,7 +444,6 @@
 							<thead>
 								<tr>
 
-									<th>NO</th>
 									<th>받음</th>
 									<th>보냄</th>
 									<th>제품명</th>
@@ -451,7 +455,6 @@
 							<tbody>
 								<c:forEach var="om" items="${order_managementList}">
 									<tr>
-										<td>${om.om_no }</td>
 										<td>${om.request_name }</td>
 										<td>${om.response_name }</td>
 										<td>${om.p_name }</td>
@@ -464,64 +467,32 @@
 
 							</tbody>
 						</table>
-						<%-- <div style="text-align: center">
+						 <div style="text-align: center">
 							<div id="side_center">
 								<div class="text-center">
-									<c:if test="${totalCnt2/5 > 1 }">
-										<c:forEach var="i" begin="1" end="${(totalCnt2-1)/5+1}">
+									<c:if test="${totalCnt2/10 > 1 }">
+										<%	String pageNo1 = "1";
+										 if(request.getParameter("pageNo") != null){
+												pageNo1 = request.getParameter("pageNo");
+											}
+										%>
+										<c:forEach var="i" begin="1" end="${(totalCnt2-1)/10+1}">
 											<c:choose>
 												<c:when test="${pageNo2==i }">
-													<a href="/Manager/manager_order?pageNo2=${i }">(${i}) 
-													<span class="sr-only"></span></a>
+														<a href="/Manager/manager_order?pageNo=<%=pageNo1%>&pageNo2=${i}">(${i})<span class="sr-only"></span></a>
 												</c:when>
 												<c:otherwise>
-													<a href="/Manager/manager_order?pageNo2=${i }">${i }</a>
+														<a href="/Manager/manager_order?pageNo=<%=pageNo1%>&pageNo2=${i}">${i}<span class="sr-only"></span></a>
 												</c:otherwise>
 											</c:choose>
 										</c:forEach>
 									</c:if>
 								</div>
 							</div>
-						</div> --%>
+						</div> 
 					</td>
 				</tr>
 			</table>
-			
-			<script>
-//삭제버튼
-	$(document).ready(function() {
-		$("#btnDelete").click(function() {
-			var val = $(this).val();
-			if (confirm(val+" 를 삭제하시겠습니까?")) {
-				location.href="/customer/delete.do?c_tel="+$(this).val();
-			}
-		});
-	});
-</script>
-			
-				       <table style = "width : 100%";>
-
-           <tr>
-              <td colspan="2">
-              <form name="searchForm" action="<c:url value="/Manager/managerpop" />" method="GET" >
-                    <div>Start &nbsp<input type="date" id="start" name="userdate" value="2019-11-14"></div>
-             </td>
-              <td colspan="2">
-                    <div>End &nbsp<input type="date" id="end" name="userdate" value="2019-11-14"></div>
-             </td>
-
-         
-              <td>
-  			<select name="searchType">
-  				<option value="A" <c:out value="A"/>>A</option>
-  				<option value="B" <c:out value="B"/>>B</option>
-  				<option value="C" <c:out value="C"/>>C</option>
-  			</select>
-  			<input id="submit" type="button" value="검색">
-  		</form>
-			</td>
-           </tr>
-        </table>
 		</div>
 	</div>
 

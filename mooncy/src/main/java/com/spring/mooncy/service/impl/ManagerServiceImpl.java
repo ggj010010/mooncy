@@ -27,7 +27,6 @@ public class ManagerServiceImpl implements ManagerService{
 	@Override
 
 	public List<OrderDTO> selectOrder(PagingDTO pagingDTO) {
-		System.out.println("sm 1 "+pagingDTO.getPageNo());
 		// TODO Auto-generated method stub
 
 		return ManagerDAO.selectOrder(pagingDTO);
@@ -39,8 +38,6 @@ public class ManagerServiceImpl implements ManagerService{
 	public List<StoreDTO> requestOrderList(OrderDTO orderDTO, HttpSession Hsession) {
 		//Hsession.invalidate();
 		Hsession.setAttribute("request_id", orderDTO.getM_id());
-		System.out.println("c"+orderDTO.getP_count());
-		System.out.println("n"+orderDTO.getO_no());
 		Hsession.setAttribute("request_count", orderDTO.getP_count());
 		Hsession.setAttribute("o_no", orderDTO.getO_no());
 		ktoe(orderDTO);
@@ -50,7 +47,6 @@ public class ManagerServiceImpl implements ManagerService{
 	@Override
 
 	public List<Order_ManagementDTO> selectOrder_Management(PagingDTO pagingDTO) {
-		//System.out.println("2"+pagingDTO.getPageNo2());
 		return ManagerDAO.selectOrder_Management(pagingDTO);
 
 	}

@@ -26,7 +26,7 @@ public class ManagerDAOImpl implements ManagerDAO{
 
 		// TODO Auto-generated method stub
 
-		return sqlSession.selectList("manager.selectOrder");
+		return sqlSession.selectList("manager.selectOrder", pagingDTO);
 
 	}
 
@@ -45,7 +45,7 @@ public class ManagerDAOImpl implements ManagerDAO{
 
 		// TODO Auto-generated method stub
 
-		return sqlSession.selectList("manager.selectOrder_Management");
+		return sqlSession.selectList("manager.selectOrder_Management", pagingDTO);
 
 	}
 	@Override

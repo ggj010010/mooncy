@@ -9,6 +9,9 @@
     	<result property="pageNo" column="numrow"/>
 
     	<result property="totalCnt" column="totalcnt"/>
+    	
+    	<result property="pageNo2" column="numrow2"/>
+    	<result property="totalCnt2" column="totalcnt2"/>
 
     </resultMap>
 
@@ -86,9 +89,12 @@
     <select id="selectOrder" parameterType="com.spring.mooncy.dto.PagingDTO" resultMap="OrderDTO">
 
 	/*order.selectOrder*/
-		SELECT  
-		
-				distinct  m_user.m_name
+		 SELECT  
+            *
+            from
+            (
+            select
+				m_user.m_name
 				
 				,o_no
 				
@@ -100,7 +106,7 @@
 
 				,p_count
 				
-				,p_date
+				,substr(p_date, 0, 10) as p_date
 				
 				,row_number() over(order by p_date desc) as numrow
 				
@@ -111,27 +117,33 @@
 			m_user.m_id = p_order.m_id
 		order by 
 			p_date desc
-		
+        )
+		where numrow between (#{pageNo, jdbcType=NUMERIC}-1)*10 + 1 AND #{pageNo, jdbcType=NUMERIC}*10
 
 	</select>
 	 
 	 <select id="selectOrder_Management" parameterType="com.spring.mooncy.dto.PagingDTO" resultMap="Order_ManagementDTO">
 
 	/*manager.selectOrder_Management*/
-	
-		SELECT   	
-			DISTINCT om_no
-			,o_no
-			,(select DISTINCT m_name from m_user m, order_management om1  where m.m_id = om.request_id and om.om_no = om1.OM_NO) as request_name 
-			,(select DISTINCT m_name from m_user m, order_management om2  where m.m_id = om.response_id and om.om_no = om2.OM_NO) as response_name
-			,p_name
-			,p_count
-			,om_date
-			,row_number() over(order by om_date desc) as numrow2
-        	,count(*) over() as totalcnt2
-		FROM order_management om, m_user m
-			order by om_date desc
-	
+		SELECT  
+            *
+            from
+            (
+				SELECT   	
+					o_no
+					,(select DISTINCT m_name from m_user m, order_management om1  where m.m_id = om.request_id and om.om_no = om1.OM_NO) as request_name 
+					,(select DISTINCT m_name from m_user m, order_management om2  where m.m_id = om.response_id and om.om_no = om2.OM_NO) as response_name
+					,p_name
+					,p_count
+					,substr(om_date, 0, 10) as om_date
+        			,row_number() over(order by om_date desc) as numrow2
+        			,count(*) over() as totalcnt2
+        			
+				FROM order_management om, m_user m
+                where m.m_id = om.response_id
+				order by om_date desc
+			 )
+		where numrow2 between (#{pageNo2, jdbcType=NUMERIC}-1)*10 + 1 AND #{pageNo2, jdbcType=NUMERIC}*10
 
 	</select>
     <select id="requestOrder" parameterType="com.spring.mooncy.dto.OrderDTO" resultMap="StoreDTO" >

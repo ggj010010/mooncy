@@ -16,7 +16,7 @@ public class Order_ManagementDTO {
 	String start;
 	String end;
 	
-	
+	PagingDTO pagingDTO;
 	public String getStart() {
 		return start;
 	}
@@ -28,13 +28,6 @@ public class Order_ManagementDTO {
 	}
 	public void setEnd(String end) {
 		this.end = end;
-	}
-	PagingDTO pagingDTO;
-	public PagingDTO getPagingDTO() {
-		return pagingDTO;
-	}
-	public void setPagingDTO(PagingDTO pagingDTO) {
-		this.pagingDTO = pagingDTO;
 	}
 	int om_count;
 	public int getOm_no() {
@@ -102,6 +95,12 @@ public class Order_ManagementDTO {
 	}
 	public void setOm_count(int om_count) {
 		this.om_count = om_count;
+	}
+	public PagingDTO getPagingDTO() {
+		return pagingDTO;
+	}
+	public void setPagingDTO(PagingDTO pagingDTO) {
+		this.pagingDTO = pagingDTO;
 	}
 	
 	

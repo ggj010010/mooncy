@@ -6,6 +6,9 @@ public class PagingDTO {
 
 	int totalCnt;
 	int pageNo;
+	int totalCnt2;
+	int pageNo2;
+	
 	String m_id;
 	public int getTotalCnt() {
 		return totalCnt;
@@ -24,6 +27,18 @@ public class PagingDTO {
 	}
 	public void setM_id(String m_id) {
 		this.m_id = m_id;
+	}
+	public int getTotalCnt2() {
+		return totalCnt2;
+	}
+	public void setTotalCnt2(int totalCnt2) {
+		this.totalCnt2 = totalCnt2;
+	}
+	public int getPageNo2() {
+		return pageNo2;
+	}
+	public void setPageNo2(int pageNo2) {
+		this.pageNo2 = pageNo2;
 	}
 	
 

@@ -61,25 +61,23 @@ public class ManagerController {
  			pagingDTO.setPageNo(pageNo);
 
  		}
-// 		int pageNo2 = 1;
-// 		if(pagingDTO.getPageNo2() <= 0 ) {
-//
-// 			pagingDTO.setPageNo2(pageNo2);
-//
-// 		}
+ 		int pageNo2 = 1;
+ 		if(pagingDTO.getPageNo2() <= 0 ) {
+
+ 			pagingDTO.setPageNo2(pageNo2);
+
+ 		}
 		model.addAttribute("orderList", managerService.selectOrder(pagingDTO));
-		System.out.println("ol"+managerService.selectOrder(pagingDTO).size());
 		if(managerService.selectOrder(pagingDTO).size() != 0) {
 			model.addAttribute("totalCnt", managerService.selectOrder(pagingDTO).get(0).getPagingDTO().getTotalCnt());
 		}
 		model.addAttribute("pageNo", pagingDTO.getPageNo());
-		
+		//
 		model.addAttribute("order_managementList", managerService.selectOrder_Management(pagingDTO));
-		//System.out.println("oml"+managerService.selectOrder_Management(pagingDTO).size());
-		//if(managerService.selectOrder_Management(pagingDTO).size() != 0) {
-		//	model.addAttribute("totalCnt2", managerService.selectOrder_Management(pagingDTO).get(0).getPagingDTO().getTotalCnt2());
-		//}
-		//model.addAttribute("pageNo2", pagingDTO.getPageNo2());
+		if(managerService.selectOrder_Management(pagingDTO).size() != 0) {
+			model.addAttribute("totalCnt2", managerService.selectOrder_Management(pagingDTO).get(0).getPagingDTO().getTotalCnt2());
+		}
+		model.addAttribute("pageNo2", pagingDTO.getPageNo2());
 		return "/Manager/manager_order";
 
 	}
