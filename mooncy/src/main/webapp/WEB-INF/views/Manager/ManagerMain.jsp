@@ -288,6 +288,10 @@ var colorNames2 = [
       
       
    </script>
+   <button class="btn" id="btn" type="button" onclick="window.open('/Manager/UserInsert', '_blank', 'toolbars=no,scrollbars=no'); return false;" 
+            style="float : right; border : 0; background-color : white";>
+            	<img class="btn-img" src="/resources/js/image/image2.png"style="cursor:pointer; width : 80px; height : 80px;">
+            </button><br><br>
 </head>
 <body>
 <br><br>
@@ -347,7 +351,8 @@ var colorNames2 = [
                   </td>
             </tr>
          </table>
-               <button id="search" class="button" value="search">검색</button>
+               <button id="search" class="button" value="search" >검색</button>
    </div>
+       
 </body>
 </html>
