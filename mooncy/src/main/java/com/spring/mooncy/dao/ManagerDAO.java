@@ -6,6 +6,7 @@ import com.spring.mooncy.dto.CustomerDTO;
 import com.spring.mooncy.dto.OrderDTO;
 import com.spring.mooncy.dto.Order_ManagementDTO;
 import com.spring.mooncy.dto.PagingDTO;
+import com.spring.mooncy.dto.SaleDTO;
 import com.spring.mooncy.dto.StoreDTO;
 
 public  interface ManagerDAO {
@@ -24,5 +25,6 @@ public  interface ManagerDAO {
 	int UesrCheck(CustomerDTO customerDTO);
 	int UesrInsert(CustomerDTO customerDTO); 
 	int User_ProductInsert(CustomerDTO customerDTO); 
+	public List<SaleDTO> selectSale(SaleDTO saleDTO);
 	//public int order_request(OrderDTO orderDTO);
 }

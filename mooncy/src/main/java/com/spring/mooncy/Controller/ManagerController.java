@@ -20,6 +20,7 @@ import com.spring.mooncy.dto.CustomerDTO;
 import com.spring.mooncy.dto.OrderDTO;
 import com.spring.mooncy.dto.Order_ManagementDTO;
 import com.spring.mooncy.dto.PagingDTO;
+import com.spring.mooncy.dto.SaleDTO;
 import com.spring.mooncy.dto.StoreDTO;
 import com.spring.mooncy.service.ManagerService;
 import com.spring.mooncy.service.StoreService;
@@ -42,12 +43,30 @@ public class ManagerController {
 
 
 
-	@RequestMapping(value = "/Manager/ManagerMain")
-	public String Manager(Model model) throws Exception {
 
-		return "/Manager/ManagerMain";
+	   @RequestMapping(value = "/Manager/ManagerMain")
+	   public String Manager(Model model,CustomerDTO customerDTO) throws Exception {
+	      List<CustomerDTO> selectCustomer = managerService.selectCustomer();
+	       model.addAttribute("selectCustomer", selectCustomer); // 데이터를 저장
+	      return "/Manager/ManagerMain";
 
-	}
+	   }
+
+	   @ResponseBody
+	   @RequestMapping(value = "/Manager/search", produces = "application/text; charset=utf8")
+	   public String managerpop(SaleDTO saleDTO) throws Exception{
+	      System.out.println("보낸이 : " +saleDTO.getM_id());
+	      System.out.println("시작일 : " +saleDTO.getStart());
+	      System.out.println("마무리일 : " +saleDTO.getEnd());
+	      HashMap<String, Object> result = new HashMap<String, Object>();
+	      CommonUtil commonUtil = new CommonUtil();
+	      result.put("selectSale", managerService.selectSale(saleDTO)); 
+	       String callbackMsg = commonUtil.getJsonCallBackString(" ",result);
+	       
+	       System.out.println("callbackMsg::"+callbackMsg);
+	       
+	       return callbackMsg;
+	   }
 	@RequestMapping(value = "/Manager/UserInsert")
 	public String UserInsert(Model model) throws Exception {
 

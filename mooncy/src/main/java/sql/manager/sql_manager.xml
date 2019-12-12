@@ -14,6 +14,18 @@
     	<result property="totalCnt2" column="totalcnt2"/>
 
     </resultMap>
+    
+    <resultMap type="com.spring.mooncy.dto.SaleDTO" id="SaleDTO">
+
+    	<result property="m_id" column="m_id"/>
+    	<result property="p_name" column="p_name"/>
+    	<result property="p_money" column="p_money"/>
+    	<result property="p_count" column="p_count"/>
+    	<result property="p_date" column="p_date"/>
+    	<result property="start" column="start"/>
+    	<result property="end" column="end"/>
+
+    </resultMap>
 
 	<resultMap type="com.spring.mooncy.dto.OrderDTO" id="OrderDTO">
 
@@ -346,5 +358,22 @@
     	)
     	
 	</insert>
+	
+	<select id="selectSale" parameterType="com.spring.mooncy.dto.SaleDTO" resultMap="SaleDTO">
+
+
+   
+      select p_name,sum(p_money) p_money,sum(p_count) p_count
+      from sale 
+      where 
+         <if test="m_id != 'all'">
+         
+            m_id=#{m_id} and
+            
+         </if>
+       p_date between #{start} and #{end} group by p_name
+   
+
+   </select>
 	
 </mapper>

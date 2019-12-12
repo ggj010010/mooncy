@@ -14,6 +14,7 @@ import com.spring.mooncy.dto.CustomerDTO;
 import com.spring.mooncy.dto.OrderDTO;
 import com.spring.mooncy.dto.Order_ManagementDTO;
 import com.spring.mooncy.dto.PagingDTO;
+import com.spring.mooncy.dto.SaleDTO;
 import com.spring.mooncy.dto.StoreDTO;
 import com.spring.mooncy.service.ManagerService;
 
@@ -167,6 +168,12 @@ public class ManagerServiceImpl implements ManagerService{
 	public int User_ProductInsert(CustomerDTO customerDTO) {
 		// TODO Auto-generated method stub
 		return ManagerDAO.User_ProductInsert(customerDTO);
+	}
+
+	@Override
+	public List<SaleDTO> selectSale(SaleDTO saleDTO) {
+		// TODO Auto-generated method stub
+		return ManagerDAO.selectSale(saleDTO);
 	}
 
 }
