@@ -329,7 +329,7 @@
 							<%
 								int count = 0;
 							%>
-							<c:forEach var="ol" items="${orderList}">
+							<c:forEach var="ol" items="${select_User_Order}">
 								<c:if test="${ ol.o_check eq 0}">
 									<%
 										count++;
@@ -359,7 +359,7 @@
 							</c:choose>
 
 							<tbody>
-								<c:forEach var="ol" items="${orderList}">
+								<c:forEach var="ol" items="${select_User_Order}">
 									<c:choose>
 										
 										<c:when test="${ol.o_check == 0}">
@@ -418,8 +418,8 @@
 								<div class="text-center">
 									<c:if test="${totalCnt/10 > 1 }">
 										<%	String pageNo2 = "1";
-										 if(request.getParameter("pageNo") != null){
-												pageNo2 = request.getParameter("pageNo");
+										 if(request.getParameter("pageNo2") != null){
+												pageNo2 = request.getParameter("pageNo2");
 											}
 										%>
 										<c:forEach var="i" begin="1" end="${(totalCnt-1)/10+1}">

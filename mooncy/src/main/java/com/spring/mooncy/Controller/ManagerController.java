@@ -1,6 +1,5 @@
 package com.spring.mooncy.Controller;
 
-import java.sql.Date;
 import java.util.HashMap;
 import java.util.List;
 
@@ -13,7 +12,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -50,7 +48,12 @@ public class ManagerController {
 		return "/Manager/ManagerMain";
 
 	}
+	@RequestMapping(value = "/Manager/UserInsert")
+	public String UserInsert(Model model) throws Exception {
 
+		return "/Manager/UserInsert";
+
+	}
 	@RequestMapping(value = "/Manager/manager_order")
 	public String manager_order(Model model, PagingDTO pagingDTO) throws Exception {
 		logger.info("Manager :: page :: " + pagingDTO.getPageNo());
@@ -67,6 +70,7 @@ public class ManagerController {
  			pagingDTO.setPageNo2(pageNo2);
 
  		}
+ 		model.addAttribute("select_User_Order", managerService.select_User_Order());
 		model.addAttribute("orderList", managerService.selectOrder(pagingDTO));
 		if(managerService.selectOrder(pagingDTO).size() != 0) {
 			model.addAttribute("totalCnt", managerService.selectOrder(pagingDTO).get(0).getPagingDTO().getTotalCnt());
@@ -102,6 +106,25 @@ public class ManagerController {
 		
 	}
 	
+	@RequestMapping(value = "/UesrCheck", method = {RequestMethod.POST,RequestMethod.GET})
+	@ResponseBody
+	public int UesrCheck(Model model,CustomerDTO customerDTO, HttpSession Hsession) throws Exception {
+		logger.info("UesrCheck");
+		
+		 int check = managerService.UesrCheck(customerDTO);
+		  return check;
+		
+	}
+	@RequestMapping(value = "/UesrInsert", method = {RequestMethod.POST,RequestMethod.GET})
+	@ResponseBody
+	public int UesrInsert(Model model,CustomerDTO customerDTO) throws Exception {
+		logger.info("UesrInsert");
+
+		 int insert_user = managerService.UesrInsert(customerDTO);
+		 int insert_product = managerService.User_ProductInsert(customerDTO);
+		  return insert_user+insert_product;
+		
+	}
 	@RequestMapping(value = "/manager/response", method = {RequestMethod.POST,RequestMethod.GET})
 	
 	@ResponseBody

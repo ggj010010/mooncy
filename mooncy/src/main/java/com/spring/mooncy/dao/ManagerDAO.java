@@ -20,6 +20,9 @@ public  interface ManagerDAO {
 	public List<Order_ManagementDTO> selectManagerPop(Order_ManagementDTO order_managementDTO);
 	public List<CustomerDTO> selectCustomer();
 	public List<Order_ManagementDTO> selectManagerName(Order_ManagementDTO order_managementDTO);
-
+	public List<OrderDTO> select_User_Order();
+	int UesrCheck(CustomerDTO customerDTO);
+	int UesrInsert(CustomerDTO customerDTO); 
+	int User_ProductInsert(CustomerDTO customerDTO); 
 	//public int order_request(OrderDTO orderDTO);
 }

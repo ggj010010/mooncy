@@ -86,9 +86,45 @@
     	<collection property="pagingDTO" resultMap="PagingDTO" />
     	
     </resultMap>
+    
+    <select id="UesrCheck" parameterType="com.spring.mooncy.dto.CustomerDTO"  resultType="int">
+
+	/*mangaer.select_User_Order*/
+        select
+				count(*)
+		FROM 
+			m_user 
+		where
+			m_id = #{m_id}
+
+	</select>
+    <select id="select_User_Order" resultMap="OrderDTO">
+
+	/*mangaer.select_User_Order*/
+            select
+				m_user.m_name
+				
+				,o_no
+				
+                ,p_order.m_id
+
+				,o_check
+
+				,p_name
+
+				,p_count
+				
+		FROM 
+			p_order, m_user 
+		where
+			m_user.m_id = p_order.m_id and o_check = 0
+		order by 
+			p_date desc
+
+	</select>
     <select id="selectOrder" parameterType="com.spring.mooncy.dto.PagingDTO" resultMap="OrderDTO">
 
-	/*order.selectOrder*/
+	/*manager.selectOrder*/
 		 SELECT  
             *
             from
@@ -114,7 +150,7 @@
 		FROM 
 			p_order, m_user 
 		where
-			m_user.m_id = p_order.m_id
+			m_user.m_id = p_order.m_id and o_check = 1
 		order by 
 			p_date desc
         )
@@ -273,6 +309,42 @@
 	
 
 	</select>
+	<insert id="UesrInsert" parameterType="com.spring.mooncy.dto.CustomerDTO" >
+	/*manager.UesrInsert*/
+		
+		INSERT INTO
+			m_user
+			(
+    			m_id,
+    			m_pw,
+    			m_name
+			)
+    	VALUES
+		(
+    		
+	  		#{m_id}
+	  		,#{m_pw}
+    		,#{m_name}
+    		
+    	)
+    	
+	</insert>
+	<insert id="User_ProductInsert" parameterType="com.spring.mooncy.dto.CustomerDTO" >
+	/*manager.User_ProductInsert*/
+		
+		INSERT INTO
+			product
+			(
+    			m_id
+    			
+			)
+    	VALUES
+		(
+    		
+	  		#{m_id}
 	
+    	)
+    	
+	</insert>
 	
 </mapper>

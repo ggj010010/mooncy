@@ -102,6 +102,31 @@ public class ManagerDAOImpl implements ManagerDAO{
 		return sqlSession.selectList("manager.selectManagerName",order_managementDTO);
 	}
 
+	@Override
+	public List<OrderDTO> select_User_Order() {
+		// TODO Auto-generated method stub
+		
+		return sqlSession.selectList("manager.select_User_Order");
+	}
+
+	@Override
+	public int UesrCheck(CustomerDTO customerDTO) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("manager.UesrCheck", customerDTO);
+	}
+
+	@Override
+	public int UesrInsert(CustomerDTO customerDTO) {
+		// TODO Auto-generated method stub
+		return sqlSession.insert("manager.UesrInsert", customerDTO);
+	}
+
+	@Override
+	public int User_ProductInsert(CustomerDTO customerDTO) {
+		// TODO Auto-generated method stub
+		return sqlSession.insert("manager.User_ProductInsert", customerDTO);
+	}
+
 
 	
 }

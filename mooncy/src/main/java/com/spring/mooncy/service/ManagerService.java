@@ -23,4 +23,8 @@ public interface ManagerService {
 	public List<Order_ManagementDTO> selectManagerPop(Order_ManagementDTO order_managementDTO);
 	public List<CustomerDTO> selectCustomer();
 	public List<Order_ManagementDTO> selectManagerName(Order_ManagementDTO order_managementDTO);
+	List<OrderDTO> select_User_Order();
+	public int UesrCheck(CustomerDTO customerDTO);
+	public int UesrInsert(CustomerDTO customerDTO);
+	public int User_ProductInsert(CustomerDTO customerDTO);
 }

@@ -145,4 +145,28 @@ public class ManagerServiceImpl implements ManagerService{
 		return ManagerDAO.selectManagerName(order_managementDTO);
 	}
 
+	@Override
+	public List<OrderDTO> select_User_Order() {
+		// TODO Auto-generated method stub
+		return ManagerDAO.select_User_Order();
+	}
+	
+	@Override
+	public int UesrCheck(CustomerDTO customerDTO) {
+		// TODO Auto-generated method stub
+		return ManagerDAO.UesrCheck(customerDTO);
+	}
+
+	@Override
+	public int UesrInsert(CustomerDTO customerDTO) {
+		// TODO Auto-generated method stub
+		return ManagerDAO.UesrInsert(customerDTO);
+	}
+
+	@Override
+	public int User_ProductInsert(CustomerDTO customerDTO) {
+		// TODO Auto-generated method stub
+		return ManagerDAO.User_ProductInsert(customerDTO);
+	}
+
 }
