@@ -146,7 +146,12 @@ $j(document).ready(function() {
 	</tr>
 	
 	<tr>
-		<td colspan="4"><button id = "btnInsert" class ="button" type="button" style = "width : 40%;"> 등록하기 </button></td>
+		<td colspan="2"><button id = "btnInsert" class ="button" type="button" style = "width : 40%; float : right;"> 등록하기 </button></td>
+		<td colspan="2"><button  type="button" onClick="location.href='/excel/excelhome'" 
+            style="float : left; border : 0; background-color : #F6F6F6";>
+            	<img class="btn-img" src="/resources/js/image/image.png"style="cursor:pointer; width : 40px; height : 40px;">
+            </button>
+		</td>
 	</tr>
 </table>
 

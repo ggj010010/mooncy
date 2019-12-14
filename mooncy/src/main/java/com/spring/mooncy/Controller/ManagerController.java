@@ -174,35 +174,7 @@ public class ManagerController {
 		
 	}
 
-@ResponseBody
-@RequestMapping(value = "/Manager/managerpop2")
-public ModelAndView managerpop2(Order_ManagementDTO order_managementDTO) throws Exception{
-    List<CustomerDTO> selectCustomer = managerService.selectCustomer();
-    ModelAndView mav = new ModelAndView();
-    mav.setViewName("Manager/managerpop"); // 뷰를 custview.jsp로 설정
-    mav.addObject("selectCustomer", selectCustomer); // 데이터를 저장
-    return mav; // custview.jsp로 custview가 전달된다.
-	}
 
-@ResponseBody
-@RequestMapping(value = "/Manager/managerpop", produces = "application/text; charset=utf8")
-public String managerpop(Order_ManagementDTO order_managementDTO) throws Exception{
-	System.out.println("보낸이 : " +order_managementDTO.getResponse_id());
-	System.out.println("시작일 : " +order_managementDTO.getStart());
-	System.out.println("마무리일 : " +order_managementDTO.getEnd());
-	HashMap<String, Object> result = new HashMap<String, Object>();
-	CommonUtil commonUtil = new CommonUtil();
-	result.put("managerpop", managerService.selectManagerPop(order_managementDTO)); 
-	result.put("managername", managerService.selectManagerName(order_managementDTO)); 
-    //List<Order_ManagementDTO> managerpop = managerService.selectManagerPop(order_managementDTO);
-    // ModelAndView - 모델과 뷰
-    
-    String callbackMsg = commonUtil.getJsonCallBackString(" ",result);
-    
-    System.out.println("callbackMsg::"+callbackMsg);
-    
-    return callbackMsg;
-}
 @ResponseBody
 @RequestMapping(value = "/Manager/ManagerTest")
 public String ManagerTest(Model model,Order_ManagementDTO order_managementDTO) throws Exception {
