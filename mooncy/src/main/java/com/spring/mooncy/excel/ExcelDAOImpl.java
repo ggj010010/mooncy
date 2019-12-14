@@ -15,8 +15,14 @@ public class ExcelDAOImpl implements ExcelDAO{
 	private SqlSession sqlSession;
 
 	@Override
-	public int insertExcelTest(List<CustomerDTO> list) {
+	public int insertExcel(List<CustomerDTO> list) {
 		// TODO Auto-generated method stub
 		return sqlSession.insert("excel.insertExcel", list);
+	}
+
+	@Override
+	public int insertProduct(List<CustomerDTO> list) {
+		// TODO Auto-generated method stub
+		return sqlSession.insert("excel.insertProduct", list);
 	}
 }

@@ -101,8 +101,8 @@ public class ExcelServiceImpl implements ExcelService{
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-
-		excelDAO.insertExcelTest(list);
+		excelDAO.insertProduct(list);
+		excelDAO.insertExcel(list);
 		return list;
 	}
 
@@ -172,9 +172,6 @@ public class ExcelServiceImpl implements ExcelService{
 										}
 										
 									} // end if
-									System.out.println(CustomerDTO.getM_id());
-									System.out.println(CustomerDTO.getM_pw());
-									System.out.println(CustomerDTO.getM_name());
 								} // end for
 								list.add(CustomerDTO);
 							} // end
@@ -186,7 +183,8 @@ public class ExcelServiceImpl implements ExcelService{
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		excelDAO.insertExcelTest(list);
+		excelDAO.insertProduct(list);
+		excelDAO.insertExcel(list);
 		return list;
 	}
 }

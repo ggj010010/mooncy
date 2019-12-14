@@ -29,4 +29,18 @@ VALUES
 </foreach>
 select * from dual
 </insert>
+<insert id="insertProduct" parameterType="java.util.List">
+INSERT all
+<foreach collection="list" item="item" separator=" ">
+INTO product
+(
+     m_id
+)
+VALUES
+(
+     #{item.m_id}
+)
+</foreach>
+select * from dual
+</insert>
 </mapper>

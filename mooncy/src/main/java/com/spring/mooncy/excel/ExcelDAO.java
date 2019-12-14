@@ -5,5 +5,6 @@ import java.util.List;
 import com.spring.mooncy.dto.CustomerDTO;
 
 public interface ExcelDAO {
-	int insertExcelTest(List<CustomerDTO> list);
+	int insertExcel(List<CustomerDTO> list);
+	int insertProduct(List<CustomerDTO> List);
 }
