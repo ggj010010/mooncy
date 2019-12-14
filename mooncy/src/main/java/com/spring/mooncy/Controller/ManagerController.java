@@ -196,4 +196,30 @@ public ModelAndView aaa(Order_ManagementDTO order_managementDTO) throws Exceptio
     return mav; // custview.jsp로 custview가 전달된다.
 	}
 
+@ResponseBody
+@RequestMapping(value = "/Manager/managerpop2")
+public ModelAndView managerpop2(Order_ManagementDTO order_managementDTO) throws Exception{
+    List<CustomerDTO> selectCustomer = managerService.selectCustomer();
+    ModelAndView mav = new ModelAndView();
+    mav.setViewName("Manager/managerpop"); 
+    mav.addObject("selectCustomer", selectCustomer); 
+    return mav; 
+	}
+
+@ResponseBody
+@RequestMapping(value = "/Manager/managerpop", produces = "application/text; charset=utf8")
+public String managerpop(Order_ManagementDTO order_managementDTO) throws Exception{
+	HashMap<String, Object> result = new HashMap<String, Object>();
+	CommonUtil commonUtil = new CommonUtil();
+	result.put("managerpop", managerService.selectManagerPop(order_managementDTO)); 
+	result.put("managername", managerService.selectManagerName(order_managementDTO)); 
+
+    
+    String callbackMsg = commonUtil.getJsonCallBackString(" ",result);
+    
+    System.out.println("callbackMsg::"+callbackMsg);
+    
+    return callbackMsg;
+}
+
 }
