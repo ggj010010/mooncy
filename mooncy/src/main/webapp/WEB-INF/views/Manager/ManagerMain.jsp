@@ -288,20 +288,46 @@ var colorNames2 = [
       
       
    </script>
-   <button class="btn" id="btn" type="button" onclick="window.open('/Manager/UserInsert', '_blank', 'toolbars=no,scrollbars=no'); return false;" 
-            style="float : right; border : 0; background-color : white";>
+   <h1 align = "center"><img class="btn-img" src="/resources/js/image/rogo2.png" style="width : 301px; height : 110px;"><br>
+   <button  type="button" onclick="window.open('/Manager/UserInsert', '_blank', 'toolbars=no,scrollbars=no'); return false;" 
+            style="float : right; border : 0; background-color : #F6F6F6";>
             	<img class="btn-img" src="/resources/js/image/image2.png"style="cursor:pointer; width : 80px; height : 80px;">
-            </button><br><br>
-</head>
-<body>
-<br><br>
+            </button></h1><br><br><br>
+
+
 <div class="wrap">
 <div id = "side"><button class="button" onClick="location.href='/Manager/ManagerMain'"> 메인</button></div>
    <div id = "side"><button class="button"onClick="location.href='/Manager/manager_order'"> 발주관리</button></div>
    <div id = "side"><button class="button"onClick="location.href='/menu/quview'"> 판매관리</button></div>
     <div id = "side"><button class="button"onClick="location.href='/Manager/manager_store'"> 재고관리 </button></div>
-</div>       
-<br><br><br><br>
+</div>  
+
+</head>
+<body>     
+	<c:choose>
+
+        		<c:when test="${sessionScope.m.m_id != null}">
+				<c:choose>
+
+        			<c:when test="${sessionScope.m.m_id == '0'}">
+
+      		    	<li><a>관리자님</a></li>
+
+        			</c:when>
+        			<c:otherwise> 
+
+                		<li><a>${sessionScope.m.m_id}님</a></li>
+
+        			</c:otherwise>
+ 				</c:choose>
+  				
+
+        		<li><a href="/logout">로그아웃</a></li>
+
+        		</c:when>
+        	
+ 	</c:choose>
+<br><br><br>
 <div style="width : 48%; float : left;">
 <h2 style="text-align : center;">입·출고 관리</h2>
       <form action="/Manager/managerpop">

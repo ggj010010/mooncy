@@ -7,6 +7,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>게시글 작성</title>
 <script type="text/javascript" src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
+<link rel="stylesheet" type="text/css" href="/resources/js/default.css">
 <script>
     $(document).ready(function(){
         $("#btnSave").click(function(){
@@ -33,17 +34,20 @@
         });
     });
 </script>
-<link rel="stylesheet" type="text/css" href="/resources/js/default.css">
- <div class="wrap">
+
+   <h1 align = "center"><img class="btn-img" src="/resources/js/image/rogo2.png" style="width : 301px; height : 110px;"><br>
+   <button  type="button" onclick="window.open('/Manager/UserInsert', '_blank', 'toolbars=no,scrollbars=no'); return false;" 
+            style="float : right; border : 0; background-color : #F6F6F6";>
+            	<img class="btn-img" src="/resources/js/image/image2.png"style="cursor:pointer; width : 80px; height : 80px;">
+            </button></h1><br><br><br>
 
 
-	<div id = "side"><button class="button" onClick="location.href='/menu/main'"> 메인</button></div>
-	<div id = "side"><button class="button"onClick="location.href='/order/orderview'"> 발주관리</button></div>
-	<div id = "side"><button class="button"onClick="location.href='/menu/quview'"> 판매관리</button></div>
- 	<div id = "side"><button class="button"onClick="location.href='/store/store'"> 재고관리 </button></div>
-
-
-</div>
+<div class="wrap">
+<div id = "side"><button class="button" onClick="location.href='/menu/main'"> 메인</button></div>
+   <div id = "side"><button class="button"onClick="location.href='/order/orderview'"> 발주관리</button></div>
+   <div id = "side"><button class="button"onClick="location.href='/menu/quview'"> 판매관리</button></div>
+    <div id = "side"><button class="button"onClick="location.href='/store/store'"> 재고관리 </button></div>
+</div>  
 </head>
 <body>
 	<c:choose>

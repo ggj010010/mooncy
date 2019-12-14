@@ -8,6 +8,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>게시글 목록</title>
 <script type="text/javascript" src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
+<link rel="stylesheet" type="text/css" href="/resources/js/default.css">
 <script>
     $(document).ready(function(){
         $("#btnWrite").click(function(){
@@ -16,9 +17,14 @@
         });
     });
 </script>
+   <h1 align = "center"><img class="btn-img" src="/resources/js/image/rogo2.png" style="width : 301px; height : 110px;"><br>
+   <button  type="button" onclick="window.open('/Manager/UserInsert', '_blank', 'toolbars=no,scrollbars=no'); return false;" 
+            style="float : right; border : 0; background-color : #F6F6F6";>
+            	<img class="btn-img" src="/resources/js/image/image2.png"style="cursor:pointer; width : 80px; height : 80px;">
+            </button></h1><br><br><br>
 
         
-<link rel="stylesheet" type="text/css" href="/resources/js/default.css">
+
 	<c:choose>
         		<c:when test="${sessionScope.m.m_id != null}">
 				<c:choose>

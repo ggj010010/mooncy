@@ -203,28 +203,19 @@
 <meta charset="EUC-KR">
 <title>재고</title>
 
+   <h1 align = "center"><img class="btn-img" src="/resources/js/image/rogo2.png" style="width : 301px; height : 110px;"><br>
+   <button  type="button" onclick="window.open('/Manager/UserInsert', '_blank', 'toolbars=no,scrollbars=no'); return false;" 
+            style="float : right; border : 0; background-color : #F6F6F6";>
+            	<img class="btn-img" src="/resources/js/image/image2.png"style="cursor:pointer; width : 80px; height : 80px;">
+            </button></h1><br><br><br>
+
+
 <div class="wrap">
-
-
-	<div id="side">
-		<button class="button" onClick="location.href='/menu/main'">
-			메인</button>
-	</div>
-	<div id="side">
-		<button class="button" onClick="location.href='/order/orderview'">
-			발주관리</button>
-	</div>
-	<div id="side">
-		<button class="button" onClick="location.href='/menu/quview'">
-			판매관리</button>
-	</div>
-	<div id="side">
-		<button class="button" onClick="location.href='/store/store'">
-			재고관리</button>
-	</div>
-
-
-</div>
+<div id = "side"><button class="button" onClick="location.href='/menu/main'"> 메인</button></div>
+   <div id = "side"><button class="button"onClick="location.href='/order/orderview'"> 발주관리</button></div>
+   <div id = "side"><button class="button"onClick="location.href='/menu/quview'"> 판매관리</button></div>
+    <div id = "side"><button class="button"onClick="location.href='/store/store'"> 재고관리 </button></div>
+</div>  
 </head>
 <body>
 
