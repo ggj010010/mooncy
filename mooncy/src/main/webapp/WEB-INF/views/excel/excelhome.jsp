@@ -34,6 +34,7 @@
 			var options = {
 				success : function(data) {
 					alert("업로드 완료");
+					window.close();
 					//$j("#ajax-content").html(data);
 				},
 				type : "POST",

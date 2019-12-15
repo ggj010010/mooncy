@@ -101,8 +101,8 @@ public class ExcelServiceImpl implements ExcelService{
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		excelDAO.insertProduct(list);
 		excelDAO.insertExcel(list);
+		excelDAO.insertProduct(list);
 		return list;
 	}
 
@@ -183,8 +183,8 @@ public class ExcelServiceImpl implements ExcelService{
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		excelDAO.insertProduct(list);
 		excelDAO.insertExcel(list);
+		excelDAO.insertProduct(list);
 		return list;
 	}
 }
