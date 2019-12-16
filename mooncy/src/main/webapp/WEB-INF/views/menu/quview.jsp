@@ -97,7 +97,14 @@
             <!-- 원하는 날짜형식으로 출력하기 위해 fmt태그 사용 -->
             <fmt:formatDate value="${qv.q_date}" pattern="yyyy-MM-dd HH:mm:ss"/>
         </td>
-        <td>${qv.q_check}</td>
+        <c:choose>
+       <c:when test="${qv.q_check==0}">
+        <td>처리 중</td>
+        </c:when>
+        <c:when test="${qv.q_check==1}">
+        <td>처리 완료</td>
+        </c:when>
+        </c:choose>
     </tr>     
 
     </c:when>
@@ -111,7 +118,14 @@
             <!-- 원하는 날짜형식으로 출력하기 위해 fmt태그 사용 -->
             <fmt:formatDate value="${qv.q_date}" pattern="yyyy-MM-dd HH:mm:ss"/>
         </td>
-        <td>${qv.q_check}</td>
+        <c:choose>
+       <c:when test="${qv.q_check==0}">
+        <td>처리 중</td>
+        </c:when>
+        <c:when test="${qv.q_check==1}">
+        <td>처리 완료</td>
+        </c:when>
+        </c:choose>
     </tr>      
 
     </c:when>

@@ -58,7 +58,7 @@
 
             <h2 class="ui teal image header">
 
- 				로그인 페이지
+ 				<img class="btn-img" src="/resources/js/image/rogo2.png" style="width : 301px; height : 110px;">
 
             </h2>
 
